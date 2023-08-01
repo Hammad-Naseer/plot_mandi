@@ -52,7 +52,7 @@
                         <!-- Logo -->
                         <div id="logo">
                             <a href="/">
-                              <img src="{{ asset(MyApp::SITE_LOGO) }}" data-sticky-logo="images/logo-red.svg" alt="">
+                              <img src="{{ asset(MyApp::SITE_LOGO) }}" data-sticky-logo="{{ asset(MyApp::ASSET_IMG.'logo-red.svg') }}" alt="">
                            </a>
                         </div>
                         <!-- Mobile Navigation -->
@@ -246,7 +246,7 @@
                     <!-- Right Side Content / End -->
                     <div class="header-user-menu user-menu add">
                         <div class="header-user-name">
-                            <span><img src="images/testimonials/ts-1.jpg" alt=""></span>Hi, Mary!
+                            <span><img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt=""></span>Hi, Mary!
                         </div>
                         <ul>
                             <li><a href="user-profile.html"> Edit profile</a></li>
@@ -296,7 +296,7 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="netabout">
                                 <a href="index-2.html" class="logo">
-                                    <img src="images/logo-footer.svg" alt="netcom">
+                                    <img src="{{ asset(MyApp::ASSET_IMG.'logo-footer.svg') }}" alt="netcom">
                                 </a>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum incidunt architecto soluta laboriosam, perspiciatis, aspernatur officiis esse.</p>
                             </div>
