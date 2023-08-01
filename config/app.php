@@ -186,6 +186,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'MyApp' => App\MyApp::class,
         // 'Example' => App\Facades\Example::class,
         'AgentDetector' => Karmendra\LaravelAgentDetector\Facades\AgentDetector::class,
         'StoredProcedureHelper' => App\Facades\StoredProcedureHelper::class,

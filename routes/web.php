@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return view('login');
+    return view('homePage');
 });
 
 // Login With Azure Active Directory
