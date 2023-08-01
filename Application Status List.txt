@@ -1,0 +1,19 @@
+*** Admin Type Status ***
+0) Super Admin
+1) Aduitee 
+2) Auditor 
+3) Employee 
+
+*** Company Account Type Status ***
+1) Aduitee 
+2) Auditor 
+
+*** Auth Type Status ***
+1) System Login 
+2) Azure Login
+
+*** StoredProcedureHelper 3rd Parameter  ***
+1) select
+2) statement
+
+***  ***
