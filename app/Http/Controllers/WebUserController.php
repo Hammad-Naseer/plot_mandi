@@ -44,6 +44,6 @@ class WebUserController extends Controller
         // if(Auth::user()->usermanagement->account_type == 1):
         // else:
         // endif;
-        return view('pages.user.auth.login');
+        return view('pages.admin.auth.login');
     }
 }

@@ -38,7 +38,7 @@
     <link rel="stylesheet" id="color" href="{{ asset(MyApp::ASSET_STYLE.'colors/green.css') }}">
 </head>
 
-<body class="@if (Route::current()->uri == 'login' || Route::current()->uri == 'register') inner-pages hd-white @else th-15 homepage-4 @endif">
+<body class="@if (Route::current()->uri == 'login' || Route::current()->uri == 'register' || Route::current()->uri == 'login/admin') inner-pages hd-white @else th-15 homepage-4 @endif">
     <!-- Wrapper -->
     <div id="wrapper">
         <!-- START SECTION HEADINGS -->
