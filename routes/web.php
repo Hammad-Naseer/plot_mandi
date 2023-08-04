@@ -26,13 +26,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebUserController;
 
 Route::get('/', function () {
     return view('homePage');
 });
 
-// Login With Azure Active Directory
-Route::get('/login/azure', [UserController::class,'redirectToAzure']);
-Route::get('/login/azure/callback',[UserController::class,'handleAzureCallback']);
-Route::get('/login/azure/logout',[UserController::class,'logout_azure']);
+// Dashboard Routes 
+Route::get('/login/admin', [WebUserController::class,'adminLogin']);
+Route::get('/login', [WebUserController::class,'userLogin']);
+Route::get('/register', [WebUserController::class,'userRegister']);
+
+Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard']);
+Route::get('/dashboard/user', [WebUserController::class,'userDashboard']);
+
+

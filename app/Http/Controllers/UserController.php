@@ -165,6 +165,8 @@ class UserController extends Controller
         }
     }
 
+    
+
     public function getUserDetail($id = 0)
     {
         try {

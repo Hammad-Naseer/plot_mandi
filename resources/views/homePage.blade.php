@@ -1,920 +1,1131 @@
 @extends('layouts.app')
 @section('content')
+
 <!-- STAR HEADER SEARCH -->
-<section id="hero-area" class="parallax-searchs home15 overlay thome-6 thome-10" data-stellar-background-ratio="0.5">
-    <div class="hero-main">
-        <div class="container" data-aos="zoom-in">
-            <div class="row">
-                <div class="col-12">
-                    <div class="hero-inner">
-                        <!-- Welcome Text -->
-                        <div class="welcome-text">
-                            <h1 class="h1">Find Your Dream House
-                            <br class="d-md-none">
-                        </h1>
-                            <p class="mt-4">We Have Over Million Properties For You.</p>
-                        </div>
-                        <!--/ End Welcome Text -->
-                        <!-- Search Form -->
+<section id="hero-area" class="parallax-searchs home15 overlay" data-stellar-background-ratio="0.5">
+            <div class="hero-main">
+                <div class="container" data-aos="zoom-in">
+                    <div class="row">
                         <div class="col-12">
-                            <div class="banner-search-wrap">
-                                <ul class="nav nav-tabs rld-banner-tab">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#tabs_1">For Sale</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#tabs_2">For Rent</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="tabs_1">
-                                        <div class="rld-main-search">
-                                            <div class="row">
-                                                <div class="rld-single-input">
-                                                    <input type="text" placeholder="Enter Keyword...">
-                                                </div>
-                                                <div class="rld-single-select ml-22">
-                                                    <select class="select single-select">
-                                                        <option value="1">Property Type</option>
-                                                        <option value="2">Family House</option>
-                                                        <option value="3">Apartment</option>
-                                                        <option value="3">Condo</option>
-                                                    </select>
-                                                </div>
-                                                <div class="rld-single-select">
-                                                    <select class="select single-select mr-0">
-                                                        <option value="1">Location</option>
-                                                        <option value="2">Los Angeles</option>
-                                                        <option value="3">Chicago</option>
-                                                        <option value="3">Philadelphia</option>
-                                                        <option value="3">San Francisco</option>
-                                                        <option value="3">Miami</option>
-                                                        <option value="3">Houston</option>
-                                                    </select>
-                                                </div>
-                                                <div class="dropdown-filter"><span>Advanced Search</span></div>
-                                                <div class="col-xl-2 col-lg-2 col-md-4 pl-0">
-                                                    <a class="btn btn-yellow" href="#">Search Now</a>
-                                                </div>
-                                                <div class="explore__form-checkbox-list full-filter">
-                                                    <div class="row">
-                                                        <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0">
-                                                            <!-- Form Property Status -->
-                                                            <div class="form-group categories">
-                                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Status</span>
-                                                                    <ul class="list">
-                                                                        <li data-value="1" class="option selected ">For Sale</li>
-                                                                        <li data-value="2" class="option">For Rent</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!--/ End Form Property Status -->
-                                                        </div>
-                                                        <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0 ">
-                                                            <!-- Form Bedrooms -->
-                                                            <div class="form-group beds">
-                                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bed" aria-hidden="true"></i> Bedrooms</span>
-                                                                    <ul class="list">
-                                                                        <li data-value="1" class="option selected">1</li>
-                                                                        <li data-value="2" class="option">2</li>
-                                                                        <li data-value="3" class="option">3</li>
-                                                                        <li data-value="3" class="option">4</li>
-                                                                        <li data-value="3" class="option">5</li>
-                                                                        <li data-value="3" class="option">6</li>
-                                                                        <li data-value="3" class="option">7</li>
-                                                                        <li data-value="3" class="option">8</li>
-                                                                        <li data-value="3" class="option">9</li>
-                                                                        <li data-value="3" class="option">10</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!--/ End Form Bedrooms -->
-                                                        </div>
-                                                        <div class="col-lg-4 col-md-6 py-1 pl-0 pr-0">
-                                                            <!-- Form Bathrooms -->
-                                                            <div class="form-group bath">
-                                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bath" aria-hidden="true"></i> Bathrooms</span>
-                                                                    <ul class="list">
-                                                                        <li data-value="1" class="option selected">1</li>
-                                                                        <li data-value="2" class="option">2</li>
-                                                                        <li data-value="3" class="option">3</li>
-                                                                        <li data-value="3" class="option">4</li>
-                                                                        <li data-value="3" class="option">5</li>
-                                                                        <li data-value="3" class="option">6</li>
-                                                                        <li data-value="3" class="option">7</li>
-                                                                        <li data-value="3" class="option">8</li>
-                                                                        <li data-value="3" class="option">9</li>
-                                                                        <li data-value="3" class="option">10</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!--/ End Form Bathrooms -->
-                                                        </div>
-                                                        <div class="col-lg-5 col-md-12 col-sm-12 py-1 pr-30 mr-5 sld d-none d-lg-none d-xl-flex">
-                                                            <!-- Price Fields -->
-                                                            <div class="main-search-field-2">
-                                                                <!-- Area Range -->
-                                                                <div class="range-slider">
-                                                                    <label>Area Size</label>
-                                                                    <div id="area-range" data-min="0" data-max="1300" data-unit="sq ft"></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                                <br>
-                                                                <!-- Price Range -->
-                                                                <div class="range-slider">
-                                                                    <label>Price Range</label>
-                                                                    <div id="price-range" data-min="0" data-max="600000" data-unit="$"></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 py-1 pr-30 d-none d-lg-none d-xl-flex">
-                                                            <!-- Checkboxes -->
-                                                            <div class="checkboxes one-in-row margin-bottom-10 ch-1">
-                                                                <input id="check-2" type="checkbox" name="check">
-                                                                <label for="check-2">Air Conditioning</label>
-                                                                <input id="check-3" type="checkbox" name="check">
-                                                                <label for="check-3">Swimming Pool</label>
-                                                                <input id="check-4" type="checkbox" name="check">
-                                                                <label for="check-4">Central Heating</label>
-                                                                <input id="check-5" type="checkbox" name="check">
-                                                                <label for="check-5">Laundry Room</label>
-                                                                <input id="check-6" type="checkbox" name="check">
-                                                                <label for="check-6">Gym</label>
-                                                                <input id="check-7" type="checkbox" name="check">
-                                                                <label for="check-7">Alarm</label>
-                                                                <input id="check-8" type="checkbox" name="check">
-                                                                <label for="check-8">Window Covering</label>
-                                                            </div>
-                                                            <!-- Checkboxes / End -->
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 py-1 pr-30 d-none d-lg-none d-xl-flex">
-                                                            <!-- Checkboxes -->
-                                                            <div class="checkboxes one-in-row margin-bottom-10 ch-2">
-                                                                <input id="check-9" type="checkbox" name="check">
-                                                                <label for="check-9">WiFi</label>
-                                                                <input id="check-10" type="checkbox" name="check">
-                                                                <label for="check-10">TV Cable</label>
-                                                                <input id="check-11" type="checkbox" name="check">
-                                                                <label for="check-11">Dryer</label>
-                                                                <input id="check-12" type="checkbox" name="check">
-                                                                <label for="check-12">Microwave</label>
-                                                                <input id="check-13" type="checkbox" name="check">
-                                                                <label for="check-13">Washer</label>
-                                                                <input id="check-14" type="checkbox" name="check">
-                                                                <label for="check-14">Refrigerator</label>
-                                                                <input id="check-15" type="checkbox" name="check">
-                                                                <label for="check-15">Outdoor Shower</label>
-                                                            </div>
-                                                            <!-- Checkboxes / End -->
-                                                        </div>
-                                                    </div>
-                                                </div>
+                            <div class="hero-inner">
+                                <!-- Welcome Text -->
+                                <div class="welcome-text">
+                                    <h1 class="h1">Find Your Dream
+                                    <br class="d-md-none">
+                                    <span class="typed border-bottom"></span>
+                                </h1>
+                                    <p class="mt-4">Our experience ensures that your projects will be done right and with the upmost professionalism.</p>
+                                </div>
+                                <!--/ End Welcome Text -->
+                                <!-- Search Form -->
+                                <div class="trip-search">
+                                    <form class="form">
+                                        <!-- Form Location -->
+                                        <div class="form-group location">
+                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-map-marker"></i>Location</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected ">New York</li>
+                                                    <li data-value="2" class="option">Los Angeles</li>
+                                                    <li data-value="3" class="option">Chicago</li>
+                                                    <li data-value="3" class="option">Philadelphia</li>
+                                                    <li data-value="3" class="option">San Francisco</li>
+                                                    <li data-value="3" class="option">Miami</li>
+                                                    <li data-value="3" class="option">Houston</li>
+                                                </ul>
                                             </div>
                                         </div>
+                                        <!--/ End Form Location -->
+                                        <!-- Form Property Type -->
+                                        <div class="form-group">
+                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Type</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected ">Family House</li>
+                                                    <li data-value="2" class="option">Apartment</li>
+                                                    <li data-value="3" class="option">Condo</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--/ End Form Property Type -->
+                                        <!-- Form Property Status -->
+                                        <div class="form-group duration">
+                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Status</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected ">For Sale</li>
+                                                    <li data-value="2" class="option">For Rent</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--/ End Form Property Status -->
+                                        <!-- Form Bedrooms -->
+                                        <div class="form-group">
+                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bed" aria-hidden="true"></i>Any Bedrooms</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected">1</li>
+                                                    <li data-value="2" class="option">2</li>
+                                                    <li data-value="3" class="option">3</li>
+                                                    <li data-value="3" class="option">4</li>
+                                                    <li data-value="3" class="option">5</li>
+                                                    <li data-value="3" class="option">6</li>
+                                                    <li data-value="3" class="option">7</li>
+                                                    <li data-value="3" class="option">8</li>
+                                                    <li data-value="3" class="option">9</li>
+                                                    <li data-value="3" class="option">10</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--/ End Form Bedrooms -->
+                                        <!-- Form Bathrooms -->
+                                        <div class="form-group">
+                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bath" aria-hidden="true"></i>Any Bathrooms</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected">1</li>
+                                                    <li data-value="2" class="option">2</li>
+                                                    <li data-value="3" class="option">3</li>
+                                                    <li data-value="3" class="option">4</li>
+                                                    <li data-value="3" class="option">5</li>
+                                                    <li data-value="3" class="option">6</li>
+                                                    <li data-value="3" class="option">7</li>
+                                                    <li data-value="3" class="option">8</li>
+                                                    <li data-value="3" class="option">9</li>
+                                                    <li data-value="3" class="option">10</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--/ End Form Bathrooms -->
+                                        <!-- Form Button -->
+                                        <div class="form-group button">
+                                            <button type="submit" class="btn">Search</button>
+                                        </div>
+                                        <!--/ End Form Button -->
+                                    </form>
+                                </div>
+                                <!--/ End Search Form -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END HEADER SEARCH -->
+
+        <!-- START SECTION INFO -->
+        <section _ngcontent-bgi-c3="" class="featured-boxes-area bg-white-1">
+            <div _ngcontent-bgi-c3="" class="container">
+                <div _ngcontent-bgi-c3="" class="featured-boxes-inner">
+                    <div _ngcontent-bgi-c3="" class="row m-0">
+                        <div _ngcontent-bgi-c3="" class="col-xl-3 col-sm-6 col-lg-6 p-0" data-aos="fade-up" data-aos-delay="150">
+                            <div _ngcontent-bgi-c3="" class="single-featured-box">
+                                <div _ngcontent-bgi-c3="" class="icon color-fb7756"><img src="{{ asset(MyApp::ASSET_STYLE.'colors/icons/green/1.png') }}" width="50" alt=""></div>
+                                <h3 class="mt-0" _ngcontent-bgi-c3="">Buy Property</h3>
+                                <p _ngcontent-bgi-c3="">Lorem ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan.</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="single-property-1.html">Read More</a></div>
+                        </div>
+                        <div _ngcontent-bgi-c3="" class="col-xl-3 col-sm-6 col-lg-6  p-0" data-aos="fade-up" data-aos-delay="250">
+                            <div _ngcontent-bgi-c3="" class="single-featured-box">
+                                <div _ngcontent-bgi-c3="" class="icon color-facd60"><img src="{{ asset(MyApp::ASSET_STYLE.'colors/icons/green/2.png') }}" width="50" alt=""></div>
+                                <h3 class="mt-0" _ngcontent-bgi-c3="">Rent Property</h3>
+                                <p _ngcontent-bgi-c3="">Lorem ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan.</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="single-property-1.html">Read More</a></div>
+                        </div>
+                        <div _ngcontent-bgi-c3="" class="col-xl-3 col-sm-6 col-lg-6  p-0" data-aos="fade-up" data-aos-delay="350">
+                            <div _ngcontent-bgi-c3="" class="single-featured-box">
+                                <div _ngcontent-bgi-c3="" class="icon color-1ac0c6"><img src="{{ asset(MyApp::ASSET_STYLE.'colors/icons/green/3.png') }}" width="50" alt=""></div>
+                                <h3 class="mt-0" _ngcontent-bgi-c3="">Real Estate Kit</h3>
+                                <p _ngcontent-bgi-c3="">Lorem ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan.</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="single-property-1.html">Read More</a></div>
+                        </div>
+                        <div _ngcontent-bgi-c3="" class="col-xl-3 col-sm-6 col-lg-6  p-0" data-aos="fade-up" data-aos-delay="450">
+                            <div _ngcontent-bgi-c3="" class="single-featured-box">
+                                <div _ngcontent-bgi-c3="" class="icon"><img src="{{ asset(MyApp::ASSET_STYLE.'colors/icons/green/4.png') }}" width="65" alt=""></div>
+                                <h3 class="mt-0" _ngcontent-bgi-c3="">Sell Property</h3>
+                                <p _ngcontent-bgi-c3="">Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan.</p><a _ngcontent-bgi-c3="" class="read-more-btn" href="single-property-1.html">Read More</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION INFO -->
+
+        <!-- START SECTION PROPERTIES FOR SALE -->
+        <section class="featured portfolio bg-white-1 rec-pro">
+            <div class="container-fluid">
+                <div class="sec-title">
+                    <h2><span>Properties for </span>Sale</h2>
+                    <p>We provide full service at every step.</p>
+                </div>
+                <div class="portfolio col-xl-12">
+                    <div class="slick-lancers">
+                        <div class="agents-grid" data-aos="fade-up" data-aos-delay="150">
+                            <div class="landscapes">
+                                <div class="project-single">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt featured">Featured</div>
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-11.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="tab-pane fade" id="tabs_2">
-                                        <div class="rld-main-search">
-                                            <div class="row">
-                                                <div class="rld-single-input">
-                                                    <input type="text" placeholder="Enter Keyword...">
-                                                </div>
-                                                <div class="rld-single-select ml-22">
-                                                    <select class="select single-select">
-                                                        <option value="1">Property Type</option>
-                                                        <option value="2">Family House</option>
-                                                        <option value="3">Apartment</option>
-                                                        <option value="3">Condo</option>
-                                                    </select>
-                                                </div>
-                                                <div class="rld-single-select">
-                                                    <select class="select single-select mr-0">
-                                                        <option value="1">Location</option>
-                                                        <option value="2">Los Angeles</option>
-                                                        <option value="3">Chicago</option>
-                                                        <option value="3">Philadelphia</option>
-                                                        <option value="3">San Francisco</option>
-                                                        <option value="3">Miami</option>
-                                                        <option value="3">Houston</option>
-                                                    </select>
-                                                </div>
-                                                <div class="dropdown-filter"><span>Advanced Search</span></div>
-                                                <div class="col-xl-2 col-lg-2 col-md-4 pl-0">
-                                                    <a class="btn btn-yellow" href="#">Search Now</a>
-                                                </div>
-                                                <div class="explore__form-checkbox-list full-filter">
-                                                    <div class="row">
-                                                        <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0">
-                                                            <!-- Form Property Status -->
-                                                            <div class="form-group categories">
-                                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Status</span>
-                                                                    <ul class="list">
-                                                                        <li data-value="1" class="option selected ">For Sale</li>
-                                                                        <li data-value="2" class="option">For Rent</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!--/ End Form Property Status -->
-                                                        </div>
-                                                        <div class="col-lg-4 col-md-6 py-1 pr-30 pl-0 ">
-                                                            <!-- Form Bedrooms -->
-                                                            <div class="form-group beds">
-                                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bed" aria-hidden="true"></i> Bedrooms</span>
-                                                                    <ul class="list">
-                                                                        <li data-value="1" class="option selected">1</li>
-                                                                        <li data-value="2" class="option">2</li>
-                                                                        <li data-value="3" class="option">3</li>
-                                                                        <li data-value="3" class="option">4</li>
-                                                                        <li data-value="3" class="option">5</li>
-                                                                        <li data-value="3" class="option">6</li>
-                                                                        <li data-value="3" class="option">7</li>
-                                                                        <li data-value="3" class="option">8</li>
-                                                                        <li data-value="3" class="option">9</li>
-                                                                        <li data-value="3" class="option">10</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!--/ End Form Bedrooms -->
-                                                        </div>
-                                                        <div class="col-lg-4 col-md-6 py-1 pl-0 pr-0">
-                                                            <!-- Form Bathrooms -->
-                                                            <div class="form-group bath">
-                                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bath" aria-hidden="true"></i> Bathrooms</span>
-                                                                    <ul class="list">
-                                                                        <li data-value="1" class="option selected">1</li>
-                                                                        <li data-value="2" class="option">2</li>
-                                                                        <li data-value="3" class="option">3</li>
-                                                                        <li data-value="3" class="option">4</li>
-                                                                        <li data-value="3" class="option">5</li>
-                                                                        <li data-value="3" class="option">6</li>
-                                                                        <li data-value="3" class="option">7</li>
-                                                                        <li data-value="3" class="option">8</li>
-                                                                        <li data-value="3" class="option">9</li>
-                                                                        <li data-value="3" class="option">10</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <!--/ End Form Bathrooms -->
-                                                        </div>
-                                                        <div class="col-lg-5 col-md-12 col-sm-12 py-1 pr-30 mr-5 sld">
-                                                            <!-- Price Fields -->
-                                                            <div class="main-search-field-2">
-                                                                <!-- Area Range -->
-                                                                <div class="range-slider">
-                                                                    <label>Area Size</label>
-                                                                    <div id="area-range-rent" data-min="0" data-max="1300" data-unit="sq ft"></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                                <br>
-                                                                <!-- Price Range -->
-                                                                <div class="range-slider">
-                                                                    <label>Price Range</label>
-                                                                    <div id="price-range-rent" data-min="0" data-max="600000" data-unit="$"></div>
-                                                                    <div class="clearfix"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 py-1 pr-30">
-                                                            <!-- Checkboxes -->
-                                                            <div class="checkboxes one-in-row margin-bottom-10 ch-1">
-                                                                <input id="check-16" type="checkbox" name="check">
-                                                                <label for="check-16">Air Conditioning</label>
-                                                                <input id="check-17" type="checkbox" name="check">
-                                                                <label for="check-17">Swimming Pool</label>
-                                                                <input id="check-18" type="checkbox" name="check">
-                                                                <label for="check-18">Central Heating</label>
-                                                                <input id="check-19" type="checkbox" name="check">
-                                                                <label for="check-19">Laundry Room</label>
-                                                                <input id="check-20" type="checkbox" name="check">
-                                                                <label for="check-20">Gym</label>
-                                                                <input id="check-21" type="checkbox" name="check">
-                                                                <label for="check-21">Alarm</label>
-                                                                <input id="check-22" type="checkbox" name="check">
-                                                                <label for="check-22">Window Covering</label>
-                                                            </div>
-                                                            <!-- Checkboxes / End -->
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 py-1 pr-30">
-                                                            <!-- Checkboxes -->
-                                                            <div class="checkboxes one-in-row margin-bottom-10 ch-2">
-                                                                <input id="check-23" type="checkbox" name="check">
-                                                                <label for="check-23">WiFi</label>
-                                                                <input id="check-24" type="checkbox" name="check">
-                                                                <label for="check-24">TV Cable</label>
-                                                                <input id="check-25" type="checkbox" name="check">
-                                                                <label for="check-25">Dryer</label>
-                                                                <input id="check-26" type="checkbox" name="check">
-                                                                <label for="check-26">Microwave</label>
-                                                                <input id="check-27" type="checkbox" name="check">
-                                                                <label for="check-27">Washer</label>
-                                                                <input id="check-28" type="checkbox" name="check">
-                                                                <label for="check-28">Refrigerator</label>
-                                                                <input id="check-29" type="checkbox" name="check">
-                                                                <label for="check-29">Outdoor Shower</label>
-                                                            </div>
-                                                            <!-- Checkboxes / End -->
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--/ End Search Form -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END HEADER SEARCH -->
-
-<!-- START SECTION PROPERTIES FOR SALE -->
-<section class="featured portfolio bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="section-title col-md-5">
-                <h3>Properties</h3>
-                <h2>For Sale</h2>
-            </div>
-        </div>
-        <div class="row portfolio-items">
-            <div class="item col-lg-4 col-md-6 col-xs-12 landscapes sale">
-                <div class="project-single" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 230,000</span>
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>New Yor City</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-1.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people rent">
-                <div class="project-single" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 6,500</span>
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Los Angeles</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-2.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes sale">
-                <div class="project-single" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 230,000</span>
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>San Francisco</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-3.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes rent no-pb">
-                <div class="project-single no-mb" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 6,500</span>
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Miami FL</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-4.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people sale no-pb">
-                <div class="project-single no-mb" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 230,000</span>
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Chicago IL</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-5.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 it2 col-xs-12 web rent no-pb">
-                <div class="project-single no-mb last" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 6,500</span>
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Toronto CA</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-6.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-all">
-            <a href="properties-full-grid-1.html" class="btn btn-outline-light">View All</a>
-        </div>
-    </div>
-</section>
-<!-- END SECTION PROPERTIES FOR SALE -->
-
-<!-- START SECTION WHY CHOOSE US -->
-<section class="how-it-works bg-white-2">
-    <div class="container">
-        <div class="row">
-            <div class="section-title col-md-5">
-                <h3>Why</h3>
-                <h2>Choose Us</h2>
-            </div>
-        </div>
-        <div class="row service-1">
-            <article class="col-lg-4 col-md-6 col-xs-12 serv" data-aos="fade-up" data-aos-delay="150">
-                <div class="serv-flex">
-                    <div class="art-1 img-13">
-                        <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/icons/icon-4.svg') }}" alt="">
-                        <h3>Wide Renge Of Properties</h3>
-                    </div>
-                    <div class="service-text-p">
-                        <p class="text-center">lorem ipsum dolor sit amet, consectetur pro adipisici consectetur debits adipisicing lacus consectetur Business Directory.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="col-lg-4 col-md-6 col-xs-12 serv" data-aos="fade-up" data-aos-delay="250">
-                <div class="serv-flex">
-                    <div class="art-1 img-14">
-                        <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/icons/icon-5.svg') }}" alt="">
-                        <h3>Trusted by thousands</h3>
-                    </div>
-                    <div class="service-text-p">
-                        <p class="text-center">lorem ipsum dolor sit amet, consectetur pro adipisici consectetur debits adipisicing lacus consectetur Business Directory.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="col-lg-4 col-md-6 col-xs-12 serv mb-0 pt" data-aos="fade-up" data-aos-delay="350">
-                <div class="serv-flex arrow">
-                    <div class="art-1 img-15">
-                        <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/icons/icon-6.svg') }}" alt="">
-                        <h3>Financing made easy</h3>
-                    </div>
-                    <div class="service-text-p">
-                        <p class="text-center">lorem ipsum dolor sit amet, consectetur pro adipisici consectetur debits adipisicing lacus consectetur Business Directory.</p>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
-<!-- END SECTION WHY CHOOSE US -->
-
-<!-- START SECTION PROPERTIES FOR RENT -->
-<section class="featured portfolio bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="section-title col-md-5">
-                <h3>Properties</h3>
-                <h2>For Rent</h2>
-            </div>
-        </div>
-        <div class="row portfolio-items">
-            <div class="item col-lg-4 col-md-6 col-xs-12 landscapes sale">
-                <div class="project-single" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 230,000</span>
-                                <span class="rent">For Rent</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>New Yor City</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-7.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people rent">
-                <div class="project-single" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 6,500</span>
-                                <span class="rent">For Rent</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Los Angeles</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-8.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes sale">
-                <div class="project-single" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 230,000</span>
-                                <span class="rent">For Rent</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>San Francisco</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-9.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes rent no-pb">
-                <div class="project-single no-mb" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 6,500</span>
-                                <span class="rent">For Rent</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Miami FL</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-10.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 col-xs-12 people sale no-pb">
-                <div class="project-single no-mb" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 230,000</span>
-                                <span class="rent">For Rent</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Chicago IL</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-11.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="item col-lg-4 col-md-6 it2 col-xs-12 web rent no-pb">
-                <div class="project-single no-mb last" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="listing-item compact">
-                        <a href="single-property-1.html" class="listing-img-container">
-                            <div class="listing-badges">
-                                <span class="featured">$ 6,500</span>
-                                <span class="rent">For Rent</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">House Luxury <i>Toronto CA</i></span>
-                                <ul class="listing-hidden-content blue">
-                                    <li>Area <span>720 sq ft</span></li>
-                                    <li>Rooms <span>6</span></li>
-                                    <li>Beds <span>2</span></li>
-                                    <li>Baths <span>3</span></li>
-                                </ul>
-                            </div>
-                            <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-12.jpg') }}" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bg-all">
-            <a href="properties-full-grid-1.html" class="btn btn-outline-light">View All</a>
-        </div>
-    </div>
-</section>
-<!-- END SECTION PROPERTIES FOR RENT -->
-
-<!-- START SECTION INFO-HELP -->
-<section class="info-help">
-    <div class="container">
-        <div class="row info-head">
-            <div class="col-lg-4 col-md-6">
-                <div class="info-text" data-aos="fade-right">
-                    <h3>Featured Properties.</h3>
-                    <p>We Help you find the best places and offer near you. Bring to the table win-win survival strategies to ensure proactive domination going forward.</p>
-                    <div class="inf-btn pro">
-                        <a href="contact-us.html" class="btn btn-pro btn-secondary btn-lg">Get Started</a>
-                    </div>
-                </div>
-            </div>
-            <div class="featured portfolio home18 item col-lg-4 col-md-6 landscapes sale">
-                <div class="project-single specials" data-aos="fade-left">
-                    <div class="project-inner project-head">
-                        <div class="homes">
-                            <!-- homes img -->
-                            <a href="single-property-1.html" class="homes-img">
-                                <div class="homes-tag button alt featured">Featured</div>
-                                <div class="homes-tag button alt sale">For Sale</div>
-                                <div class="homes-price">$9,000/mo</div>
-                                <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-11.jpg') }}" alt="home-1" class="img-responsive">
-                            </a>
-                        </div>
-                        <div class="button-effect">
-                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
-                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
-                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
-                        </div>
-                    </div>
-                    <!-- homes content -->
-                    <div class="homes-content">
-                        <!-- homes address -->
-                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
-                        <p class="homes-address mb-3">
-                            <a href="single-property-1.html">
-                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
-                            </a>
-                        </p>
-                        <!-- homes List -->
-                        <ul class="homes-list clearfix pb-0">
-                            <li>
-                                <span>6 Bedrooms</span>
-                            </li>
-                            <li>
-                                <span>3 Bathrooms</span>
-                            </li>
-                            <li>
-                                <span>720 sq ft</span>
-                            </li>
-                            <li>
-                                <span>2 Garages</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="featured portfolio home18 item col-lg-4 col-md-6 people landscapes rent no-pb">
-                <div class="project-single no-mb" data-aos="fade-left">
-                    <div class="project-inner project-head">
-                        <div class="homes">
-                            <!-- homes img -->
-                            <a href="single-property-1.html" class="homes-img">
-                                <div class="homes-tag button alt featured">Featured</div>
-                                <div class="homes-tag button sale rent">For Rent</div>
-                                <div class="homes-price">$3,000/mo</div>
-                                <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-10.jpg') }}" alt="home-1" class="img-responsive">
-                            </a>
-                        </div>
-                        <div class="button-effect">
-                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
-                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
-                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
-                        </div>
-                    </div>
-                    <!-- homes content -->
-                    <div class="homes-content">
-                        <!-- homes address -->
-                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
-                        <p class="homes-address mb-3">
-                            <a href="properties-details.html">
-                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
-                            </a>
-                        </p>
-                        <!-- homes List -->
-                        <ul class="homes-list clearfix pb-0">
-                            <li>
-                                <span>6 Bedrooms</span>
-                            </li>
-                            <li>
-                                <span>3 Bathrooms</span>
-                            </li>
-                            <li>
-                                <span>720 sq ft</span>
-                            </li>
-                            <li>
-                                <span>2 Garages</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END SECTION INFO-HELP -->
-
-<!-- START SECTION BLOG -->
-<section class="blog-section bg-white-2">
-    <div class="container">
-        <div class="row">
-            <div class="section-title col-md-5">
-                <h3>Articles &amp;</h3>
-                <h2>Tips</h2>
-            </div>
-        </div>
-        <div class="news-wrap">
-            <div class="row">
-                <div class="col-xl-4 col-md-6 col-xs-12">
-                    <div class="news-item" data-aos="fade-up" data-aos-delay="150">
-                        <a href="blog-details.html" class="news-img-link">
-                            <div class="news-item-img">
-                                <img class="img-responsive" src="{{ asset(MyApp::ASSET_IMG.'blog/b-1.jpg') }}" alt="blog image">
-                            </div>
-                        </a>
-                        <div class="news-item-text">
-                            <a href="blog-details.html"><h3>Explore The World</h3></a>
-                            <div class="dates">
-                                <span class="date">April 11, 2020 &nbsp;/</span>
-                                <ul class="action-list pl-0">
-                                    <li class="action-item pl-2"><i class="fa fa-heart"></i> <span>306</span></li>
-                                    <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
-                                    <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
-                                </ul>
-                            </div>
-                            <div class="news-item-descr big-news">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur.</p>
-                            </div>
-                            <div class="news-item-bottom">
-                                <a href="blog-details.html" class="news-link">Read more...</a>
-                                <div class="admin">
-                                    <p>By, Karl Smith</p>
-                                    <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-6.jpg') }}" alt="">
+                        <div class="agents-grid">
+                            <div class="people">
+                                <div class="project-single" data-aos="fade-up" data-aos-delay="250">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-12.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-xs-12">
-                    <div class="news-item" data-aos="fade-up" data-aos-delay="250">
-                        <a href="blog-details.html" class="news-img-link">
-                            <div class="news-item-img">
-                                <img class="img-responsive" src="{{ asset(MyApp::ASSET_IMG.'blog/b-2.jpg') }}" alt="blog image">
-                            </div>
-                        </a>
-                        <div class="news-item-text">
-                            <a href="blog-details.html"><h3>Find Good Places</h3></a>
-                            <div class="dates">
-                                <span class="date">May 20, 2020 &nbsp;/</span>
-                                <ul class="action-list pl-0">
-                                    <li class="action-item pl-2"><i class="fa fa-heart"></i> <span>306</span></li>
-                                    <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
-                                    <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
-                                </ul>
-                            </div>
-                            <div class="news-item-descr big-news">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur.</p>
-                            </div>
-                            <div class="news-item-bottom">
-                                <a href="blog-details.html" class="news-link">Read more...</a>
-                                <div class="admin">
-                                    <p>By, Lis Jhonson</p>
-                                    <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-5.jpg') }}" alt="">
+                        <div class="agents-grid">
+                            <div class="people landscapes no-pb pbp-3">
+                                <div class="project-single" data-aos="fade-up" data-aos-delay="350">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-1.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 col-xs-12">
-                    <div class="news-item no-mb" data-aos="fade-up" data-aos-delay="350">
-                        <a href="blog-details.html" class="news-img-link">
-                            <div class="news-item-img">
-                                <img class="img-responsive" src="{{ asset(MyApp::ASSET_IMG.'blog/b-3.jpg') }}" alt="blog image">
+                        <div class="agents-grid">
+                            <div class="landscapes">
+                                <div class="project-single no-mb" data-aos="fade-up" data-aos-delay="500">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt featured">Featured</div>
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-10.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="properties-details.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </a>
-                        <div class="news-item-text">
-                            <a href="blog-details.html"><h3>All Places In Town</h3></a>
-                            <div class="dates">
-                                <span class="date">Jun 30, 2020 &nbsp;/</span>
-                                <ul class="action-list pl-0">
-                                    <li class="action-item pl-2"><i class="fa fa-heart"></i> <span>306</span></li>
-                                    <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
-                                    <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
-                                </ul>
+                        </div>
+                        <div class="agents-grid">
+                            <div class="people">
+                                <div class="project-single no-mb" data-aos="fade-up">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-11.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="news-item-descr big-news">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ipsum dolor sit amet, consectetur.</p>
+                        </div>
+                        <div class="agents-grid">
+                            <div class="people landscapes no-pb pbp-3">
+                                <div class="project-single no-mb last" data-aos="fade-up">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'feature-properties/fp-12.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="news-item-bottom">
-                                <a href="blog-details.html" class="news-link">Read more...</a>
-                                <div class="admin">
-                                    <p>By, Ted Willians</p>
-                                    <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-4.jpg') }}" alt="">
+                        </div>
+                        <div class="agents-grid">
+                            <div class="landscapes">
+                                <div class="project-single" data-aos="fade-up">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt featured">Featured</div>
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-11.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="agents-grid">
+                            <div class="people">
+                                <div class="project-single" data-aos="fade-up">
+                                    <div class="project-inner project-head">
+                                        <div class="homes">
+                                            <!-- homes img -->
+                                            <a href="single-property-1.html" class="homes-img">
+                                                <div class="homes-tag button alt sale">For Sale</div>
+                                                <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-12.jpg') }}" alt="home-1" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="button-effect">
+                                            <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
+                                            <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- homes content -->
+                                    <div class="homes-content">
+                                        <!-- homes address -->
+                                        <h3><a href="single-property-1.html">Real House Luxury Villa</a></h3>
+                                        <p class="homes-address mb-3">
+                                            <a href="single-property-1.html">
+                                                <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                            </a>
+                                        </p>
+                                        <!-- homes List -->
+                                        <ul class="homes-list clearfix">
+                                            <li>
+                                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                                <span>6 Beds</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                                <span>3 Baths</span>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                                <span>720 sq ft</span>
+                                            </li>
+                                        </ul>
+                                        <div class="price-properties footer pt-3 pb-0">
+                                            <h3 class="title mt-3">
+                                                <a href="single-property-1.html">$ 350,000</a>
+                                            </h3>
+                                            <div class="compare">
+                                                <a href="#" title="Compare">
+                                                    <i class="fas fa-exchange-alt"></i>
+                                                </a>
+                                                <a href="#" title="Share">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </a>
+                                                <a href="#" title="Favorites">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- END SECTION BLOG -->
+        </section>
+        <!-- END SECTION PROPERTIES FOR SALE -->
 
-<!-- STAR SECTION PARTNERS -->
-<div class="partners bg-white">
-    <div class="container">
-        <div class="sec-title">
-            <h2><span>Our </span>Partners</h2>
-            <p>The Companies That Represent Us.</p>
+        <!-- START SECTION INFO-HELP -->
+        <section class="info-help">
+            <div class="container">
+                <div class="row info-head">
+                    <div class="col-lg-6 col-md-8 col-xs-8" data-aos="fade-right">
+                        <div class="info-text mt-5">
+                            <h3>Special Offers Every Day.</h3>
+                            <p>We Help you find the best places and offer near you. Bring to the table win-win survival strategies to ensure proactive domination going forward.</p>
+                            <div class="inf-btn pro">
+                                <a href="contact-us.html" class="btn btn-pro btn-secondary btn-lg">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-3"></div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION INFO-HELP -->
+
+        <!-- START SECTION PROPERTIES FOR RENT -->
+        <section class="recently portfolio bg-white-1 rec-pro ho-17">
+            <div class="container-fluid">
+                <div class="sec-title">
+                    <h2><span>Properties for </span>Rent</h2>
+                    <p>We provide full service at every step.</p>
+                </div>
+                <div class="row portfolio-items">
+                    <div class="item col-lg-4 col-md-6 col-xs-12 landscapes sale" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="landscapes listing-item compact thehp-2">
+                            <a href="single-property-1.html" class="recent-16" data-aos="fade-up">
+                                <div class="recent-img16 img-fluid img-center" style="background-image: url({{ asset(MyApp::ASSET_IMG.'interior/p-1.jpg') }});"></div>
+                                <div class="recent-content"></div>
+                                <div class="listing-badges">
+                                    <span>For Rent</span>
+                                </div>
+                                <div class="recent-details">
+                                    <div class="recent-title">Luxury House in New York</div>
+                                    <div class="price-details">
+                                    <div class="recent-price mb-3">$230,000</div>
+                                    <div class="house-details thehp-1"><i class="fa fa-bed mr-1" aria-hidden="true"></i> 6 Bed <span>|</span><i class="fa fa-bath mr-1" aria-hidden="true"></i> 3 Bath <span>|</span><i class="fa fa-object-group mr-1" aria-hidden="true"></i> 720 sq ft</div>
+                                    </div>
+                                </div>
+                                <div class="view-proper">View Details</div>
+                            </a>
+                        </div>                        
+                    </div>
+                    <div class="item col-lg-4 col-md-6 col-xs-12 people rent" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="people listing-item compact thehp-2">
+                            <a href="single-property-1.html" class="recent-16" data-aos="fade-up">
+                                <div class="recent-img16 img-center" style="background-image: url({{ asset(MyApp::ASSET_IMG.'interior/p-2.jpg') }});"></div>
+                                <div class="recent-content"></div>
+                                <div class="listing-badges">
+                                    <span>For Rent</span>
+                                </div>
+                                <div class="recent-details">
+                                    <div class="recent-title">Villa House in Los Angeles</div>
+                                    <div class="price-details">
+                                    <div class="recent-price mb-3">$230,000</div>
+                                    <div class="house-details thehp-1"><i class="fa fa-bed mr-1" aria-hidden="true"></i> 6 Bed <span>|</span><i class="fa fa-bath mr-1" aria-hidden="true"></i> 3 Bath <span>|</span><i class="fa fa-object-group mr-1" aria-hidden="true"></i> 720 sq ft</div>
+                                    </div>
+                                </div>
+                                <div class="view-proper">View Details</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes sale" data-aos="zoom-in" data-aos-delay="350">
+                        <div class="people landscapes no-pb pbp-3 listing-item compact thehp-2">
+                            <a href="single-property-1.html" class="recent-16" data-aos="fade-up">
+                                <div class="recent-img16 img-center" style="background-image: url({{ asset(MyApp::ASSET_IMG.'interior/p-3.jpg') }});"></div>
+                                <div class="recent-content"></div>
+                                <div class="listing-badges">
+                                    <span>For Rent</span>
+                                </div>
+                                <div class="recent-details">
+                                    <div class="recent-title">Family House in San Francisco</div>
+                                    <div class="price-details">
+                                    <div class="recent-price mb-3">$230,000</div>
+                                    <div class="house-details thehp-1"><i class="fa fa-bed mr-1" aria-hidden="true"></i> 6 Bed <span>|</span><i class="fa fa-bath mr-1" aria-hidden="true"></i> 3 Bath <span>|</span><i class="fa fa-object-group mr-1" aria-hidden="true"></i> 720 sq ft</div>
+                                    </div>
+                                </div>
+                                <div class="view-proper">View Details</div>
+                            </a>
+                        </div>                        
+                    </div>
+                    <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes sale" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="landscapes listing-item compact thehp-2">
+                            <a href="single-property-1.html" class="recent-16" data-aos="fade-up">
+                                <div class="recent-img16 img-center" style="background-image: url({{ asset(MyApp::ASSET_IMG.'feature-properties/fp-11.jpg') }});"></div>
+                                <div class="recent-content"></div>
+                                <div class="listing-badges">
+                                    <span>For Rent</span>
+                                </div>
+                                <div class="recent-details">
+                                    <div class="recent-title">Condo House in Miami</div>
+                                    <div class="price-details">
+                                    <div class="recent-price mb-3">$230,000</div>
+                                    <div class="house-details thehp-1"><i class="fa fa-bed mr-1" aria-hidden="true"></i> 6 Bed <span>|</span><i class="fa fa-bath mr-1" aria-hidden="true"></i> 3 Bath <span>|</span><i class="fa fa-object-group mr-1" aria-hidden="true"></i> 720 sq ft</div>
+                                    </div>
+                                </div>
+                                <div class="view-proper">View Details</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item col-lg-4 col-md-6 col-xs-12 people landscapes sale" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="landscapes listing-item compact thehp-2">
+                            <a href="single-property-1.html" class="recent-16" data-aos="fade-up">
+                                <div class="recent-img16 img-center" style="background-image: url({{ asset(MyApp::ASSET_IMG.'single-property/s-6.jpg') }});"></div>
+                                <div class="recent-content"></div>
+                                <div class="listing-badges">
+                                    <span>For Rent</span>
+                                </div>
+                                <div class="recent-details">
+                                    <div class="recent-title">Condo House in Miami</div>
+                                    <div class="price-details">
+                                    <div class="recent-price mb-3">$230,000</div>
+                                    <div class="house-details thehp-1"><i class="fa fa-bed mr-1" aria-hidden="true"></i> 6 Bed <span>|</span><i class="fa fa-bath mr-1" aria-hidden="true"></i> 3 Bath <span>|</span><i class="fa fa-object-group mr-1" aria-hidden="true"></i> 720 sq ft</div>
+                                    </div>
+                                </div>
+                                <div class="view-proper">View Details</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item col-lg-4 col-md-6 it2 col-xs-12 web rent ho17-thelast no-pb" data-aos="zoom-in" data-aos-delay="350">
+                        <div class="people landscapes no-pb pbp-3 listing-item compact thehp-2">
+                            <a href="single-property-1.html" class="recent-16" data-aos="fade-up">
+                                <div class="recent-img16 img-center" style="background-image: url({{ asset(MyApp::ASSET_IMG.'single-property/s-1.jpg') }});"></div>
+                                <div class="recent-content"></div>
+                                <div class="listing-badges">
+                                    <span>For Rent</span>
+                                </div>
+                                <div class="recent-details">
+                                    <div class="recent-title">Luxury House in Toronto</div>
+                                    <div class="price-details">
+                                    <div class="recent-price mb-3">$230,000</div>
+                                    <div class="house-details thehp-1"><i class="fa fa-bed mr-1" aria-hidden="true"></i> 6 Bed <span>|</span><i class="fa fa-bath mr-1" aria-hidden="true"></i> 3 Bath <span>|</span><i class="fa fa-object-group mr-1" aria-hidden="true"></i> 720 sq ft</div>
+                                    </div>
+                                </div>
+                                <div class="view-proper">View Details</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION PROPERTIES FOR RENT -->
+
+        <!-- START SECTION BLOG -->
+        <section class="blog-section bg-white rec-pro">
+            <div class="container-fluid">
+                <div class="sec-title">
+                    <h2><span>Latest </span>News</h2>
+                    <p>The latest news form real estate.</p>
+                </div>
+                <div class="news-wrap">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-xs-12" data-aos="fade-right">
+                            <div class="news-item news-item-sm">
+                                <a href="blog-details.html" class="news-img-link">
+                                    <div class="news-item-img">
+                                        <img class="resp-img" src="{{ asset(MyApp::ASSET_IMG.'blog/b-1.jpg') }}" alt="blog image">
+                                    </div>
+                                </a>
+                                <div class="news-item-text">
+                                    <a href="blog-details.html"><h3>The Real Estate News</h3></a>
+                                    <span class="date">Jun 23, 2020 &nbsp;/&nbsp; By Admin</span>
+                                    <div class="news-item-descr">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                    </div>
+                                    <div class="news-item-bottom">
+                                        <a href="blog-details.html" class="news-link">Read more...</a>
+                                        <ul class="action-list">
+                                            <li class="action-item"><i class="fa fa-heart"></i> <span>306</span></li>
+                                            <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
+                                            <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news-item news-item-sm min-last">
+                                <a href="blog-details.html" class="news-img-link">
+                                    <div class="news-item-img">
+                                        <img class="resp-img" src="{{ asset(MyApp::ASSET_IMG.'blog/b-2.jpg') }}" alt="blog image">
+                                    </div>
+                                </a>
+                                <div class="news-item-text">
+                                    <a href="blog-details.html"><h3>The Real Estate News</h3></a>
+                                    <span class="date">Jun 23, 2020 &nbsp;/&nbsp; By Admin</span>
+                                    <div class="news-item-descr">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                    </div>
+                                    <div class="news-item-bottom">
+                                        <a href="blog-details.html" class="news-link">Read more...</a>
+                                        <ul class="action-list">
+                                            <li class="action-item"><i class="fa fa-heart"></i> <span>306</span></li>
+                                            <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
+                                            <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-xs-12" data-aos="fade-left">
+                            <div class="news-item news-item-sm">
+                                <a href="blog-details.html" class="news-img-link">
+                                    <div class="news-item-img">
+                                        <img class="resp-img" src="{{ asset(MyApp::ASSET_IMG.'blog/b-3.jpg') }}" alt="blog image">
+                                    </div>
+                                </a>
+                                <div class="news-item-text">
+                                    <a href="blog-details.html"><h3>The Real Estate News</h3></a>
+                                    <span class="date">Jun 23, 2020 &nbsp;/&nbsp; By Admin</span>
+                                    <div class="news-item-descr">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                    </div>
+                                    <div class="news-item-bottom">
+                                        <a href="blog-details.html" class="news-link">Read more...</a>
+                                        <ul class="action-list">
+                                            <li class="action-item"><i class="fa fa-heart"></i> <span>306</span></li>
+                                            <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
+                                            <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="news-item news-item-sm last">
+                                <a href="blog-details.html" class="news-img-link">
+                                    <div class="news-item-img">
+                                        <img class="resp-img" src="{{ asset(MyApp::ASSET_IMG.'blog/b-4.jpg') }}" alt="blog image">
+                                    </div>
+                                </a>
+                                <div class="news-item-text">
+                                    <a href="blog-details.html"><h3>The Real Estate News</h3></a>
+                                    <span class="date">Jun 23, 2020 &nbsp;/&nbsp; By Admin</span>
+                                    <div class="news-item-descr">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                    </div>
+                                    <div class="news-item-bottom">
+                                        <a href="blog-details.html" class="news-link">Read more...</a>
+                                        <ul class="action-list">
+                                            <li class="action-item"><i class="fa fa-heart"></i> <span>306</span></li>
+                                            <li class="action-item"><i class="fa fa-comment"></i> <span>34</span></li>
+                                            <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION BLOG -->
+
+        <!-- START SECTION AGENTS -->
+        <section class="team bg-white-1 rec-pro">
+            <div class="container-fluid">
+                <div class="sec-title">
+                    <h2><span>Meet Our </span>Agents</h2>
+                    <p>Our Agents are here to help you</p>
+                </div>
+                <div class="row team-all">
+                    <!--Team Block-->
+                    <div class="team-block col-sm-6 col-md-4 col-lg-4 col-xl-2" data-aos="fade-up" data-aos-delay="150">
+                        <div class="inner-box team-details">
+                            <div class="image team-head">
+                                <a href="agents-listing-grid.html"><img src="{{ asset(MyApp::ASSET_IMG.'team/t-5.jpg') }}" alt="" /></a>
+                                <div class="team-hover">
+                                    <ul class="team-social">
+                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lower-box">
+                                <h3><a href="agents-listing-grid.html">Carls Jhons</a></h3>
+                                <div class="designation">Real Estate Agent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Team Block-->
+                    <div class="team-block col-sm-6 col-md-4 col-lg-4 col-xl-2" data-aos="fade-up" data-aos-delay="250">
+                        <div class="inner-box team-details">
+                            <div class="image team-head">
+                                <a href="agents-listing-grid.html"><img src="{{ asset(MyApp::ASSET_IMG.'team/t-6.jpg') }}" alt="" /></a>
+                                <div class="team-hover">
+                                    <ul class="team-social">
+                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lower-box">
+                                <h3><a href="agents-listing-grid.html">Arling Tracy</a></h3>
+                                <div class="designation">Real Estate Agent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Team Block-->
+                    <div class="team-block col-sm-6 col-md-4 col-lg-4 col-xl-2" data-aos="fade-up" data-aos-delay="350">
+                        <div class="inner-box team-details">
+                            <div class="image team-head">
+                                <a href="agents-listing-grid.html"><img src="{{ asset(MyApp::ASSET_IMG.'team/t-7.jpg') }}" alt="" /></a>
+                                <div class="team-hover">
+                                    <ul class="team-social">
+                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lower-box">
+                                <h3><a href="agents-listing-grid.html">Mark Web</a></h3>
+                                <div class="designation">Real Estate Agent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Team Block-->
+                    <div class="team-block col-sm-6 col-md-4 col-lg-4 col-xl-2 pb-none" data-aos="fade-up" data-aos-delay="450">
+                        <div class="inner-box team-details">
+                            <div class="image team-head">
+                                <a href="agents-listing-grid.html"><img src="{{ asset(MyApp::ASSET_IMG.'team/t-8.jpg') }}" alt="" /></a>
+                                <div class="team-hover">
+                                    <ul class="team-social">
+                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lower-box">
+                                <h3><a href="agents-listing-grid.html">Katy Grace</a></h3>
+                                <div class="designation">Real Estate Agent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-block col-sm-6 col-md-4 col-lg-4 col-xl-2 pb-none" data-aos="fade-up" data-aos-delay="550">
+                        <div class="inner-box team-details">
+                            <div class="image team-head">
+                                <a href="agents-listing-grid.html"><img src="{{ asset(MyApp::ASSET_IMG.'team/team-image-2.jpg') }}" alt="" /></a>
+                                <div class="team-hover">
+                                    <ul class="team-social">
+                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lower-box">
+                                <h3><a href="agents-listing-grid.html">Chris Melo</a></h3>
+                                <div class="designation">Real Estate Agent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-block col-sm-6 col-md-4 col-lg-4 col-xl-2 pb-none" data-aos="fade-up" data-aos-delay="650">
+                        <div class="inner-box team-details">
+                            <div class="image team-head">
+                                <a href="agents-listing-grid.html"><img src="{{ asset(MyApp::ASSET_IMG.'team/team-image-7.jpg') }}" alt="" /></a>
+                                <div class="team-hover">
+                                    <ul class="team-social">
+                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lower-box">
+                                <h3><a href="agents-listing-grid.html">Nina Thomas</a></h3>
+                                <div class="designation">Real Estate Agent</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION AGENTS -->
+
+        <!-- STAR SECTION PARTNERS -->
+        <div class="partners bg-white rec-pro">
+            <div class="container-fluid">
+                <div class="sec-title">
+                    <h2><span>Our </span>Partners</h2>
+                    <p>The Companies That Represent Us.</p>
+                </div>
+                <div class="owl-carousel style2">
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/11.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/12.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/13.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/14.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/15.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/16.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/17.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/11.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/12.jpg') }}" alt=""></div>
+                    <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/13.jpg') }}" alt=""></div>
+                </div>
+            </div>
         </div>
-        <div class="owl-carousel style2">
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/11.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/12.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/13.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/14.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/15.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/16.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/17.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/11.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/12.jpg') }}" alt=""></div>
-            <div class="owl-item" data-aos="fade-up"><img src="{{ asset(MyApp::ASSET_IMG.'partners/13.jpg') }}" alt=""></div>
-        </div>
-    </div>
-</div>
-<!-- END SECTION PARTNERS -->
+        <!-- END SECTION PARTNERS -->
+
+        <!-- START SECTION TOP LOCATION -->
+        <section class="top-location py-0">
+            <h4>POPULAR PLACES</h4>
+            <div class="owl-carousel owl-theme" id="tp-carousel">
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>New York City</h6>
+                        <strong>203 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-1.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>Los Angeles</h6>
+                        <strong>321 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-2.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>San Francisco</h6>
+                        <strong>196 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-3.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>Miami</h6>
+                        <strong>587 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-4.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>Chicago</h6>
+                        <strong>467 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-5.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>Los Angeles</h6>
+                        <strong>267 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-6.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>San Francisco</h6>
+                        <strong>568 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-7.jpg') }}" alt="">
+                </div>
+                <div class="item" data-aos="zoom-in">
+                    <div class="tp-caption">
+                        <h6>Miami</h6>
+                        <strong>568 Properties</strong>
+                        <p>From:&nbsp; $230,000 - 1,223,456</p>
+                    </div>
+                    <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-8.jpg') }}" alt="">
+                </div>
+            </div>
+        </section>
+        <!-- END SECTION TOP LOCATION -->
 @endsection
 
