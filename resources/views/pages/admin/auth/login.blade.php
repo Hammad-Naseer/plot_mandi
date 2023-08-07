@@ -13,14 +13,8 @@
 <!-- START SECTION LOGIN -->
 <div id="login">
     <div class="login">
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        @if($errors->has('login'))
+            <div class="alert alert-danger">{{ $errors->first('login') }}</div>
         @endif
         <form action="{{ route('login_form_admin') }}" method="post">
         @csrf

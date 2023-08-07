@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class WebUserController extends Controller
 {
@@ -62,13 +63,18 @@ class WebUserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        if (Auth::attempt($data)) {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if($user->is_active == 1):
                 appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
                 return redirect()->route('admin_dashboard');
             endif;
         }
+
+        // Authentication failed
+        return redirect('/login/admin')
+            ->withErrors(['login' => 'Invalid email or password'])
+            ->withInput();
     }
 }
