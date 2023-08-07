@@ -141,7 +141,7 @@ class UserController extends Controller
         }
     }
 
-    public function userLogin(LoginRequest $request)
+    public function userLogin($request)
     {
         try {
             $data = $request->validated();

@@ -33,13 +33,13 @@ Route::get('/', function () {
 });
 
 // Admin Login 
-Route::get('/login/admin', [WebUserController::class,'adminLogin']);
+Route::get('/login/admin', [WebUserController::class,'adminLogin'])->name('admin_login');
 Route::post('/login_request/admin', [WebUserController::class,'adminLoginForm'])->name('login_form_admin');
 // User Login 
 Route::get('/login', [WebUserController::class,'userLogin']);
 Route::get('/register', [WebUserController::class,'userRegister']);
 // Dashboard Routes 
-Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard']);
+Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
 Route::get('/dashboard/user', [WebUserController::class,'userDashboard']);
 
 

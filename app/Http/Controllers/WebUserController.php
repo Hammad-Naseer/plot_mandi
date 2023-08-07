@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class WebUserController extends Controller
 {
+
     public function adminDashboard()
     {
         // if(Auth::user()->usermanagement->account_type == 1):
@@ -50,13 +53,22 @@ class WebUserController extends Controller
 
     public function adminLoginForm(Request $request)
     {
-        $loginArray = array(
-            "email" =>  $request->email,
-            "password"  =>  $request->password,
-        );
-        $apiURL = "http://127.0.0.1:8000/api/v1/login";
-        $response = Http::connectTimeout(60)->post($apiURL, $loginArray);
-        // $response = callCurl('login',"POST",$loginArray);
-        print_r($response);
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/login/admin')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if (Auth::attempt($data)) {
+            $user = Auth::user();
+            if($user->is_active == 1):
+                appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
+                return redirect()->route('admin_dashboard');
+            endif;
+        }
     }
 }
