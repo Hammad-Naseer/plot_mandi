@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 class WebUserController extends Controller
 {
@@ -45,5 +46,17 @@ class WebUserController extends Controller
         // else:
         // endif;
         return view('pages.admin.auth.login');
+    }
+
+    public function adminLoginForm(Request $request)
+    {
+        $loginArray = array(
+            "email" =>  $request->email,
+            "password"  =>  $request->password,
+        );
+        $apiURL = "http://127.0.0.1:8000/api/v1/login";
+        $response = Http::connectTimeout(60)->post($apiURL, $loginArray);
+        // $response = callCurl('login',"POST",$loginArray);
+        print_r($response);
     }
 }

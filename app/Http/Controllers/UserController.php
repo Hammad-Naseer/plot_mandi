@@ -150,15 +150,18 @@ class UserController extends Controller
                 if ($user->tokens()->where('tokenable_id', $user->user_id)->exists()) {
                     $user->tokens()->delete();
                 }
-                // Make Session
-                session(['userId' => $user->user_id]);
-                // $request->session()->put('userId', $user->user_id);
-                // Save Logs
-                appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
-                return successResponse(new LoginResource($user), 200, "success");
+                if($user->is_active == 1):
+                    // Make Session
+                    session(['userId' => $user->user_id]);
+                    // Save Logs
+                    appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
+                    return successResponse(new LoginResource($user), 200, "success");
+                else:
+                    return successResponse(array("message" => "User Account Blocked"), 200, "success");
+                endif;
             } else {
                 // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Unsuccessfully", "table" => Route::currentRouteName()));
-                return response()->json(['error' => "Invalid credentials"], 200);
+                return response()->json(['error' => "Invalid credentials"], 401);
             }
         } catch (ValidationException $exception) {
             return errorResponse("An error occurred", 400);

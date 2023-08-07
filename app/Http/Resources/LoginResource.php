@@ -25,10 +25,14 @@ class LoginResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            'user_id' => userIdEncrypt($this->user_id),
-            'name' => $this->name,
+            'id' => userIdEncrypt($this->user_id),
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
             'email' => $this->email,
-            'auth' => "", $this->auth_type,
+            'gender' => $this->gender,
+            'city' => $this->city,
+            'phone' => $this->phone,
+            'account_type' => "", $this->account_type,
             'token' => $this->createToken('GRC-App',['admin'])->plainTextToken
         ];
     }

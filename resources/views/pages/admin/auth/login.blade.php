@@ -13,7 +13,8 @@
 <!-- START SECTION LOGIN -->
 <div id="login">
     <div class="login">
-        <form>
+        <form action="{{ route('login_form_admin') }}" method="post">
+        @csrf
             <div class="form-group">
                 <h2>Admin Login</h2>
                 <label>Email</label>
@@ -34,7 +35,7 @@
                 </div> -->
                 <div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
             </div>
-            <a href="#0" class="btn_1 rounded full-width">Login</a>
+            <button class="btn_1 rounded full-width" type="submit">Login</button>
         </form>
     </div>
 </div>

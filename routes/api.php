@@ -28,7 +28,7 @@ Route::prefix('v1')->group(function () {
     Route::get('test',[UserController::class,'test_func'])->name('test');
     
     // Normal Laravel Login 
-    Route::post('login',[UserController::class,'userLogin'])->name('login')->middleware(XSSSanitizerMiddleware::class)->middleware(['verified']); //,'2fa'
+    Route::post('login',[UserController::class,'userLogin'])->name('login'); //,'2fa'
     Route::get('/logout', [UserController::class, 'logout']);
     // Tokenize Routes 
     Route::group(['middleware' => 'auth:sanctum'], function () {

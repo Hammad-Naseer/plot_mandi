@@ -22,7 +22,7 @@ use Illuminate\Support\Str;
 use Nnjeim\World\World;
 use Nnjeim\World\WorldHelper;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\Http;
 
 
 if (!function_exists('executeStoredProcedure')) {
@@ -337,5 +337,22 @@ if (!function_exists('uploadFile')) {
         Storage::putFileAs($destinationPath, $file, $uniqueFileName);
         // Return the file path to be saved in the database or used in your application
         return $destinationPath . '/' . $uniqueFileName;
+    }
+}
+
+
+if (!function_exists('callCurl')) {
+    function callCurl($endpoint,$apiType = "GET",$data = array())
+    {
+        $apiURL = "http://127.0.0.1:8000/api/v1/";
+        $api = $apiURL.$endpoint;
+        if($apiType == "POST"):
+            // withToken('token')
+            $response = Http::post($api, $data);
+        elseif($apiType == "GET"):
+            $response = Http::get($api);
+        endif;    
+
+        return $response;
     }
 }
