@@ -45,7 +45,12 @@ Route::post('/register/user', [WebUserController::class,'userRegisterForm'])->na
 
 // Dashboard Routes
 Route::group(['middleware' => 'auth'], function () { 
+    // Admin dashboard Routes 
     Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
+    Route::get('/dashboard/admin/dealer_list', [WebUserController::class,'adminDealerList'])->name('dealer_list');
+    Route::get('/dashboard/admin/users_list', [WebUserController::class,'adminUserList'])->name('users_list');
+    
+    // User Dashboard Routes 
     Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');
 });
 

@@ -353,7 +353,7 @@
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
       	<tr>
           <td valign="middle" class="bg_light footer email-section">
-            <table>
+            <!-- <table>
             	<tr>
                 <td valign="top" width="33.333%" style="padding-top: 20px;">
                   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -394,12 +394,12 @@
                   </table>
                 </td>
               </tr>
-            </table>
+            </table> -->
           </td>
         </tr><!-- end: tr -->
         <tr>
           <td class="bg_light" style="text-align: center;">
-          	<p>No longer want to receive these email? You can <a href="#" style="color: rgba(0,0,0,.8);">Secureism.com</a></p>
+          	<p>No longer want to receive these email? You can <a href="#" style="color: rgba(0,0,0,.8);">plotmandi.com</a></p>
           </td>
         </tr>
       </table>

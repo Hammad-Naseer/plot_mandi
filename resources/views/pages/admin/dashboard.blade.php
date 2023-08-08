@@ -11,7 +11,7 @@
                         <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="avatar" class="img-fluid profile-img">
                     </div>
                     <div class="active-user">
-                        <h2>Mary Smith</h2>
+                        <h2>{{ auth()->user()->first_name }}</h2>
                     </div>
                     <div class="detail clearfix">
                         <ul class="mb-0">
@@ -21,11 +21,21 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="user-profile.html">
-                                    <i class="fa fa-user"></i>Profile
+                                <a href="{{ route('dealer_list') }}">
+                                    <i class="fa fa-user"></i>Dealer Registration
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('users_list') }}">
+                                    <i class="fa fa-user"></i>Users List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="user-profile.html">
+                                    <i class="fa fa-list"></i>All Properties
+                                </a>
+                            </li>
+                            <!-- <li>
                                 <a href="my-listings.html">
                                     <i class="fa fa-list" aria-hidden="true"></i>My Properties
                                 </a>
@@ -54,7 +64,7 @@
                                 <a href="change-password.html">
                                     <i class="fa fa-lock"></i>Change Password
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="index-2.html">
                                     <i class="fas fa-sign-out-alt"></i>Log Out
@@ -218,7 +228,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="dashborad-box">
+                <!-- <div class="dashborad-box">
                     <h4 class="title">Message</h4>
                     <div class="section-body">
                         <div class="messages">
@@ -429,12 +439,12 @@
                             <button type="submit" class="btn btn-primary btn-lg mt-2">Submit</button>
                         </form>
                     </div>
-                </div>
+                </div> -->
                 <!-- START FOOTER -->
                 <div class="second-footer">
                     <div class="container">
-                        <p>2021 © Copyright - All Rights Reserved.</p>
-                        <p>Made With <i class="fa fa-heart" aria-hidden="true"></i> By Code-Theme</p>
+                        <p>{{ date('Y') }} © Copyright - All Rights Reserved.</p>
+                        <p>Made With <i class="fa fa-heart" aria-hidden="true"></i> By ZeeAr</p>
                     </div>
                 </div>
             </div>

@@ -83,13 +83,13 @@
                         <!-- Right Side Content / --> 
                         <div class="header-user-menu user-menu">
                             <div class="header-user-name">
-                                <span><img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt=""></span>Hi, Zeeshan
+                                <span><img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt=""></span>Hi, {{ auth()->user()->first_name }}
                             </div>
                             <ul>
                                 <li><a href="user-profile.html"> Edit profile</a></li>
-                                <li><a href="add-property.html"> Add Property</a></li>
+                                <!-- <li><a href="add-property.html"> Add Property</a></li> -->
                                 {{-- <li><a href="payment-method.html">  Payments</a></li> --}}
-                                <li><a href="change-password.html"> Change Password</a></li>
+                                <!-- <li><a href="change-password.html"> Change Password</a></li> -->
                                 <li>
                                     <a href="{{ route('admin_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
                                     <form id="logout-form" action="{{ route('admin_logout') }}" method="POST" class="d-none">

@@ -59,6 +59,7 @@ class WebUserController extends Controller
 
     public function userLoginForm(Request $request)
     {
+        
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|min:8',
@@ -85,7 +86,7 @@ class WebUserController extends Controller
 
     public function userRegisterForm(Request $request)
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
         $this->validate($request, [
             'first_name' => 'required|string||max:255',
@@ -108,7 +109,6 @@ class WebUserController extends Controller
         $user->acount_type = 3;
         $user->created_by = 0;
         $user->password = app('hash')->make($request->password);
-    
         if ($user->save()) :
             // Dispatch the job
             SendUserVerificationEmailJob::dispatch($user)->delay(now()->addSeconds(5)); //->addMinutes(10) || ->addSeconds(5)
@@ -119,8 +119,9 @@ class WebUserController extends Controller
             Session::flash('error', 'Account Not Created'); 
             return redirect()->route('register');
         endif;
-        DB::commit();
-        DB::rollBack();
+
+        // DB::commit();
+        // DB::rollBack();
     }
 
     public function adminLogin()
@@ -176,6 +177,22 @@ class WebUserController extends Controller
         else:
             return errorResponse("An error occurred", 400);
         endif;
+    }
+
+    public function adminDealerList()
+    {
+        // if(Auth::user()->usermanagement->account_type == 1):
+        // else:
+        // endif;
+        return view('pages.admin.dealer_list');
+    }
+
+    public function adminUserList()
+    {
+        // if(Auth::user()->usermanagement->account_type == 1):
+        // else:
+        // endif;
+        return view('pages.admin.users_list');
     }
 
     public function userLogout(Request $request)
