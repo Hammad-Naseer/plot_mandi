@@ -64,38 +64,31 @@ class WebUserController extends Controller
     public function adminLoginForm(Request $request)
     {
         try {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-        ]);
-        // if ($validator->fails()) {
-        //     return redirect()->back()->with('error',$validator);
-        //     // return redirect('/login/admin')
-        //     //     ->withErrors($validator)
-        //     //     ->withInput();
-        // }
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            if($user->is_active == 1):
-                // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
-                return redirect()->route('admin_dashboard');
-            endif;
-        }else{
-            return redirect()->back()->with('error_login',"Invalid email or password");
-        }
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required|min:8',
+            ]);
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password,
+            ];
+            
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+                if($user->is_active == 1):
+                    // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
+                    return redirect()->route('admin_dashboard');
+                endif;
+            }else{
+                Session::flash('error', 'Invalid Crediential'); 
+                return redirect()->back();
+            }
 
-        // Authentication failed
-    } catch (ValidationException $exception) {
-        return errorResponse("An error occurred", 400);
-    }
-        // return redirect('/login/admin')
-        //     ->withErrors(['login' => 'Invalid email or password'])
-        //     ->withInput();
+            // Authentication failed
+        } catch (ValidationException $exception) {
+            Session::flash('error', 'Error'); 
+            return redirect()->back();
+        }
     }
 
     public function adminLogout(Request $request)
@@ -111,6 +104,24 @@ class WebUserController extends Controller
             // }
             // return successResponse(array("message","User Logout"),200,"success");
             return redirect()->route('admin_login');
+        else:
+            return errorResponse("An error occurred", 400);
+        endif;
+    }
+
+    public function userLogout(Request $request)
+    {
+        $user = Auth::user();
+        if($user != null):
+            Auth::guard("web")->logout();
+            $request->session()->flush();
+            // return redirect()->route('/');
+            // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "logout", 'action_id' => "", 'log_type' => "1", "message" => "Azure Logout Successfully", "table" => Route::currentRouteName()));
+            // if ($user->tokens()->where('tokenable_id', $user->user_id)->exists()) {
+            //     $user->tokens()->delete();
+            // }
+            // return successResponse(array("message","User Logout"),200,"success");
+            return redirect()->route('login');
         else:
             return errorResponse("An error occurred", 400);
         endif;

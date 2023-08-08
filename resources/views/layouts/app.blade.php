@@ -110,7 +110,7 @@
                     @endauth
                     <!-- Right Side Content / End -->
 
-                    <div class="right-side d-none d-none d-lg-none d-xl-flex sign ml-0">
+                    <div class="right-side d-none d-none d-lg-none d-xl-flex sign ml-0" style="@auth border-right: 1px solid #fff; @else border-right: 0px solid #fff; @endauth">
                         <!-- Header Widget -->
                         <div class="header-widget sign-in">
                             <div class="show-reg-form modal-open"><a href="{{ url('login') }}">Sign In</a></div>
