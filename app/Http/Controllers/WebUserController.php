@@ -68,6 +68,7 @@ class WebUserController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
+        dd($credentials);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if($user->is_active == 1):
