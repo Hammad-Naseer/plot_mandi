@@ -251,15 +251,15 @@ if (!function_exists('getCountries')) {
 }
 
 if (!function_exists('citiesByCountryID')) {
-    function citiesByCountryID(int $countryId)
+    function citiesByCountryID()
     {
         $worldHelper = app(WorldHelper::class);
         $action = $worldHelper->cities([
             'filters' => [
-                'country_id' => $countryId,
+                'country_id' => 167,
             ],
         ]);
-
+        
         if ($action->success) {
             return $action->data;
         }

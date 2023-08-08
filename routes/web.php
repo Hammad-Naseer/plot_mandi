@@ -35,15 +35,18 @@ Route::get('/', function () {
 // Admin Login 
 Route::get('/login/admin', [WebUserController::class,'adminLogin'])->name('admin_login');
 Route::post('/login_request/admin', [WebUserController::class,'adminLoginForm'])->name('login_form_admin');
+Route::post('/admin/logout', [WebUserController::class, 'adminLogout'])->name('admin_logout');
+
 // User Login 
 Route::get('/login', [WebUserController::class,'userLogin']);
-Route::get('/register', [WebUserController::class,'userRegister']);
-Route::post('/admin/logout', [WebUserController::class, 'adminLogout'])->name('admin_logout');
+Route::get('/register', [WebUserController::class,'userRegister'])->name("register");
+Route::post('/login/user', [WebUserController::class,'userLoginForm'])->name("user_login");
+Route::post('/register/user', [WebUserController::class,'userRegisterForm'])->name("registerForm");
 
 // Dashboard Routes
 Route::group(['middleware' => 'auth'], function () { 
     Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
-    Route::get('/dashboard/user', [WebUserController::class,'userDashboard']);
+    Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');
 });
 
 Route::fallback(function () {

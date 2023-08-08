@@ -17,10 +17,16 @@
             <div class="alert alert-danger">{{ Session::get('error') }}</div>
         @endif
 
-        @if(isset($error_login))
-            <div class="alert alert-danger">{{ $error_login }}</div>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
-
+        
         <form action="{{ route('login_form_admin') }}" method="post">
         @csrf
             <div class="form-group">
@@ -28,11 +34,21 @@
                 <label>Email</label>
                 <input type="email" class="form-control" name="email" id="email" required>
                 <i class="icon_mail_alt"></i>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" name="password" id="password" value="" required>
                 <i class="icon_lock_alt"></i>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="fl-wrap filter-tags clearfix add_bottom_30">
                 <div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>

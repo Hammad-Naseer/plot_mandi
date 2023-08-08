@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
+// Jobs
+use App\Jobs\SendUserVerificationEmailJob;
+
+
 class WebUserController extends Controller
 {
 
@@ -53,6 +57,72 @@ class WebUserController extends Controller
         return view('pages.user.auth.login');
     }
 
+    public function userLoginForm(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if($user->is_active == 1):
+                if($user->acount_type == 2):
+                    return redirect()->route('user_dashboard');
+                elseif($user->acount_type == 3):
+                    return redirect()->route('user_dashboard');
+                endif;
+                // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
+            endif;
+        }else{
+            Session::flash('error', 'Invalid Crediential'); 
+            return redirect()->back();
+        }
+    }
+
+    public function userRegisterForm(Request $request)
+    {
+        DB::beginTransaction();
+
+        $this->validate($request, [
+            'first_name' => 'required|string||max:255',
+            'last_name' => 'required|string||max:255',
+            'email' => 'required|email|unique:users,email',
+            'gender' => 'required|in:M,F,O',
+            'phone' => 'required|string|max:20',
+            'city' => 'required|string|max:255',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->acount_type = 3;
+        $user->created_by = 0;
+        $user->password = app('hash')->make($request->password);
+    
+        if ($user->save()) :
+            // Dispatch the job
+            SendUserVerificationEmailJob::dispatch($user)->delay(now()->addSeconds(5)); //->addMinutes(10) || ->addSeconds(5)
+            // Commit the transaction
+            Session::flash('success', 'Congrats! Your Account Created Please Verify Your Email'); 
+            return redirect()->route('register');
+        else:
+            Session::flash('error', 'Account Not Created'); 
+            return redirect()->route('register');
+        endif;
+        DB::commit();
+        DB::rollBack();
+    }
+
     public function adminLogin()
     {
         // if(Auth::user()->usermanagement->account_type == 1):
@@ -63,7 +133,7 @@ class WebUserController extends Controller
 
     public function adminLoginForm(Request $request)
     {
-        try {
+        // try {
             $this->validate($request, [
                 'email' => 'required|email',
                 'password' => 'required|min:8',
@@ -72,7 +142,6 @@ class WebUserController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
             ];
-            
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 if($user->is_active == 1):
@@ -85,10 +154,10 @@ class WebUserController extends Controller
             }
 
             // Authentication failed
-        } catch (ValidationException $exception) {
-            Session::flash('error', 'Error'); 
-            return redirect()->back();
-        }
+    //     } catch (ValidationException $exception) {
+    //         Session::flash('error', 'Error'); 
+    //         return redirect()->back();
+    //     }
     }
 
     public function adminLogout(Request $request)
