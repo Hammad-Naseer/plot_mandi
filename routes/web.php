@@ -52,6 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
     
     // User Dashboard Routes 
     Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');
+    Route::get('/dashboard/user/add_property', [WebUserController::class,'userDealerAddProperty'])->name('add_property');
+    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');
+    
+    
 });
 
 Route::fallback(function () {

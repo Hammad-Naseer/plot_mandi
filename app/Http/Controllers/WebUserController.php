@@ -195,6 +195,22 @@ class WebUserController extends Controller
         return view('pages.admin.users_list');
     }
 
+    public function userDealerAddProperty()
+    {
+        // if(Auth::user()->usermanagement->account_type == 1):
+        // else:
+        // endif;
+        return view('pages.user.add_property');
+    }
+
+    public function userDealerViewProperty()
+    {
+        // if(Auth::user()->usermanagement->account_type == 1):
+        // else:
+        // endif;
+        return view('pages.user.view_property_list');
+    }
+
     public function userLogout(Request $request)
     {
         $user = Auth::user();

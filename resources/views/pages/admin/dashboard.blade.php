@@ -13,65 +13,7 @@
                     <div class="active-user">
                         <h2>{{ auth()->user()->first_name }}</h2>
                     </div>
-                    <div class="detail clearfix">
-                        <ul class="mb-0">
-                            <li>
-                                <a class="active" href="dashboard.html">
-                                    <i class="fa fa-map-marker"></i> Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('dealer_list') }}">
-                                    <i class="fa fa-user"></i>Dealer Registration
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('users_list') }}">
-                                    <i class="fa fa-user"></i>Users List
-                                </a>
-                            </li>
-                            <li>
-                                <a href="user-profile.html">
-                                    <i class="fa fa-list"></i>All Properties
-                                </a>
-                            </li>
-                            <!-- <li>
-                                <a href="my-listings.html">
-                                    <i class="fa fa-list" aria-hidden="true"></i>My Properties
-                                </a>
-                            </li>
-                            <li>
-                                <a href="favorited-listings.html">
-                                    <i class="fa fa-heart" aria-hidden="true"></i>Favorited Properties
-                                </a>
-                            </li>
-                            <li>
-                                <a href="add-property.html">
-                                    <i class="fa fa-list" aria-hidden="true"></i>Add Property
-                                </a>
-                            </li>
-                            {{-- <li>
-                                <a href="payment-method.html">
-                                    <i class="fas fa-credit-card"></i>Payments
-                                </a>
-                            </li>
-                            <li>
-                                <a href="invoice.html">
-                                    <i class="fas fa-paste"></i>Invoices
-                                </a>
-                            </li> --}}
-                            <li>
-                                <a href="change-password.html">
-                                    <i class="fa fa-lock"></i>Change Password
-                                </a>
-                            </li> -->
-                            <li>
-                                <a href="index-2.html">
-                                    <i class="fas fa-sign-out-alt"></i>Log Out
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    @include('pages.admin.auth.admin_dashboard_menu')
                 </div>
             </div>
             <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
@@ -140,7 +82,7 @@
                                     </div>
                                     <div class="info">
                                         <h6 class="number">345</h6>
-                                        <p class="type ml-1">Published Property</p>
+                                        <p class="type ml-1">Dealers</p>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +93,7 @@
                                     </div>
                                     <div class="info">
                                         <h6 class="number">116</h6>
-                                        <p class="type ml-1">Total Reviews</p>
+                                        <p class="type ml-1">Users</p>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +104,7 @@
                                     </div>
                                     <div class="info">
                                         <h6 class="number">223</h6>
-                                        <p class="type ml-1">Messages</p>
+                                        <p class="type ml-1">Properties</p>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +115,7 @@
                                     </div>
                                     <div class="info">
                                         <h6 class="number">432</h6>
-                                        <p class="type ml-1">Times Bookmarked</p>
+                                        <p class="type ml-1"></p>
                                     </div>
                                 </div>
                             </div>
