@@ -13,9 +13,14 @@
 <!-- START SECTION LOGIN -->
 <div id="login">
     <div class="login">
-        @if($errors->has('login'))
-            <div class="alert alert-danger">{{ $errors->first('login') }}</div>
+        @if($errors->has('error'))
+            <div class="alert alert-danger">{{ $errors->first('error') }}</div>
         @endif
+
+        @if(isset($error_login))
+            <div class="alert alert-danger">{{ $error_login }}</div>
+        @endif
+        
         <form action="{{ route('login_form_admin') }}" method="post">
         @csrf
             <div class="form-group">

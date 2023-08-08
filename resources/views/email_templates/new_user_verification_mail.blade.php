@@ -340,7 +340,7 @@
             		<td>
             			<div class="text" style="padding: 0 2.5em; text-align: center;">
             				<h2>Please verify your email</h2>
-            				<h3>Amazing deals, updates, interesting news right in your inbox</h3>
+            				<h3>You'r Registerd On Plot Mandi</h3>
             				<p><a href="#" class="btn btn-primary">Verification Link</a></p>
             			</div>
             		</td>

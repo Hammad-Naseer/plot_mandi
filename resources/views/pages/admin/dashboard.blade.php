@@ -40,7 +40,7 @@
                                     <i class="fa fa-list" aria-hidden="true"></i>Add Property
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="payment-method.html">
                                     <i class="fas fa-credit-card"></i>Payments
                                 </a>
@@ -49,7 +49,7 @@
                                 <a href="invoice.html">
                                     <i class="fas fa-paste"></i>Invoices
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="change-password.html">
                                     <i class="fa fa-lock"></i>Change Password

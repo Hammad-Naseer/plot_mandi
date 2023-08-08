@@ -61,10 +61,10 @@ if (!function_exists('errorResponse')) {
 if (!function_exists('appActivityLogs')) {
     function appActivityLogs($data = [])
     {
-        $user = DB::table("users")->where("user_id", $data['id'])->first();
+        $user = DB::table("users")->where("id", $data['id'])->first();
         $user_json = array(
             'user_id' => $user->user_id,
-            'user_name' => $user->name,
+            'user_name' => $user->first_name,
             'user_email' => $user->email,
             'user_role' => "",
         );
@@ -102,8 +102,8 @@ if (!function_exists('appActivityLogs')) {
         ];
 
         // $res = DB::statement('EXECUTE dbo.uspuseractivityinsert ?, ?, ?, ?, ?, ?, ?', array_values($data1));
-        $res = StoredProcedureHelper::executeStoredProcedure("[dbo].[uspuseractivityinsert]", array_values($data1));
-        return json_encode($res);
+        // $res = StoredProcedureHelper::executeStoredProcedure("[dbo].[uspuseractivityinsert]", array_values($data1));
+        // return json_encode($res);
     }
 }
 

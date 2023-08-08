@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use StoredProcedureHelper;
+use Illuminate\Support\Facades\Hash;
+
 
 // Requests
 use App\Http\Requests\LoginRequest;
@@ -44,71 +46,6 @@ use App\Jobs\SendUserVerificationEmailJob;
 
 class UserController extends Controller
 {
-
-    // public function register(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required',
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //         'c_password' => 'required|same:password',
-    //     ]);
-
-    //     if($validator->fails()){
-    //         return $this->sendError('Validation Error.', $validator->errors());       
-    //     }
-
-    //     $input = $request->all();
-    //     $input['password'] = bcrypt($input['password']);
-    //     $user = User::create($input);
-    //     $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-    //     $success['name'] =  $user->name;
-
-    //     return $this->sendResponse($success, 'User register successfully.');
-    // }
-
-
-    // public function register(Request $request)
-    // {
-
-    //     try {
-    //         $validator = Validator::make($request->all(), [
-    //             'name' => 'required|string',
-    //             'email' => 'required|email|unique:users',
-    //             'password' => 'required',
-    //         ]);
-
-    //         if ($validator->fails()) {
-    //             throw new ValidationException($validator);
-    //         }
-
-    //         // Your code for saving the user
-    //         $input = $request->only('name','email','password');
-
-    //         $user = new User;
-    //         $user->name = $input['name'];
-    //         $user->email = $input['email'];
-    //         $user->password = app('hash')->make($input['password']);
-    //         if($user->save()):
-    //             return response()->json(['message' => 'Success', 'code' => 200]);
-    //         endif;
-
-    //     } catch (ValidationException $exception) {
-    //         return response()->json([
-    //             'errors' => $exception->errors(),
-    //             'code' => 300,
-    //         ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
-    //     }
-    // }
-
-    // return response()->json([
-    //     'data' => new LoginResource($user),
-    //     'message' => 'Success',
-    // ], 200);
-    // return response()->json(['error' => $exception->errors()], 422);
-
-
-
     public function userRegistration(RegisterRequest $request)
     {
         // Start the transaction
@@ -118,12 +55,17 @@ class UserController extends Controller
 
             $data = $request->validated();
             $user = new User;
-            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
             $user->email = $request->email;
-            $user->auth_type = $request->auth_type;
-            $user->created_by = $request->created_by;
+            $user->gender = $request->gender;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->city = $request->city;
+            $user->acount_type = 3;
+            $user->created_by = 0;
             $user->password = app('hash')->make($request->password);
-            
+        
             if ($user->save()) :
                 // Dispatch the job
                 SendUserVerificationEmailJob::dispatch($user)->delay(now()->addSeconds(5)); //->addMinutes(10) || ->addSeconds(5)
@@ -141,27 +83,34 @@ class UserController extends Controller
         }
     }
 
-    public function userLogin($request)
+    public function userLogin(Request $request)
     {
         try {
-            $data = $request->validated();
+            $validated = $request->validate([
+                'email' => 'required|max:255',
+                'password' => 'required',
+            ]);
+            $data = [
+                'email' => $request->email,
+                'password' => $request->password,
+            ];
+            // dd($data);
             if (Auth::attempt($data)) {
                 $user = Auth::user();
                 if ($user->tokens()->where('tokenable_id', $user->user_id)->exists()) {
                     $user->tokens()->delete();
                 }
                 if($user->is_active == 1):
-                    // Make Session
-                    session(['userId' => $user->user_id]);
                     // Save Logs
-                    appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
+                    // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
                     return successResponse(new LoginResource($user), 200, "success");
                 else:
                     return successResponse(array("message" => "User Account Blocked"), 200, "success");
                 endif;
             } else {
                 // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Unsuccessfully", "table" => Route::currentRouteName()));
-                return response()->json(['error' => "Invalid credentials"], 401);
+                // return response()->json(['error' => "Invalid credentials"], 401);
+                return successResponse(array("message" => "Invalid credentials"), 401, "success");
             }
         } catch (ValidationException $exception) {
             return errorResponse("An error occurred", 400);

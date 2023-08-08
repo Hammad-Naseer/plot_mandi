@@ -32,7 +32,11 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'     => 'required',
+            'first_name'     => 'required',
+            'last_name'     => 'required',
+            'gender'     => 'required',
+            'phone'     => 'required',
+            'city'     => 'required',
             'email'     => 'required|email',
             'password'  => 'required',
         ];
@@ -53,7 +57,10 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Please enter your name.',
+            'first_name.required' => 'Please enter your first name.',
+            'last_name.required' => 'Please enter your last name.',
+            'gender.required' => 'Please select your gender.',
+            'city.required' => 'Please enter your city.',
             'email.required' => 'Please enter your email address.',
             'email.email' => 'Please enter a valid email address.',
             'password.required' => 'Please enter your password.',

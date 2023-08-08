@@ -29,6 +29,7 @@ Route::prefix('v1')->group(function () {
     
     // Normal Laravel Login 
     Route::post('login',[UserController::class,'userLogin'])->name('login'); //,'2fa'
+    Route::post('user_register',[UserController::class,'userRegistration'])->name('user_register'); //,'2fa'
     Route::get('/logout', [UserController::class, 'logout']);
     // Tokenize Routes 
     Route::group(['middleware' => 'auth:sanctum'], function () {

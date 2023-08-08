@@ -42,25 +42,25 @@ class XSSSanitizerMiddleware
         $input = $request->all();
         $config = HTMLPurifier_Config::createDefault();
         $purifier = new HTMLPurifier($config);
-
+    
         $sanitizedInput = $this->purifyInput($input, $purifier);
-
+    
         // Custom XSS Types
-        $find = array("<?php", "?>","exec(");
-        $replace = array("php start", "php end","exec command");
+        $find = array("<?php", "?>", "exec(");
+        $replace = array("php start", "php end", "exec command");
         $sanitizedInput = str_replace($find, $replace, $input);
-        
+    
         $replacements = array_diff($input, $sanitizedInput);
-
+    
         if (count($replacements) > 0) {
             // SQL SP Required
         }
-
+    
         $request->replace($sanitizedInput);
-
+    
         return $next($request);
     }
-
+    
     protected function purifyInput($input, $purifier)
     {
         foreach ($input as $key => $value) {
@@ -70,7 +70,8 @@ class XSSSanitizerMiddleware
                 $input[$key] = $purifier->purify($value);
             }
         }
-
+    
         return $input;
     }
+    
 }

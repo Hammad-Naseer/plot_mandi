@@ -38,8 +38,15 @@ Route::post('/login_request/admin', [WebUserController::class,'adminLoginForm'])
 // User Login 
 Route::get('/login', [WebUserController::class,'userLogin']);
 Route::get('/register', [WebUserController::class,'userRegister']);
-// Dashboard Routes 
-Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
-Route::get('/dashboard/user', [WebUserController::class,'userDashboard']);
+Route::post('/admin/logout', [WebUserController::class, 'adminLogout'])->name('admin_logout');
 
+// Dashboard Routes
+Route::group(['middleware' => 'auth'], function () { 
+    Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
+    Route::get('/dashboard/user', [WebUserController::class,'userDashboard']);
+});
+
+Route::fallback(function () {
+    return redirect()->route('login');
+});
 
