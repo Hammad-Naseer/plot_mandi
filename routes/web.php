@@ -42,13 +42,17 @@ Route::get('/login', [WebUserController::class,'userLogin']);
 Route::get('/register', [WebUserController::class,'userRegister'])->name("register");
 Route::post('/login/user', [WebUserController::class,'userLoginForm'])->name("user_login");
 Route::post('/register/user', [WebUserController::class,'userRegisterForm'])->name("registerForm");
+Route::post('/user/dashboard/logout', [WebUserController::class, 'userLogout'])->name('user_logout');
 
 // Dashboard Routes
 Route::group(['middleware' => 'auth'], function () { 
     // Admin dashboard Routes 
     Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
-    Route::get('/dashboard/admin/dealer_list', [WebUserController::class,'adminDealerList'])->name('dealer_list');
     Route::get('/dashboard/admin/users_list', [WebUserController::class,'adminUserList'])->name('users_list');
+    // Dealer 
+    Route::get('/dashboard/admin/dealer_list', [WebUserController::class,'adminDealerList'])->name('dealer_list');
+    Route::get('/dashboard/admin/add_dealer', [WebUserController::class,'adminAddDealer'])->name('add_dealer');
+    Route::post('/dashboard/admin/submit_dealer_form', [WebUserController::class,'adminDealerSubmit'])->name('submit_dealer_form');
     
     // User Dashboard Routes 
     Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');

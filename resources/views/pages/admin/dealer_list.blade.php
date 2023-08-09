@@ -1,18 +1,16 @@
 @extends('layouts.dashboard_layout')
 @section('content')
+<style>
+    .my-properties table tbody tr td .inner figure {
+        margin-bottom: 5px;
+    }
+</style>
 <!-- START SECTION DASHBOARD -->
 <section class="user-page section-padding">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-12 col-xs-12 pl-0 pr-0 user-dash">
                 <div class="user-profile-box mb-0">
-                    <div class="sidebar-header"><img src="{{ asset(MyApp::ASSET_IMG.'logo-blue.svg') }}" alt="header-logo2.png"> </div>
-                    <div class="header clearfix">
-                        <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="avatar" class="img-fluid profile-img">
-                    </div>
-                    <div class="active-user">
-                        <h2>{{ auth()->user()->first_name }}</h2>
-                    </div>
                     @include('pages.admin.auth.admin_dashboard_menu')
                 </div>
             </div>
@@ -71,9 +69,11 @@
                         </div>
                     </div>
                 </div>
+                <br>
                 <h2>Dealer Listing</h2>
-                <a href="" class="btn btn-primary float-right"> <i class="fa fa-plus"></i> Add Dealer</a>
-                <br><br>
+                <a href="{{ route('add_dealer') }}" class="btn btn-primary float-right"> <i class="fa fa-plus"></i> Add Dealer</a>
+                <br>
+                
                 <div class="my-properties">
                     <table class="table-responsive">
                         <thead>
@@ -86,29 +86,40 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($userList as $list)
                             <tr>
                                 <td class="image myelist">
-                                    <a href="single-property-1.html"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                    @if($list->profile_picture == "")
+                                    <a href="#"><img alt="my-properties-3" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid"></a>
+                                    @else:
+                                    <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                    @endif
                                 </td>
                                 <td>
-                                <div class="inner">
-                                        <a href="single-property-1.html"><h2>Adil Khan</h2></a>
-                                        <figure><i class="lni-map-marker"></i><b>City :</b> Lahore</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Phone : </b> 03415627372</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Gender : </b> Male</figure>
+                                    <div class="inner">
+                                        <a href="single-property-1.html"><h2>{{ $list->first_name . $list->last_name }}</h2></a>
+                                        <figure><i class="lni-map-marker"></i><b>City :</b> Islamabad</figure>
+                                        <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->phone }}</figure>
+                                        <figure><i class="lni-map-marker"></i> <b>Gender : </b> {{ $list->gender }}</figure>
+                                        <figure><i class="lni-map-marker"></i> <b>Address : </b> {{ $list->address }}</figure>
                                     </div>
                                 </td>
-                                <td>08.14.2020</td>
-                                <td><button class="btn btn-success btn-sm">Active</button> </td>
+                                <td>{{ PlotDateFormater($list->created_at) }}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm">
+                                        {{ getAccountStatus($list->is_active) }}
+                                    </button> 
+                                </td>
                                 <td class="actions">
-                                    <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
-                                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                                    <a href="#" class="edit"><i class="far fa-edit"> Edit</i></a>
+                                    <a href="#"><i class="far fa-trash-alt"> Delete</i></a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-container">
-                        <nav>
+                        {{-- <nav>
                             <ul class="pagination">
                                 <li class="page-item"><a class="btn btn-common" href="#"><i class="lni-chevron-left"></i> Previous </a></li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -116,7 +127,7 @@
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item"><a class="btn btn-common" href="#">Next <i class="lni-chevron-right"></i></a></li>
                             </ul>
-                        </nav>
+                        </nav> --}}
                     </div>
                 </div>
 

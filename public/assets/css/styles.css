@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*------------------------------------------------------------------
-Author       : Code-Theme
-Template Name: Find Houses - HTML5 Template
-Version      : 1.2
+Author       : Zeeshan Arain
+Template Name: Plot Mandi
+Version      : 1.0
 -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
 [Table of contents]
@@ -87,6 +87,10 @@ Version      : 1.2
 /*-----------------------------------*/
 html {
   font-size: 15px;
+}
+
+.col-lg-9.col-md-12.col-xs-12.pl-0.user-dash2{
+  margin-left: -40px;
 }
 
 body {
@@ -19293,7 +19297,7 @@ body.dashboard-bd {
 }
 
 .my-properties table tbody tr td.actions .edit {
-  float: left;
+  /* float: left; */
   color: #008000;
 }
 

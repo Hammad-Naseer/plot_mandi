@@ -355,4 +355,28 @@ if (!function_exists('callCurl')) {
 
         return $response;
     }
+
+    if (!function_exists('getAccountStatus')) {
+        function getAccountStatus($status = 0)
+        {
+            if($status == 0):
+                $response = "Inactive";
+            else:
+                $response = "Active";
+            endif;
+            return $response;
+        }
+    }
+
+    if (!function_exists('PlotDateFormater')) {
+        function PlotDateFormater($date = "",$format = "Y-m-d")
+        {
+            if($date != ""):
+                $response = date($format,strtotime($date));
+            endif;
+            return $response;
+        }
+    }
+
+    
 }

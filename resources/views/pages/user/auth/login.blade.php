@@ -4,7 +4,7 @@
     <div class="text-heading text-center">
         <div class="container">
             <h1>Login</h1>
-            <h2><a href="index-2.html">Home </a> &nbsp;/&nbsp; login</h2>
+            <h2><a href="/">Home </a> &nbsp;/&nbsp; login</h2>
         </div>
     </div>
 </section>

@@ -11,7 +11,7 @@
     @endauth
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="html 5 template">
+    <meta name="description" content="Plot Mandi Online Real State Website">
     <meta name="author" content="Zeeshan Arain">
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -96,14 +96,24 @@
                     @auth
                     <div class="header-user-menu user-menu add">
                         <div class="header-user-name">
-                            <span><img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt=""></span>Hi, Mary!
+                            <span>
+                                @if(auth()->user()->profile_picture == "")
+                                <img alt="{{ auth()->user()->first_name }}" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}">
+                                @else:
+                                <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                @endif
+                            </span>Hi, {{ auth()->user()->first_name }}
                         </div>
                         <ul>
-                            <li><a href="{{ url('dashboard/admin') }}"> Dashboard</a></li>
-                            <li><a href="user-profile.html"> Edit profile</a></li>
-                            <li><a href="add-property.html"> Add Property</a></li>
-                            <li><a href="payment-method.html">  Payments</a></li>
-                            <li><a href="change-password.html"> Change Password</a></li>
+                            @if(auth()->user()->acount_type == 1)
+                            <li><a href="{{ route('admin_dashboard') }}"> Dashboard</a></li>
+                            @elseif(auth()->user()->acount_type == 2 || auth()->user()->acount_type == 3)
+                            <li><a href="{{ route('user_dashboard') }}"> Dashboard</a></li>
+                            @endif
+                            {{-- <li><a href="user-profile.html"> Edit profile</a></li> --}}
+                            {{-- <li><a href="add-property.html"> Add Property</a></li> --}}
+                            {{-- <li><a href="payment-method.html">  Payments</a></li> --}}
+                            {{-- <li><a href="change-password.html"> Change Password</a></li> --}}
                             <li><a href="#">Log Out</a></li>
                         </ul>
                     </div>

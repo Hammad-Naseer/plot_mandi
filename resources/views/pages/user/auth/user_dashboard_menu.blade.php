@@ -1,7 +1,27 @@
+<div class="sidebar-header"><img src="{{ asset(MyApp::ASSET_IMG.'logo-blue.svg') }}" alt="header-logo2.png"> </div>
+<div class="header clearfix">
+    {{-- <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="avatar" class="img-fluid profile-img"> --}}
+    @if(auth()->user()->profile_picture == "")
+    <img alt="{{ auth()->user()->first_name }}" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid profile-img">
+    @else:
+    <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+    @endif
+</div>
+<div class="active-user">
+    <h2>
+        {{ auth()->user()->first_name }}
+        <br>
+        @if(auth()->user()->acount_type == 2)
+            Dealer
+        @elseif(auth()->user()->acount_type == 3)
+            User
+        @endif
+    </h2>
+</div>
 <div class="detail clearfix">
     <ul class="mb-0">
         <li>
-            <a class="active" href="{{ route('admin_dashboard') }}">
+            <a class="active" href="{{ route('user_dashboard') }}">
                 <i class="fa fa-map-marker"></i> Dashboard
             </a>
         </li>
@@ -16,7 +36,7 @@
                 <i class="fa fa-user"></i>Property Listing
             </a>
         </li>
-        endif
+        @endif
         <li>
             <a href="user-profile.html">
                 <i class="fa fa-list"></i>Favroute Property
@@ -53,9 +73,12 @@
             </a>
         </li> -->
         <li>
-            <a href="index-2.html">
+            <a href="{{ route('user_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>Log Out
             </a>
+            <form id="logout-form" action="{{ route('user_logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </li>
     </ul>
 </div>

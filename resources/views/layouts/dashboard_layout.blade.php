@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'default.css') }}">
     <link rel="stylesheet" id="color" href="{{ asset(MyApp::ASSET_STYLE.'colors/green.css') }}">
 </head>
-<body class="maxw1600 m0a dashboard-bd">
+<body class="inner-pages maxw1600 m0a dashboard-bd">
     <!-- Wrapper -->
     <div id="wrapper" class="int_main_wraapper">
         <!-- START SECTION HEADINGS -->
@@ -91,10 +91,17 @@
                                 {{-- <li><a href="payment-method.html">  Payments</a></li> --}}
                                 <!-- <li><a href="change-password.html"> Change Password</a></li> -->
                                 <li>
+                                    @if(auth()->user()->acount_type == 1)
                                     <a href="{{ route('admin_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
                                     <form id="logout-form" action="{{ route('admin_logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    @elseif(auth()->user()->acount_type == 2 || auth()->user()->acount_type == 3)
+                                    <a href="{{ route('user_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                                    <form id="logout-form" action="{{ route('user_logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                    @endif
                                 </li>
                             </ul>
                         </div>

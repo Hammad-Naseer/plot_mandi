@@ -1,3 +1,18 @@
+<div class="sidebar-header"><img src="{{ asset(MyApp::ASSET_IMG.'logo-blue.svg') }}" alt="header-logo2.png"> </div>
+<div class="header clearfix">
+    {{-- <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="avatar" class="img-fluid profile-img"> --}}
+    @if(auth()->user()->profile_picture == "")
+    <img alt="{{ auth()->user()->first_name }}" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid profile-img">
+    @else:
+    <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+    @endif
+</div>
+<div class="active-user">
+    <h2>{{ auth()->user()->first_name }}</h2>
+    <br>
+    Admin
+</div>
+
 <div class="detail clearfix">
     <ul class="mb-0">
         <li>
