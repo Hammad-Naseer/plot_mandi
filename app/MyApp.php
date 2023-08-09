@@ -2,6 +2,7 @@
     namespace App;
 
     class MyApp {
+       const APP_URL = 'http://127.0.0.1:8001/';
        const ASSET_STYLE = 'assets/css/';
        const ASSET_SCRIPT = 'assets/js/';
        const ASSET_SCRIPT_REVOLUTION = 'assets/js/revolution/';

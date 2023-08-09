@@ -26,6 +26,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->boolean('is_active')->default(false);
             $table->datetime('link_expire_at')->nullable();
+            $table->text('reset_token')->nullable();
             $table->string('profile_picture')->nullable();
             $table->timestamps();
             $table->softDeletes();

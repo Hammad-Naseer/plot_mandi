@@ -31,6 +31,8 @@ Route::prefix('v1')->group(function () {
     Route::post('login',[UserController::class,'userLogin'])->name('login'); //,'2fa'
     Route::post('user_register',[UserController::class,'userRegistration'])->name('user_register'); //,'2fa'
     Route::get('/logout', [UserController::class, 'logout']);
+    Route::post('/forgot_password', [UserController::class, 'ForgotPassword']);
+    Route::post('/reset_password', [UserController::class, 'ResetPassword']);
     // Tokenize Routes 
     Route::group(['middleware' => 'auth:sanctum'], function () {
         // Authentication Api's

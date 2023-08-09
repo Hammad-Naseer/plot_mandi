@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
-    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="x-apple-disable-message-reformatting">  
+    <title></title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <style>
         html,
@@ -322,8 +322,8 @@
           	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           		<tr>
           			<td class="logo" style="text-align: center;">
-			            <h1><a href="#">Email Verify</a></h1>
-			          </td>
+			            <h1><a href="#">Plot Mandi</a></h1>
+			        </td>
           		</tr>
           	</table>
           </td>
@@ -338,10 +338,10 @@
             <table>
             	<tr>
             		<td>
-            			<div class="text" style="padding: 0 2.5em; text-align: center;">
-            				<h3>Plot Mandi</h3>
+            			<div class="text" style="padding: 0 1em; text-align: center;">
             				<h2>Password Reset Link</h2>
-            				<p><a href="" class="btn btn-primary">Reset Link</a></p>
+                            <h4>Your OTP is <b>{{ $user->reset_token }}</b></h4>
+            				{{-- <p><a href="{{ asset(MyApp::APP_URL.'reset_password_') }}" class="btn btn-primary">Reset Link</a></p> --}}
             			</div>
             		</td>
             	</tr>

@@ -30,7 +30,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use StoredProcedureHelper;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPasswordMail;
 
 // Requests
 use App\Http\Requests\LoginRequest;
@@ -48,47 +50,41 @@ class UserController extends Controller
 {
     public function userRegistration(RegisterRequest $request)
     {
-        // Start the transaction
-        DB::beginTransaction();
-        
-        try {
+        $this->validate($request, [
+            'first_name' => 'required|string||max:255',
+            'last_name' => 'required|string||max:255',
+            'email' => 'required|email|unique:users,email',
+            'gender' => 'required|in:M,F,O',
+            'phone' => 'required|string|max:20',
+            'city' => 'required|string|max:255',
+            'password' => 'required|min:8|confirmed',
+            'address' => 'required',
+        ]);
 
-            $data = $request->validated();
-            $user = new User;
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->gender = $request->gender;
-            $user->phone = $request->phone;
-            $user->address = $request->address;
-            $user->city = $request->city;
-            $user->acount_type = 3;
-            $user->created_by = 0;
-            $user->password = app('hash')->make($request->password);
-        
-            if ($user->save()) :
-                // Dispatch the job
-                SendUserVerificationEmailJob::dispatch($user)->delay(now()->addSeconds(5)); //->addMinutes(10) || ->addSeconds(5)
-                
-                // Commit the transaction
-                DB::commit();
-                
-                return successResponse(array(), 200, "success");
-            endif;
-
-            
-        } catch (ValidationException $exception) {
-            DB::rollBack();
-            return errorResponse("An error occurred", 400);
-        }
+        $user = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->acount_type = 3;
+        $user->created_by = 0;
+        $user->password = app('hash')->make($request->password);
+    
+        if ($user->save()) :
+            // Dispatch the job
+            SendUserVerificationEmailJob::dispatch($user)->delay(now()->addSeconds(5)); //->addMinutes(10) || ->addSeconds(5)                
+            return successResponse(array(), 200, "success");
+        endif;
     }
 
     public function userLogin(Request $request)
     {
-        try {
             $validated = $request->validate([
                 'email' => 'required|max:255',
-                'password' => 'required',
+                'password' => 'required|min:8',
             ]);
             $data = [
                 'email' => $request->email,
@@ -112,9 +108,7 @@ class UserController extends Controller
                 // return response()->json(['error' => "Invalid credentials"], 401);
                 return successResponse(array("message" => "Invalid credentials"), 401, "success");
             }
-        } catch (ValidationException $exception) {
-            return errorResponse("An error occurred", 400);
-        }
+       
     }
 
     
@@ -172,19 +166,22 @@ class UserController extends Controller
 
     public function ForgotPassword(Request $request)
     {
-        $email = $request->input('email');
+        $validated = $request->validate([
+            'email' => 'required|max:255',
+        ]);
 
+        $email = $request->input('email');
         // Find the user by email
         $user = User::where('email', $email)->first();
-
         if (!$user) {
             // return response()->json(['message' => 'User not found'], 404);
             return successResponse(array("message" => "Data Not Found"),404,"error");
         }
 
         // Generate a reset token
-        $resetToken = Str::random(60);
-        $user->update(['reset_token' => $resetToken]);
+        // $resetToken = Str::random(60);
+        $otp = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        $user->update(['reset_token' => $otp]);
 
         // Send reset password email
         Mail::to($user->email)->send(new ResetPasswordMail($user));
@@ -193,25 +190,34 @@ class UserController extends Controller
         // return response()->json(['message' => 'Reset password email sent']);
     }
 
-    public function customResetPassword(Request $request)
+    public function ResetPassword(Request $request)
     {
-        $resetToken = $request->input('reset_token');
-        $password = $request->input('password');
+        try {
+            $validated = $request->validate([
+                'reset_code' => 'required|max:4',
+                'password' => 'required|min:8',
+            ]);
 
-        // Find the user by reset token
-        $user = User::where('reset_token', $resetToken)->first();
+            $resetToken = $request->input('reset_code');
+            $password = $request->input('password');
 
-        if (!$user) {
-            return response()->json(['message' => 'Invalid reset token'], 404);
+            // Find the user by reset token
+            $user = User::where('reset_token', $resetToken)->first();
+
+            if (!$user) {
+                return response()->json(['message' => 'Invalid reset token'], 404);
+            }
+
+            // Reset the user's password
+            $user->update([
+                'password' => Hash::make($password),
+                'reset_token' => null,
+            ]);
+
+            // return response()->json(['message' => 'Password reset successful']);
+            return successResponse(array("message" => "Password reset successful"),200,"success");
+        } catch (ValidationException $exception) {
+            return errorResponse($exception->getMessage(), 400);
         }
-
-        // Reset the user's password
-        $user->update([
-            'password' => Hash::make($password),
-            'reset_token' => null,
-        ]);
-
-        // return response()->json(['message' => 'Password reset successful']);
-        return successResponse(array("message" => "Password reset successful"),200,"success");
     }
 }
