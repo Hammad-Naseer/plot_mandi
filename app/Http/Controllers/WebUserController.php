@@ -218,15 +218,17 @@ class WebUserController extends Controller
             $insertedId = $user->user_id;
             // Dealer Details 
             if ($request->hasFile('office_picture') && $request->file('office_picture')->isValid()) {
-                $file = $request->file('office_picture');
-                $fileNamePicture = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads/dealer/'.$insertedId, $fileNamePicture);
+                $fileNamePicture = uploadFile($request->file('office_picture'), 'uploads/dealer/'.$insertedId.'/office', array('jpg','png','gif'));
+                // $file = $request->file('office_picture');
+                // $fileNamePicture = time() . '_' . $file->getClientOriginalName();
+                // $file->storeAs('uploads/dealer/'.$insertedId, $fileNamePicture);
             }
 
             if ($request->hasFile('office_video') && $request->file('office_video')->isValid()) {
-                $file = $request->file('office_video');
-                $fileNameVideo = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads/dealer/'.$insertedId, $fileNameVideo);
+                $fileNameVideo = uploadFile($request->file('office_video'), 'uploads/dealer/'.$insertedId.'/office', array('mp4'));                
+                // $file = $request->file('office_video');
+                // $fileNameVideo = time() . '_' . $file->getClientOriginalName();
+                // $file->storeAs('uploads/dealer/'.$insertedId, $fileNameVideo);
             }
 
             $dealerDetailsArr = array(

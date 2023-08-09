@@ -169,4 +169,49 @@ class UserController extends Controller
             return errorResponse("An error occurred", 400);
         }
     }   
+
+    public function ForgotPassword(Request $request)
+    {
+        $email = $request->input('email');
+
+        // Find the user by email
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            // return response()->json(['message' => 'User not found'], 404);
+            return successResponse(array("message" => "Data Not Found"),404,"error");
+        }
+
+        // Generate a reset token
+        $resetToken = Str::random(60);
+        $user->update(['reset_token' => $resetToken]);
+
+        // Send reset password email
+        Mail::to($user->email)->send(new ResetPasswordMail($user));
+
+        return successResponse(array("message" => "Reset password email sent"),200,"success");
+        // return response()->json(['message' => 'Reset password email sent']);
+    }
+
+    public function customResetPassword(Request $request)
+    {
+        $resetToken = $request->input('reset_token');
+        $password = $request->input('password');
+
+        // Find the user by reset token
+        $user = User::where('reset_token', $resetToken)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Invalid reset token'], 404);
+        }
+
+        // Reset the user's password
+        $user->update([
+            'password' => Hash::make($password),
+            'reset_token' => null,
+        ]);
+
+        // return response()->json(['message' => 'Password reset successful']);
+        return successResponse(array("message" => "Password reset successful"),200,"success");
+    }
 }

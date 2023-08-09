@@ -378,5 +378,28 @@ if (!function_exists('callCurl')) {
         }
     }
 
+    if (!function_exists('uploadFile')) {
+        function uploadFile($file, $destinationPath, $allowedExtensions = [])
+        {
+            // Validate the file size (e.g., limit to 5MB)
+            $maxFileSize = 5 * 5e+6; // 5MB in kilobytes
+            if ($file->getSize() > $maxFileSize) {
+                throw new \Exception('File size exceeds the maximum limit.');
+            }
+    
+            // Validate the file extension (if allowed extensions are provided)
+            $extension = $file->getClientOriginalExtension();
+            if (!empty($allowedExtensions) && !in_array($extension, $allowedExtensions)) {
+                throw new \Exception('Invalid file extension. Allowed extensions: ' . implode(', ', $allowedExtensions));
+            }
+    
+            // Sanitize the file name before storing it
+            $uniqueFileName = time() . '_' . Str::random(10) . '.' . $extension;
+            // Store the file in the specified destination path
+            Storage::putFileAs($destinationPath, $file, $uniqueFileName);
+            // Return the file path to be saved in the database or used in your application
+            return $destinationPath . '/' . $uniqueFileName;
+        }
+    }
     
 }
