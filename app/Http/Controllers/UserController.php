@@ -71,6 +71,7 @@ class UserController extends Controller
         $user->city = $request->city;
         $user->acount_type = 3;
         $user->created_by = 0;
+        $user->remember_token = Str::random(60);
         $user->password = app('hash')->make($request->password);
     
         if ($user->save()) :
@@ -175,7 +176,7 @@ class UserController extends Controller
         $user = User::where('email', $email)->first();
         if (!$user) {
             // return response()->json(['message' => 'User not found'], 404);
-            return successResponse(array("message" => "Data Not Found"),404,"error");
+            return successResponse(array("message" => "Account Does'nt Found"),404,"error");
         }
 
         // Generate a reset token

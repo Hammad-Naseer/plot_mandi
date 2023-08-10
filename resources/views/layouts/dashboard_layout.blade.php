@@ -83,7 +83,13 @@
                         <!-- Right Side Content / --> 
                         <div class="header-user-menu user-menu">
                             <div class="header-user-name">
-                                <span><img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt=""></span>Hi, {{ auth()->user()->first_name }}
+                                <span>
+                                    @if(auth()->user()->profile_picture == "")
+                                        <img src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" alt="">
+                                    @else:
+                                        <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="">
+                                    @endif
+                                </span>Hi, {{ auth()->user()->first_name }}
                             </div>
                             <ul>
                                 <li><a href="user-profile.html"> Edit profile</a></li>

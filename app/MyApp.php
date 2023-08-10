@@ -9,7 +9,7 @@
        const ASSET_DATATABLE = 'assets/js/DataTables/';
        const ASSET_IMG = 'assets/images/';
        const PROFILE = 'profile_images/';
-       const SITE_LOGO = 'assets/images/logo-white-1.svg';
+       const SITE_LOGO = 'assets/images/logo.png';
        const PERMISSION_IMG = 'assets/images/permission-denied.png';
        const SITE_LOGO_WHITE = 'assets/images/Secureism-logo-white.png';
        const LOADER = 'assets/images/loaderSVG.svg';

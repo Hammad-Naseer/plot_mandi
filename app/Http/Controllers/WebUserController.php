@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ResetPasswordMail;
+use Illuminate\Support\Str;
 
 // Jobs
 use App\Jobs\SendUserVerificationEmailJob;
@@ -111,6 +114,7 @@ class WebUserController extends Controller
         $user->city = $request->city;
         $user->acount_type = 3;
         $user->created_by = 0;
+        $user->remember_token = Str::random(60);
         $user->password = app('hash')->make($request->password);
         if ($user->save()) :
             // Dispatch the job
@@ -125,6 +129,22 @@ class WebUserController extends Controller
 
         // DB::commit();
         // DB::rollBack();
+    }
+
+    public function accountVerification()
+    {
+        $token = $_GET['token'];
+        
+        $user = User::where('remember_token', $token)->first();
+        if (!$user) {
+            Session::flash('error', "We couldn't find the email verification token."); 
+            return redirect()->route('userLogin');
+        }
+        
+        $email_verified_at = date("Y-m-d h:i:s");
+        User::where('user_id', $user->user_id)->update(['email_verified_at' => $email_verified_at]);
+
+        return view('pages.user.auth.account_verification');
     }
 
     public function adminLogin()
@@ -182,6 +202,66 @@ class WebUserController extends Controller
         endif;
     }
 
+    public function forgotPassword()
+    {
+        return view('pages.user.auth.forgot_password');
+    }
+
+    public function forgotPasswordSubmit(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|max:255',
+        ]);
+
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            Session::flash('error', "Account Does'nt Found"); 
+            return redirect()->route('forgot_password');
+        }
+        $otp = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        $user->update(['reset_token' => $otp]);
+
+        // Send reset password email
+        Mail::to($user->email)->send(new ResetPasswordMail($user));
+
+        Session::flash('success', "Reset password email sent"); 
+        return redirect()->route('reset_password');
+    }
+
+    public function resetPassword()
+    {
+        return view('pages.user.auth.reset_password');
+    }
+
+    public function resetPasswordSubmit(Request $request)
+    {   
+        $validated = $request->validate([
+            'reset_code' => 'required|max:4',
+            'password' => 'required|min:8',
+        ]);
+
+        $resetToken = $request->input('reset_code');
+        $password = $request->input('password');
+
+        // Find the user by reset token
+        $user = User::where('reset_token', $resetToken)->first();
+
+        if (!$user) {
+            Session::flash('error', "Account Does'nt Found"); 
+            return redirect()->route('reset_password');
+        }
+
+        // Reset the user's password
+        $user->update([
+            'password' => Hash::make($password),
+            'reset_token' => null,
+        ]);
+
+        Session::flash('success', "Password reset successful"); 
+        return redirect()->route('reset_password');
+    }
+
     public function adminAddDealer()
     {
         // if(Auth::user()->usermanagement->account_type == 1):
@@ -212,6 +292,7 @@ class WebUserController extends Controller
         $user->address = $request->address;
         $user->city = $request->city;
         $user->acount_type = 2;
+        $user->remember_token = Str::random(60);
         $user->created_by = Auth::user()->user_id;
         $user->password = app('hash')->make($request->password);
         if ($user->save()) :
@@ -290,13 +371,7 @@ class WebUserController extends Controller
         if($user != null):
             Auth::guard("web")->logout();
             $request->session()->flush();
-            // return redirect()->route('/');
-            // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "logout", 'action_id' => "", 'log_type' => "1", "message" => "Azure Logout Successfully", "table" => Route::currentRouteName()));
-            // if ($user->tokens()->where('tokenable_id', $user->user_id)->exists()) {
-            //     $user->tokens()->delete();
-            // }
-            // return successResponse(array("message","User Logout"),200,"success");
-            return redirect()->route('login');
+            return redirect()->route('userLogin');
         else:
             return errorResponse("An error occurred", 400);
         endif;

@@ -38,11 +38,17 @@ Route::post('/login_request/admin', [WebUserController::class,'adminLoginForm'])
 Route::post('/admin/logout', [WebUserController::class, 'adminLogout'])->name('admin_logout');
 
 // User Login 
-Route::get('/login', [WebUserController::class,'userLogin']);
+Route::get('/login', [WebUserController::class,'userLogin'])->name('userLogin');
 Route::get('/register', [WebUserController::class,'userRegister'])->name("register");
 Route::post('/login/user', [WebUserController::class,'userLoginForm'])->name("user_login");
 Route::post('/register/user', [WebUserController::class,'userRegisterForm'])->name("registerForm");
 Route::post('/user/dashboard/logout', [WebUserController::class, 'userLogout'])->name('user_logout');
+Route::get('/user/forgot_password', [WebUserController::class, 'forgotPassword'])->name('forgot_password');
+Route::post('/user/forgot_password_submit', [WebUserController::class, 'forgotPasswordSubmit'])->name('forgot_password_submit');
+Route::get('/user/reset_password', [WebUserController::class, 'resetPassword'])->name('reset_password');
+Route::post('/user/reset_password_submit', [WebUserController::class, 'resetPasswordSubmit'])->name('reset_password_submit');
+Route::get('/user/account_verification', [WebUserController::class, 'accountVerification'])->name('account_verification');
+
 
 // Dashboard Routes
 Route::group(['middleware' => 'auth'], function () { 
