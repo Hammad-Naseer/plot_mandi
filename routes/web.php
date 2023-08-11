@@ -59,11 +59,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard/admin/dealer_list', [WebUserController::class,'adminDealerList'])->name('dealer_list');
     Route::get('/dashboard/admin/add_dealer', [WebUserController::class,'adminAddDealer'])->name('add_dealer');
     Route::post('/dashboard/admin/submit_dealer_form', [WebUserController::class,'adminDealerSubmit'])->name('submit_dealer_form');
+    Route::post('/dashboard/dealer/submit_property_form', [WebUserController::class,'submitPropertyForm'])->name('submit_property_form');
+    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');
     
     // User Dashboard Routes 
     Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');
     Route::get('/dashboard/user/add_property', [WebUserController::class,'userDealerAddProperty'])->name('add_property');
-    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');
     
     
 });

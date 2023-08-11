@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Str;
+
+// Models 
+use App\Models\User;
+use App\Models\Property;
+use App\Models\PropertyMedia;
 
 // Jobs
 use App\Jobs\SendUserVerificationEmailJob;
@@ -142,7 +146,7 @@ class WebUserController extends Controller
         }
         
         $email_verified_at = date("Y-m-d h:i:s");
-        User::where('user_id', $user->user_id)->update(['email_verified_at' => $email_verified_at]);
+        User::where('user_id', $user->user_id)->update(['email_verified_at' => $email_verified_at, 'is_active' => 1]);
 
         return view('pages.user.auth.account_verification');
     }
@@ -357,12 +361,19 @@ class WebUserController extends Controller
         return view('pages.user.add_property');
     }
 
-    public function userDealerViewProperty()
+    public function userDealerViewProperty(Request $request)
     {
-        // if(Auth::user()->usermanagement->account_type == 1):
-        // else:
-        // endif;
-        return view('pages.user.view_property_list');
+        $userAgent = $request->header('User-Agent');
+        $propertyList = DB::table("property")
+                        ->join("property_media", "property.property_id", "=", "property_media.property_id")
+                        ->where("property.is_active", 1)
+                        ->select("property.*", "property_media.*")
+                        ->get();
+        if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'PostmanRuntime/7.32.3') !== false) {
+            return successResponse($propertyList,200,"success");
+        } else {
+            return view('pages.user.view_property_list')->with('propertyList', $propertyList);
+        }
     }
 
     public function userLogout(Request $request)
@@ -375,5 +386,104 @@ class WebUserController extends Controller
         else:
             return errorResponse("An error occurred", 400);
         endif;
+    }
+
+
+    /*****************/
+    // DEALER FUNCTION 
+    /*****************/
+
+    public function submitPropertyForm(Request $request)
+    {
+        $userAgent = $request->header('User-Agent');
+        $this->validate($request, [
+            'property_title' => 'required|string|max:255',
+            'property_description' => 'required|string',
+            'property_status' => 'required|string',
+            'property_type' => 'required|string',
+            'property_rooms' => 'required|integer',
+            'property_price' => 'required|numeric',
+            'property_area' => 'required|numeric',
+            'property_address' => 'required|string',
+            'property_city' => 'required|string',
+            'property_state' => 'required|string',
+            'property_country' => 'required|string',
+            'property_latitude' => 'nullable|numeric',
+            'property_longitude' => 'nullable|numeric',
+            'property_kitchens' => 'required|integer',
+            'property_bathrooms' => 'required|integer',
+            'property_features' => 'nullable|string',
+            'property_contact_name' => 'required|string',
+            'property_contact_email' => 'required|email',
+            'property_contact_phone' => 'required|string',
+        ]);
+
+        if ($request->wantsJson()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $property = new Property();
+        $property->property_title = $request->input('property_title');
+        $property->property_description = $request->input('property_description');
+        $property->property_status = $request->input('property_status');
+        $property->property_type = $request->input('property_type');
+        $property->property_rooms = $request->input('property_rooms');
+        $property->property_price = $request->input('property_price');
+        $property->property_area = $request->input('property_area');
+        $property->property_address = $request->input('property_address');
+        $property->property_city = $request->input('property_city');
+        $property->property_state = $request->input('property_state');
+        $property->property_country = $request->input('property_country');
+        $property->property_latitude = $request->input('property_latitude');
+        $property->property_langitude = $request->input('property_longitude');
+        $property->property_kitchens = $request->input('property_kitchens');
+        $property->property_bathrooms = $request->input('property_bathrooms');
+        $property->property_features = json_encode($request->input('features'));
+        $property->property_contact_name = $request->input('property_contact_name');
+        $property->property_contact_email = $request->input('property_contact_email');
+        $property->property_contact_phone = $request->input('property_contact_phone');
+        if ($property->save()) :
+
+            $insertedId = $property->property_id;
+            // Upload Property Image Media 
+            if ($request->hasFile('property_images')) {
+                foreach ($request->file('property_images') as $image) {
+                    $filePath = uploadFile($image, 'uploads/dealer/property/'.$insertedId, array('jpg','png','gif'));                    
+                    PropertyMedia::create([
+                        'property_id' => $insertedId,
+                        'file_name' => $filePath,
+                        'file_type' => "image",
+                    ]);
+                }
+            }
+
+            // Upload Property Video Media 
+            if ($request->hasFile('property_videos')) {
+                foreach ($request->file('property_videos') as $video) {
+                    $filePath = uploadFile($video, 'uploads/dealer/property/'.$insertedId, array('mp4'));                    
+                    PropertyMedia::create([
+                        'property_id' => $insertedId,
+                        'file_name' => $filePath,
+                        'file_type' => "video",
+                    ]);
+                }
+            }
+
+            if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'PostmanRuntime/7.32.3') !== false) {
+                return successResponse(array("message" => "Property Added Successfully"),200,"success");
+            } else {
+                Session::flash('success', 'Property Added Successfully'); 
+                return redirect()->route('add_property');
+            }
+
+        else:
+            if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'PostmanRuntime/7.32.3') !== false) {
+                return successResponse(array("message" => "Property Not Added, errro"),404,"error");
+            } else {
+                Session::flash('error', 'Property Not Addess, error'); 
+                return redirect()->route('add_property');
+            }
+        endif;
+
     }
 }

@@ -20,6 +20,7 @@ use App\Http\Middleware\XSSSanitizerMiddleware;
 
 // Controller 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebUserController;
 
 
 // Routes 
@@ -40,6 +41,14 @@ Route::prefix('v1')->group(function () {
             Route::get('/get/{id?}', [UserController::class,'getUserDetail']);
             Route::post('/add', [UserController::class, 'userRegistration'])->middleware(XSSSanitizerMiddleware::class);
             Route::get('/getUserActivity/{id?}', [UserController::class,'getUserActivity']);
+            // For Dashboard
+            // ->middleware(['verified']);
+        });
+
+        Route::group(['prefix' => 'property'], function () {
+            // Route::get('/get/{id?}', [UserController::class,'getUserDetail']);
+            Route::post('/add_property', [UserController::class, 'submitPropertyForm'])->middleware(XSSSanitizerMiddleware::class);
+            Route::get('/get_property/{id?}', [WebUserController::class,'userDealerViewProperty']);
             // For Dashboard
             // ->middleware(['verified']);
         });

@@ -221,4 +221,89 @@ class UserController extends Controller
             return errorResponse($exception->getMessage(), 400);
         }
     }
+
+    public function submitPropertyForm(Request $request)
+    {
+        try{
+        $validated = $request->validate([
+            'property_title' => 'required|string|max:255',
+            'property_description' => 'required|string',
+            'property_status' => 'required|string',
+            'property_type' => 'required|string',
+            'property_rooms' => 'required|integer',
+            'property_price' => 'required|numeric',
+            'property_area' => 'required|numeric',
+            'property_address' => 'required|string',
+            'property_city' => 'required|string',
+            'property_state' => 'required|string',
+            'property_country' => 'required|string',
+            'property_latitude' => 'nullable|numeric',
+            'property_longitude' => 'nullable|numeric',
+            'property_kitchens' => 'required|integer',
+            'property_bathrooms' => 'required|integer',
+            'property_features' => 'nullable|string',
+            'property_contact_name' => 'required|string',
+            'property_contact_email' => 'required|email',
+            'property_contact_phone' => 'required|string',
+        ]);
+
+        $property = new Property();
+        $property->property_title = $request->input('property_title');
+        $property->property_description = $request->input('property_description');
+        $property->property_status = $request->input('property_status');
+        $property->property_type = $request->input('property_type');
+        $property->property_rooms = $request->input('property_rooms');
+        $property->property_price = $request->input('property_price');
+        $property->property_area = $request->input('property_area');
+        $property->property_address = $request->input('property_address');
+        $property->property_city = $request->input('property_city');
+        $property->property_state = $request->input('property_state');
+        $property->property_country = $request->input('property_country');
+        $property->property_latitude = $request->input('property_latitude');
+        $property->property_langitude = $request->input('property_longitude');
+        $property->property_kitchens = $request->input('property_kitchens');
+        $property->property_bathrooms = $request->input('property_bathrooms');
+        $property->property_features = json_encode($request->input('features'));
+        $property->property_contact_name = $request->input('property_contact_name');
+        $property->property_contact_email = $request->input('property_contact_email');
+        $property->property_contact_phone = $request->input('property_contact_phone');
+        if ($property->save()) :
+
+            $insertedId = $property->property_id;
+            // Upload Property Image Media 
+            if ($request->hasFile('property_images')) {
+                foreach ($request->file('property_images') as $image) {
+                    $filePath = uploadFile($image, 'uploads/dealer/property/'.$insertedId, array('jpg','png','gif'));                    
+                    PropertyMedia::create([
+                        'property_id' => $insertedId,
+                        'file_name' => $filePath,
+                        'file_type' => "image",
+                    ]);
+                }
+            }
+
+            // Upload Property Video Media 
+            if ($request->hasFile('property_videos')) {
+                foreach ($request->file('property_videos') as $video) {
+                    $filePath = uploadFile($video, 'uploads/dealer/property/'.$insertedId, array('mp4'));                    
+                    PropertyMedia::create([
+                        'property_id' => $insertedId,
+                        'file_name' => $filePath,
+                        'file_type' => "video",
+                    ]);
+                }
+            }
+            return successResponse(array("message" => "Property Added Successfully"),200,"success");
+        else:
+            return successResponse(array("message" => "Property Not Added, errro"),404,"error");
+        endif;
+        }catch (ValidationException $e) {
+            if ($request->expectsJson()) {
+                return response()->json(['errors' => $e->errors()], 422);
+            } else {
+                throw $e;
+            }
+        }
+
+    }
 }

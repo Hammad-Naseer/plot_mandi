@@ -46,6 +46,7 @@ class XSSSanitizerMiddleware
         $sanitizedInput = $this->purifyInput($input, $purifier);
     
         // Custom XSS Types
+        /*
         $find = array("<?php", "?>", "exec(");
         $replace = array("php start", "php end", "exec command");
         $sanitizedInput = str_replace($find, $replace, $input);
@@ -55,6 +56,7 @@ class XSSSanitizerMiddleware
         if (count($replacements) > 0) {
             // SQL SP Required
         }
+        */
     
         $request->replace($sanitizedInput);
     

@@ -68,87 +68,113 @@
                 <br>
                 <h2>Add Property</h2>
                 <br>
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
+
+                @if(Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
+    
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('submit_property_form') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                 <div class="single-add-property">
                     <h3>Property description and price</h3>
                     <div class="property-form-group">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>
-                                        <label for="title">Property Title</label>
-                                        <input type="text" name="title" id="title" placeholder="Enter your property title">
-                                    </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label for="title">Property Title</label>
+                                    <input type="text" name="property_title" id="title" placeholder="Enter your property title">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label for="description">Property Description</label>
+                                    <textarea id="description" name="property_description" placeholder="Describe about your property"></textarea>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <select name="property_status" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="1">Rent</option>
+                                        <option value="2">Sale</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>
-                                        <label for="description">Property Description</label>
-                                        <textarea id="description" name="pro-dexc" placeholder="Describe about your property"></textarea>
-                                    </p>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <select name="property_type" class="form-control">
+                                        <option value="">Select Type</option>
+                                        <option value="1">house</option>
+                                        <option value="2">commercial</option>
+                                        <option value="3">apartment</option>
+                                        <option value="4">lot</option>
+                                        <option value="5">garage</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-12 dropdown faq-drop">
-                                    <div class="form-group categories">
-                                        <div class="nice-select form-control wide" tabindex="0"><span class="current">Select status</span>
-                                            <ul class="list">
-                                                <li data-value="1" class="option">Rent</li>
-                                                <li data-value="2" class="option">Sale</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12 dropdown faq-drop">
-                                    <div class="form-group categories">
-                                        <div class="nice-select form-control wide" tabindex="0"><span class="current">Type</span>
-                                            <ul class="list">
-                                                <li data-value="1" class="option">house</li>
-                                                <li data-value="2" class="option">commercial</li>
-                                                <li data-value="3" class="option">apartment</li>
-                                                <li data-value="4" class="option">lot</li>
-                                                <li data-value="5" class="option">garage</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12 dropdown faq-drop">
-                                    <div class="form-group categories">
-                                        <div class="nice-select form-control wide" tabindex="0"><span class="current">Rooms</span>
-                                            <ul class="list">
-                                                <li data-value="1" class="option">1</li>
-                                                <li data-value="2" class="option">2</li>
-                                                <li data-value="3" class="option">3</li>
-                                                <li data-value="4" class="option">4</li>
-                                                <li data-value="5" class="option">5</li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <select name="property_rooms" class="form-control">
+                                        <option value="">Select Rooms</option>
+                                        <option value="1" class="option">1</option>
+                                        <option value="2" class="option">2</option>
+                                        <option value="3" class="option">3</option>
+                                        <option value="4" class="option">4</option>
+                                        <option value="5" class="option">5</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12">
-                                    <p class="no-mb">
-                                        <label for="price">Price</label>
-                                        <input type="text" name="price" placeholder="USD" id="price">
-                                    </p>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <p class="no-mb last">
-                                        <label for="area">Area</label>
-                                        <input type="text" name="area" placeholder="Sqft" id="area">
-                                    </p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <p class="no-mb">
+                                    <label for="price">Price</label>
+                                    <input type="text" name="property_price" placeholder="USD" id="price">
+                                </p>
                             </div>
-                        </form>
+                            <div class="col-lg-6 col-md-12">
+                                <p class="no-mb last">
+                                    <label for="area">Area</label>
+                                    <input type="text" name="property_area" placeholder="Sqft" id="area">
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="single-add-property">
                     <h3>property Media</h3>
                     <div class="property-form-group">
                         <div class="row">
-                            <div class="col-md-12">
-                                <form action="https://code-theme.com/file-upload" class="dropzone"></form>
+                            <div class="col-md-6">
+                                <h4>Property Images</h4>
+                                <input type="file" class="form-control" style="padding: 3px;" multiple accept="jpg,png,gif" name="property_images[]">   
+                                <br>
+                                <small>You Can Upload Multiple Images</small>
+                                {{-- <form action="https://code-theme.com/file-upload" class="dropzone"></form> --}}
+                            </div>
+
+                            <div class="col-md-6">
+                                <h4>Property Videos</h4>
+                                <input type="file" accept=".mp4" class="form-control" multiple style="padding: 3px;" name="property_videos[]">
+                                <br>
+                                <small>You Can Upload Multiple Videos</small>   
+                                {{-- <form action="https://code-theme.com/file-upload" class="dropzone"></form> --}}
                             </div>
                         </div>
                     </div>
@@ -160,13 +186,13 @@
                             <div class="col-lg-6 col-md-12">
                                 <p>
                                     <label for="address">Address</label>
-                                    <input type="text" name="address" placeholder="Enter Your Address" id="address">
+                                    <input type="text" name="property_address" placeholder="Enter Your Address" id="address">
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <p>
                                     <label for="city">City</label>
-                                    <input type="text" name="city" placeholder="Enter Your City" id="city">
+                                    <input type="text" name="property_city" placeholder="Enter Your City" id="city">
                                 </p>
                             </div>
                         </div>
@@ -174,13 +200,13 @@
                             <div class="col-lg-6 col-md-12">
                                 <p>
                                     <label for="state">State</label>
-                                    <input type="text" name="state" placeholder="Enter Your State" id="state">
+                                    <input type="text" name="property_state" placeholder="Enter Your State" id="state">
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <p>
                                     <label for="country">Country</label>
-                                    <input type="text" name="country" placeholder="Enter Your Country" id="country">
+                                    <input type="text" name="property_country" placeholder="Enter Your Country" id="country">
                                 </p>
                             </div>
                         </div>
@@ -188,13 +214,13 @@
                             <div class="col-lg-6 col-md-12">
                                 <p class="no-mb first">
                                     <label for="latitude">Google Maps latitude</label>
-                                    <input type="text" name="latitude" placeholder="Google Maps latitude" id="latitude">
+                                    <input type="text" name="property_latitude" placeholder="Google Maps latitude" id="latitude">
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <p class="no-mb last">
                                     <label for="longitude">Google Maps longitude</label>
-                                    <input type="text" name="longitude" placeholder="Google Maps longitude" id="longitude">
+                                    <input type="text" name="property_longitude" placeholder="Google Maps longitude" id="longitude">
                                 </p>
                             </div>
                         </div>
@@ -204,7 +230,7 @@
                     <h3>Extra Information</h3>
                     <div class="property-form-group">
                         <div class="row">
-                            <div class="col-lg-4 col-md-12 dropdown faq-drop">
+                            {{-- <div class="col-lg-4 col-md-12 dropdown faq-drop">
                                 <div class="form-group categories">
                                     <div class="nice-select form-control wide" tabindex="0"><span class="current">Select Age</span>
                                         <ul class="list">
@@ -218,33 +244,31 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12 dropdown faq-drop">
-                                <div class="form-group categories">
-                                    <div class="nice-select form-control wide" tabindex="0"><span class="current">Select Rooms</span>
-                                        <ul class="list">
-                                            <li data-value="1" class="option">1</li>
-                                            <li data-value="2" class="option">2</li>
-                                            <li data-value="1" class="option">3</li>
-                                            <li data-value="2" class="option">4</li>
-                                            <li data-value="1" class="option">5</li>
-                                            <li data-value="2" class="option">6</li>
-                                        </ul>
-                                    </div>
+                            </div> --}}
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <select name="property_kitchens" class="form-control">
+                                        <option value="">Select Kitchen</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 dropdown faq-drop">
-                                <div class="form-group categories">
-                                    <div class="nice-select form-control wide" tabindex="0"><span class="current">Select Bathrooms</span>
-                                        <ul class="list">
-                                            <li data-value="1" class="option">1</li>
-                                            <li data-value="2" class="option">2</li>
-                                            <li data-value="1" class="option">3</li>
-                                            <li data-value="2" class="option">4</li>
-                                            <li data-value="1" class="option">5</li>
-                                            <li data-value="2" class="option">6</li>
-                                        </ul>
-                                    </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <select name="property_bathrooms" class="form-control">
+                                        <option value="">Select Bathroom</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +283,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-a" type="checkbox" name="check">
+                                                <input id="check-a" type="checkbox" name="features[]" value="1">
                                                 <label for="check-a">Air Conditioning</label>
                                             </div>
                                         </div>
@@ -267,7 +291,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-b" type="checkbox" name="check">
+                                                <input id="check-b" type="checkbox" name="features[]" value="2">
                                                 <label for="check-b">Swimming Pool</label>
                                             </div>
                                         </div>
@@ -275,7 +299,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-c" type="checkbox" name="check">
+                                                <input id="check-c" type="checkbox" name="features[]" value="3">
                                                 <label for="check-c">Central Heating</label>
                                             </div>
                                         </div>
@@ -283,7 +307,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-d" type="checkbox" name="check">
+                                                <input id="check-d" type="checkbox" name="features[]" value="4">
                                                 <label for="check-d">Laundry Room</label>
                                             </div>
                                         </div>
@@ -291,7 +315,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-e" type="checkbox" name="check">
+                                                <input id="check-e" type="checkbox" name="features[]" value="5">
                                                 <label for="check-e">Gym</label>
                                             </div>
                                         </div>
@@ -299,7 +323,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-g" type="checkbox" name="check">
+                                                <input id="check-g" type="checkbox" name="features[]" value="6">
                                                 <label for="check-g">Alarm</label>
                                             </div>
                                         </div>
@@ -307,7 +331,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-h" type="checkbox" name="check">
+                                                <input id="check-h" type="checkbox" name="features[]" value="7">
                                                 <label for="check-h">Window Covering</label>
                                             </div>
                                         </div>
@@ -315,7 +339,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-i" type="checkbox" name="check">
+                                                <input id="check-i" type="checkbox" name="features[]" value="8">
                                                 <label for="check-i">Refrigerator</label>
                                             </div>
                                         </div>
@@ -323,7 +347,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-j" type="checkbox" name="check">
+                                                <input id="check-j" type="checkbox" name="features[]" value="9">
                                                 <label for="check-j">TV Cable & WIFI</label>
                                             </div>
                                         </div>
@@ -331,7 +355,7 @@
                                     <li class="fl-wrap filter-tags clearfix">
                                         <div class="checkboxes float-left">
                                             <div class="filter-tags-wrap">
-                                                <input id="check-k" type="checkbox" name="check">
+                                                <input id="check-k" type="checkbox" name="features[]" value="10">
                                                 <label for="check-k">Microwave</label>
                                             </div>
                                         </div>
@@ -348,27 +372,28 @@
                             <div class="col-lg-6 col-md-12">
                                 <p>
                                     <label for="con-name">Name</label>
-                                    <input type="text" placeholder="Enter Your Name" id="con-name" name="con-name">
+                                    <input type="text" placeholder="Enter Your Name" id="con-name" name="property_contact_name">
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-12">
+                                <p class="no-mb first">
+                                    <label for="con-email">Email</label>
+                                    <input type="email" placeholder="Enter Your Email" id="con-email" name="property_contact_email">
+                                </p>
+                            </div>
+                            {{-- <div class="col-lg-6 col-md-12">
                                 <p>
                                     <label for="con-user">Username</label>
                                     <input type="text" placeholder="Enter Your Username" id="con-user" name="con-user">
                                 </p>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <p class="no-mb first">
-                                    <label for="con-email">Email</label>
-                                    <input type="email" placeholder="Enter Your Email" id="con-email" name="con-email">
-                                </p>
-                            </div>
+                            
                             <div class="col-lg-6 col-md-12">
                                 <p class="no-mb last">
                                     <label for="con-phn">Phone</label>
-                                    <input type="text" placeholder="Enter Your Phone Number" id="con-phn" name="con-phn">
+                                    <input type="text" placeholder="Enter Your Phone Number" id="con-phn" name="property_contact_phone">
                                 </p>
                             </div>
                         </div>
@@ -383,7 +408,7 @@
                         </div>
                     </div>
                 </div>
-
+                </form>
                 <!-- START FOOTER -->
                 <div class="second-footer">
                     <div class="container">

@@ -21,27 +21,28 @@
 <div class="detail clearfix">
     <ul class="mb-0">
         <li>
-            <a class="active" href="{{ route('user_dashboard') }}">
+            <a class="@if(Route::current()->uri == 'dashboard/user') active @endif" href="{{ route('user_dashboard') }}">
                 <i class="fa fa-map-marker"></i> Dashboard
             </a>
         </li>
         @if(auth()->user()->acount_type == 2)
         <li>
-            <a href="{{ route('add_property') }}">
+            <a class="@if(Route::current()->uri == 'dashboard/user/add_property') active @endif" href="{{ route('add_property') }}">
                 <i class="fa fa-user"></i>Add Property
             </a>
         </li>
         <li>
-            <a href="{{ route('view_property_list') }}">
+            <a class="@if(Route::current()->uri == 'dashboard/user/view_property_list') active @endif" href="{{ route('view_property_list') }}">
                 <i class="fa fa-user"></i>Property Listing
             </a>
         </li>
-        @endif
+        @else
         <li>
             <a href="user-profile.html">
                 <i class="fa fa-list"></i>Favroute Property
             </a>
         </li>
+        @endif
         <!-- <li>
             <a href="my-listings.html">
                 <i class="fa fa-list" aria-hidden="true"></i>My Properties

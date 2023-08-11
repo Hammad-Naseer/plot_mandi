@@ -64,8 +64,9 @@
                         </div>
                     </div>
                 </div>
+                <br>
                 <h2>My Property Listing</h2>
-                <br><br>
+                <br>
                 <div class="my-properties">
                     <table class="table-responsive">
                         <thead>
@@ -78,29 +79,36 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($propertyList as $list)
                             <tr>
                                 <td class="image myelist">
-                                    <a href="single-property-1.html"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                    @if($list->file_name == "" && $list->file_type == "image")
+                                        <a href="#"><img alt="my-properties-3" src="{{ storage() }}" class="img-fluid"></a>
+                                    @else:
+                                        <a href="#"><img alt="my-properties-3" src="{{ Storage::url($list->file_name) }}" class="img-fluid"></a>
+                                    @endif
                                 </td>
                                 <td>
                                 <div class="inner">
-                                        <a href="single-property-1.html"><h2>Luxury Banglow</h2></a>
-                                        <figure><i class="lni-map-marker"></i><b>City :</b> Lahore</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Phone : </b> 03415627372</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Gender : </b> Male</figure>
+                                        <a href="single-property-1.html"><h2>{{ $list->property_title }}</h2></a>
+                                        <figure><i class="lni-map-marker"></i><b>City :</b> {{ $list->property_city }}</figure>
+                                        <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->property_contact_phone }}</figure>
+                                        <figure><i class="lni-map-marker"></i> <b>Status : </b> {{ $list->property_status }}</figure>
+                                        <figure><i class="lni-map-marker"></i> <b>Price : </b> {{ $list->property_price }}</figure>
                                     </div>
                                 </td>
-                                <td>08.14.2020</td>
-                                <td><button class="btn btn-success btn-sm">Active</button> </td>
+                                <td>{{ PlotDateFormater($list->created_at,"Y-m-d") }}</td>
+                                <td><button class="btn btn-success btn-sm">{{ getAccountStatus($list->is_active) }}</button> </td>
                                 <td class="actions">
                                     <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
                                     <a href="#"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <div class="pagination-container">
-                        <nav>
+                        {{-- <nav>
                             <ul class="pagination">
                                 <li class="page-item"><a class="btn btn-common" href="#"><i class="lni-chevron-left"></i> Previous </a></li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -109,7 +117,7 @@
                                 <li class="page-item"><a class="btn btn-common" href="#">Next <i class="lni-chevron-right"></i></a></li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- START FOOTER -->
