@@ -18,6 +18,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Route;
+
 
 class RegisterRequest extends FormRequest
 {
@@ -32,24 +34,30 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name'     => 'required',
-            'last_name'     => 'required',
-            'gender'     => 'required',
-            'phone'     => 'required',
-            'city'     => 'required',
-            'email'     => 'required|email',
-            'password'  => 'required',
+            'first_name' => 'required|string||max:255',
+            'last_name' => 'required|string||max:255',
+            'email' => 'required|email|unique:users,email',
+            'gender' => 'required|in:M,F,O',
+            'phone' => 'required|string|max:20',
+            'city' => 'required|string|max:255',
+            'password' => 'required|min:8|confirmed',
         ];
     }
 
     public function failedValidation(Validator $validator): array
     {
-        throw new HttpResponseException(response()->json([
-            'success'   => true,
-            'code'      => 403,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
-        ]));
+        $completeRoutePath = $this->url();
+        if (strpos($completeRoutePath, '/api/') !== false) {
+            throw new HttpResponseException(response()->json([
+                'success'   => false,
+                'code'      => 403,
+                'message'   => 'Validation errors',
+                'data'      => $validator->errors()
+            ], 403));
+        }else{
+            parent::failedValidation($validator);
+        }
+        
     }
 
     

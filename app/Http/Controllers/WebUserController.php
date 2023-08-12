@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Str;
 
+// Requests 
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ResetPasswordRequest;
+use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\PropertyRequest;
+
 // Models 
 use App\Models\User;
 use App\Models\Property;
@@ -23,9 +30,19 @@ use App\Models\PropertyMedia;
 // Jobs
 use App\Jobs\SendUserVerificationEmailJob;
 
+// Resource 
+use App\Http\Resources\LoginResource;
+
 
 class WebUserController extends Controller
 {
+
+    protected $completeRoutePath;
+
+    public function __construct(Request $request)
+    {
+        $this->completeRoutePath = $request->url();
+    }
 
     public function adminDashboard()
     {
@@ -63,14 +80,9 @@ class WebUserController extends Controller
         // endif;
         return view('pages.user.auth.login');
     }
-
-    public function userLoginForm(Request $request)
+    
+    public function userLoginForm(LoginRequest $request)
     {
-        
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
@@ -79,22 +91,45 @@ class WebUserController extends Controller
             $user = Auth::user();
             if($user->is_active == 1):
                 if($user->acount_type == 2):
-                    return redirect()->route('user_dashboard');
+                    if (strpos($this->completeRoutePath, '/api/') !== false) {
+                        return successResponse(new LoginResource($user), 200, "success");
+                    }else{
+                        return redirect()->route('user_dashboard');
+                    }    
                 elseif($user->acount_type == 3):
-                    return redirect()->route('user_dashboard');
+                    if (strpos($this->completeRoutePath, '/api/') !== false) {
+                        return successResponse(new LoginResource($user), 200, "success");
+                    }else{
+                        return redirect()->route('user_dashboard');
+                    }
+                else:
+                    if (strpos($this->completeRoutePath, '/api/') !== false) {
+                        return successResponse(array("message" => "No Authorized"), 401, "error");
+                    }else{
+                        Session::flash('error', 'No Authorized'); 
+                        return redirect()->route('user_dashboard');
+                    }
                 endif;
                 // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
             else:
-                Session::flash('error', 'Account Not Verified Please Verify Email'); 
-                return redirect()->back();
+                if (strpos($this->completeRoutePath, '/api/') !== false) {
+                    return successResponse(array("message" => "User Account Blocked"), 401, "error");
+                }else{
+                    Session::flash('error', 'Account Not Verified Please Verify Email'); 
+                    return redirect()->back();
+                }
             endif;
         }else{
-            Session::flash('error', 'Invalid Crediential'); 
-            return redirect()->back();
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array("message" => "Invalid Crediential"), 404, "error");
+            }else{
+                Session::flash('error', 'Invalid Crediential'); 
+                return redirect()->back();
+            }
         }
     }
 
-    public function userRegisterForm(Request $request)
+    public function userRegisterForm(RegisterRequest $request)
     {
         // DB::beginTransaction();
 
@@ -124,11 +159,19 @@ class WebUserController extends Controller
             // Dispatch the job
             SendUserVerificationEmailJob::dispatch($user)->delay(now()->addSeconds(5)); //->addMinutes(10) || ->addSeconds(5)
             // Commit the transaction
-            Session::flash('success', 'Congrats! Your Account Created Please Verify Your Email'); 
-            return redirect()->route('register');
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array('message' => "Congrats! Your Account Created Please Verify Your Email"), 200, "success");
+            }else{
+                Session::flash('success', 'Congrats! Your Account Created Please Verify Your Email'); 
+                return redirect()->route('register');
+            } 
         else:
-            Session::flash('error', 'Account Not Created'); 
-            return redirect()->route('register');
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array('message' => "Account Not Created"), 404, "error");
+            }else{
+                Session::flash('error', 'Account Not Created'); 
+                return redirect()->route('register');
+            }
         endif;
 
         // DB::commit();
@@ -161,31 +204,24 @@ class WebUserController extends Controller
 
     public function adminLoginForm(Request $request)
     {
-        // try {
-            $this->validate($request, [
-                'email' => 'required|email',
-                'password' => 'required|min:8',
-            ]);
-            $credentials = [
-                'email' => $request->email,
-                'password' => $request->password,
-            ];
-            if (Auth::attempt($credentials)) {
-                $user = Auth::user();
-                if($user->is_active == 1):
-                    // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
-                    return redirect()->route('admin_dashboard');
-                endif;
-            }else{
-                Session::flash('error', 'Invalid Crediential'); 
-                return redirect()->back();
-            }
-
-            // Authentication failed
-    //     } catch (ValidationException $exception) {
-    //         Session::flash('error', 'Error'); 
-    //         return redirect()->back();
-    //     }
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if($user->is_active == 1):
+                // appActivityLogs(array('id' => $user->user_id, 'ip' => $request->ip(), 'action' => "login", 'action_id' => "", 'log_type' => "1","message" => "User Login Successfully", "table" => Route::currentRouteName()));
+                return redirect()->route('admin_dashboard');
+            endif;
+        }else{
+            Session::flash('error', 'Invalid Crediential'); 
+            return redirect()->back();
+        }
     }
 
     public function adminLogout(Request $request)
@@ -211,17 +247,17 @@ class WebUserController extends Controller
         return view('pages.user.auth.forgot_password');
     }
 
-    public function forgotPasswordSubmit(Request $request)
+    public function forgotPasswordSubmit(ForgotPasswordRequest $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|max:255',
-        ]);
-
         $email = $request->input('email');
         $user = User::where('email', $email)->first();
         if (!$user) {
-            Session::flash('error', "Account Does'nt Found"); 
-            return redirect()->route('forgot_password');
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array('message' => "Account Does'nt Found"), 404, "error");
+            }else{
+                Session::flash('error', "Account Does'nt Found"); 
+                return redirect()->route('forgot_password');
+            }
         }
         $otp = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
         $user->update(['reset_token' => $otp]);
@@ -229,8 +265,12 @@ class WebUserController extends Controller
         // Send reset password email
         Mail::to($user->email)->send(new ResetPasswordMail($user));
 
-        Session::flash('success', "Reset password email sent"); 
-        return redirect()->route('reset_password');
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
+            return successResponse(array('message' => "Reset password email sent"), 200, "success");
+        }else{
+            Session::flash('success', "Reset password email sent"); 
+            return redirect()->route('reset_password');
+        }
     }
 
     public function resetPassword()
@@ -238,13 +278,8 @@ class WebUserController extends Controller
         return view('pages.user.auth.reset_password');
     }
 
-    public function resetPasswordSubmit(Request $request)
+    public function resetPasswordSubmit(ResetPasswordRequest $request)
     {   
-        $validated = $request->validate([
-            'reset_code' => 'required|max:4',
-            'password' => 'required|min:8',
-        ]);
-
         $resetToken = $request->input('reset_code');
         $password = $request->input('password');
 
@@ -252,8 +287,12 @@ class WebUserController extends Controller
         $user = User::where('reset_token', $resetToken)->first();
 
         if (!$user) {
-            Session::flash('error', "Account Does'nt Found"); 
-            return redirect()->route('reset_password');
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array('message' => "Account Does'nt Found"), 404, "error");
+            }else{
+                Session::flash('error', "Account Does'nt Found"); 
+                return redirect()->route('reset_password');
+            }
         }
 
         // Reset the user's password
@@ -262,8 +301,12 @@ class WebUserController extends Controller
             'reset_token' => null,
         ]);
 
-        Session::flash('success', "Password reset successful"); 
-        return redirect()->route('reset_password');
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
+            return successResponse(array('message' => "Password reset successful"), 200, "success");
+        }else{
+            Session::flash('success', "Password reset successful"); 
+            return redirect()->route('reset_password');
+        }
     }
 
     public function adminAddDealer()
@@ -367,11 +410,12 @@ class WebUserController extends Controller
         $propertyList = DB::table("property")
                         ->join("property_media", "property.property_id", "=", "property_media.property_id")
                         ->where("property.is_active", 1)
+                        ->where("property.created_by", auth()->user()->user_id)
                         ->select("property.*", "property_media.*")
                         ->get();
-        if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'PostmanRuntime/7.32.3') !== false) {
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
             return successResponse($propertyList,200,"success");
-        } else {
+        }else{
             return view('pages.user.view_property_list')->with('propertyList', $propertyList);
         }
     }
@@ -393,35 +437,8 @@ class WebUserController extends Controller
     // DEALER FUNCTION 
     /*****************/
 
-    public function submitPropertyForm(Request $request)
-    {
-        $userAgent = $request->header('User-Agent');
-        $this->validate($request, [
-            'property_title' => 'required|string|max:255',
-            'property_description' => 'required|string',
-            'property_status' => 'required|string',
-            'property_type' => 'required|string',
-            'property_rooms' => 'required|integer',
-            'property_price' => 'required|numeric',
-            'property_area' => 'required|numeric',
-            'property_address' => 'required|string',
-            'property_city' => 'required|string',
-            'property_state' => 'required|string',
-            'property_country' => 'required|string',
-            'property_latitude' => 'nullable|numeric',
-            'property_longitude' => 'nullable|numeric',
-            'property_kitchens' => 'required|integer',
-            'property_bathrooms' => 'required|integer',
-            'property_features' => 'nullable|string',
-            'property_contact_name' => 'required|string',
-            'property_contact_email' => 'required|email',
-            'property_contact_phone' => 'required|string',
-        ]);
-
-        if ($request->wantsJson()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
+    public function submitPropertyForm(PropertyRequest $request)
+    {   
         $property = new Property();
         $property->property_title = $request->input('property_title');
         $property->property_description = $request->input('property_description');
@@ -442,6 +459,7 @@ class WebUserController extends Controller
         $property->property_contact_name = $request->input('property_contact_name');
         $property->property_contact_email = $request->input('property_contact_email');
         $property->property_contact_phone = $request->input('property_contact_phone');
+        $property->created_by = auth()->user()->user_id;
         if ($property->save()) :
 
             $insertedId = $property->property_id;
@@ -469,7 +487,7 @@ class WebUserController extends Controller
                 }
             }
 
-            if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'PostmanRuntime/7.32.3') !== false) {
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
                 return successResponse(array("message" => "Property Added Successfully"),200,"success");
             } else {
                 Session::flash('success', 'Property Added Successfully'); 
@@ -477,7 +495,7 @@ class WebUserController extends Controller
             }
 
         else:
-            if (strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'PostmanRuntime/7.32.3') !== false) {
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
                 return successResponse(array("message" => "Property Not Added, errro"),404,"error");
             } else {
                 Session::flash('error', 'Property Not Addess, error'); 

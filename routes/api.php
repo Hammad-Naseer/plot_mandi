@@ -29,11 +29,11 @@ Route::prefix('v1')->group(function () {
     Route::get('test',[UserController::class,'test_func'])->name('test');
     
     // Normal Laravel Login 
-    Route::post('login',[UserController::class,'userLogin'])->name('login'); //,'2fa'
-    Route::post('user_register',[UserController::class,'userRegistration'])->name('user_register'); //,'2fa'
+    Route::post('login',[WebUserController::class,'userLoginForm'])->name('login'); //,'2fa'
+    Route::post('user_register',[WebUserController::class,'userRegisterForm'])->name('user_register'); //,'2fa'
     Route::get('/logout', [UserController::class, 'logout']);
-    Route::post('/forgot_password', [UserController::class, 'ForgotPassword']);
-    Route::post('/reset_password', [UserController::class, 'ResetPassword']);
+    Route::post('/forgot_password', [WebUserController::class, 'forgotPasswordSubmit']);
+    Route::post('/reset_password', [WebUserController::class, 'resetPasswordSubmit']);
     // Tokenize Routes 
     Route::group(['middleware' => 'auth:sanctum'], function () {
         // Authentication Api's
@@ -47,7 +47,7 @@ Route::prefix('v1')->group(function () {
 
         Route::group(['prefix' => 'property'], function () {
             // Route::get('/get/{id?}', [UserController::class,'getUserDetail']);
-            Route::post('/add_property', [UserController::class, 'submitPropertyForm'])->middleware(XSSSanitizerMiddleware::class);
+            Route::post('/add_property', [WebUserController::class, 'submitPropertyForm'])->middleware(XSSSanitizerMiddleware::class);
             Route::get('/get_property/{id?}', [WebUserController::class,'userDealerViewProperty']);
             // For Dashboard
             // ->middleware(['verified']);
