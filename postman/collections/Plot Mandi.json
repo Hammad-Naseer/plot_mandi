@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "9eba95e7-939f-4486-8afb-1eea397de9e8",
+		"name": "Plot Mandi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "11037549-9eba95e7-939f-4486-8afb-1eea397de9e8"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"id": "94d14749-9fcf-489e-bdf5-9f5184ad22a0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test1dealer@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{DEVELOPMENT}}login",
+					"host": [
+						"{{DEVELOPMENT}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Registration",
+			"id": "d1d7c2ec-37ae-49c7-9f99-f58ab5f5597b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "Ali",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Zafar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "alizafar1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "M",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "0314526372",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "F3 Tech",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Hyd",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "zeeshan123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{DEVELOPMENT}}user_register",
+					"host": [
+						"{{DEVELOPMENT}}user_register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forgot Password",
+			"id": "9c2d4c01-7c03-46f8-a3c4-ba2430fa0bbb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "abc@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{DEVELOPMENT}}forgot_password",
+					"host": [
+						"{{DEVELOPMENT}}forgot_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password",
+			"id": "9b02a59b-3573-4a2f-a531-5964d51cb6e6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "reset_code",
+							"value": "5416",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "zeeshan@123",
+							"type": "text"
+						},
+						{
+							"key": "confirmation_password",
+							"value": "zeeshan@123",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{DEVELOPMENT}}reset_password",
+					"host": [
+						"{{DEVELOPMENT}}reset_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Property",
+			"id": "24eb15db-d926-48cd-904f-86cfa8f8a161",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "property_title",
+							"value": "aasa",
+							"type": "text"
+						},
+						{
+							"key": "property_description",
+							"value": "asas",
+							"type": "text"
+						},
+						{
+							"key": "property_status",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "property_type",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{DEVELOPMENT}}property/add_property",
+					"host": [
+						"{{DEVELOPMENT}}property"
+					],
+					"path": [
+						"add_property"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Property",
+			"id": "4deaf76a-0369-4de6-b9af-e27ff73a2fb8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEVELOPMENT}}property/get_property",
+					"host": [
+						"{{DEVELOPMENT}}property"
+					],
+					"path": [
+						"get_property"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "3|5LXTeI3obi9ME7ltgWV6JPcmrECpgE3HAZaSeEGK",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a705f4b2-dc47-4cd3-a2a1-1c427e420a77",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "98da4ea7-43f2-4e5f-8a77-1195a2c80add",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
