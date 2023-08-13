@@ -9,11 +9,7 @@
 <section class="user-page section-padding">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-md-12 col-xs-12 pl-0 pr-0 user-dash">
-                <div class="user-profile-box mb-0">
-                    @include('pages.admin.auth.admin_dashboard_menu')
-                </div>
-            </div>
+            @include('pages.admin.auth.admin_dashboard_menu')
             <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
                 <div class="col-lg-12 mobile-dashbord dashbord">
                     <div class="dashboard_navigationbar dashxl">

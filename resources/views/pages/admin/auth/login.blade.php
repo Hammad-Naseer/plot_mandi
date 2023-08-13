@@ -9,9 +9,10 @@
     <title>{{ config('app.name', 'Plot Mandi') }}</title>
     <style>
         .left_side{
-            display: flex;
-            /* flex-direction: row-reverse; */
-            align-items: baseline;
+          display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
         }
     </style>
 </head>
@@ -32,11 +33,12 @@
               <form style="width: 23rem;" action="{{ route('login_form_admin') }}" method="post">
                 <br><br>
                 @csrf
-                <div class="text-center">
-                    <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="Logo" width="170px">
+                <div class="text-left">
+                  <h1>Welcome to Plot Mandi Admin Panel</h1>
+                    {{-- <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="Logo" width="170px"> --}}
                 </div>
                 
-              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
+              <h3 class="fw-normal mb-3 pb-3 mt-4" style="letter-spacing: 1px;">Log in</h3>
                 @if(Session::has('error'))
                     <div class="alert alert-danger">{{ Session::get('error') }}</div>
                 @endif
@@ -72,7 +74,7 @@
                 @enderror
   
               <div class="pt-1 mb-4">
-                <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+                <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
               </div>
   
               <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
@@ -83,11 +85,14 @@
           </div>
   
         </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block">
+        <div class="col-sm-6 px-0 d-none d-sm-block" style="    display: flex !important;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;">
           {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
             alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;"> --}}
-            <img src="{{ asset(MyApp::ASSET_IMG.'admin_login_bg.png') }}"
-            alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+            {{-- <img src="{{ asset(MyApp::ASSET_IMG.'admin_login_bg.png') }}" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;"> --}}
+            <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="Logo" class="w-90 vh-90" style="object-fit: cover; object-position: left;">  
         </div>
       </div>
     </div>

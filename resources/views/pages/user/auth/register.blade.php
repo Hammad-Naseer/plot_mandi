@@ -97,8 +97,12 @@
                         <i class="icon_mail_alt"></i>
                     </div>
                     <div id="pass-info" class="clearfix"></div>
-                    <button type="submit" class="btn_1 rounded full-width add_top_30">Register Now!</button>
-                    <div class="text-center add_top_10">Already have an acccount? <strong><a href="{{ url('login') }}">Sign In</a></strong></div>
+                    <div class="form-group col-md-6 text-left">
+                        <div class="add_top_10">Already have an acccount? <strong><a href="{{ url('login') }}">Sign In</a></strong></div>
+                    </div>
+                    <div class="form-group col-md-6 text-right">
+                        <button type="submit" class="btn_1 rounded add_top_30"><b>Register Now!</b></button>
+                    </div>
                 </form>
 
             </div>

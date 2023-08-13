@@ -4,11 +4,7 @@
 <section class="user-page section-padding">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-md-12 col-xs-12 pl-0 pr-0 user-dash">
-                <div class="user-profile-box mb-0">
-                    @include('pages.user.auth.user_dashboard_menu')
-                </div>
-            </div>
+            @include('pages.user.auth.user_dashboard_menu')
             <div class="col-lg-9 col-md-12 col-xs-12 pl-0 user-dash2">
                 <div class="col-lg-12 mobile-dashbord dashbord">
                     <div class="dashboard_navigationbar dashxl">
@@ -68,7 +64,7 @@
                     <h4 class="title">Manage Dashboard</h4>
                     <div class="section-body">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-xs-12 dar pro mr-3">
+                            <div class="col-lg-3 col-md-3 col-xs-12 dar pro mr-1">
                                 <div class="item">
                                     <div class="icon">
                                         <i class="fa fa-list" aria-hidden="true"></i>
@@ -79,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-xs-12 dar rev mr-3">
+                            <div class="col-lg-3 col-md-3 col-xs-12 dar pro mr-1">
                                 <div class="item">
                                     <div class="icon">
                                         <i class="fas fa-star"></i>
@@ -90,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 dar com mr-3">
+                            <div class="col-lg-3 col-md-3 col-xs-12 dar pro mr-1">
                                 <div class="item mb-0">
                                     <div class="icon">
                                         <i class="fas fa-comments"></i>
@@ -101,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 dar booked">
+                            <div class="col-lg-3 col-md-3 col-xs-12 dar pro">
                                 <div class="item mb-0">
                                     <div class="icon">
                                         <i class="fas fa-heart"></i>
@@ -116,7 +112,7 @@
                     </div>
                 </div>
                 <div class="dashborad-box">
-                    <h4 class="title">Listing</h4>
+                    <h4 class="title">Users Listing</h4>
                     <div class="section-body listing-table">
                         <div class="table-responsive">
                             <table class="table table-striped">

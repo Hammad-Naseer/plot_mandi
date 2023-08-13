@@ -3,7 +3,7 @@
 -----------------------------------*/
 	$('.slick-lancers').slick({
 		infinite: false,
-		slidesToShow: 3,
+		slidesToShow: 5,
 		slidesToScroll: 1,
 		dots: true,
 		arrows: false,

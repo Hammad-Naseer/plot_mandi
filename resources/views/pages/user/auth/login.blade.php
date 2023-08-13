@@ -64,7 +64,7 @@
                         </div>
                         <div class="float-right mt-1"><a id="forgot" href="{{ route('forgot_password') }}">Forgot Password?</a></div>
                     </div>
-                    <button class="btn_1 rounded full-width" type="submit">Login</button>
+                    <button class="btn_1 rounded full-width" type="submit"><b>Login</b></button>
                     <div class="text-center add_top_10">Create new Account ? <strong><a href="{{ url('register') }}">Sign up!</a></strong></div>
                 </form>
             </div>

@@ -52,7 +52,7 @@
                         <div class="left-side">
                             <!-- Logo -->
                             <div id="logo">
-                                <a href="index-2.html"><img src="{{ asset(MyApp::ASSET_IMG.'logo.svg') }}" alt=""></a>
+                                <a href="index-2.html"><img src="{{ asset(MyApp::SITE_LOGO) }}" alt=""></a>
                             </div>
                             <!-- Mobile Navigation -->
                             <div class="mmenu-trigger">
@@ -65,7 +65,7 @@
                             <!-- Main Navigation -->
                             <nav id="navigation" class="style-1">
                                 <ul id="responsive">
-                                    <li><a href="/">Home</a></li>
+                                    {{-- <li><a href="/">Home</a></li> --}}
 
                                         <li class="d-none d-xl-none d-block d-lg-block"><a href="login.html">Login</a></li>
                                         <li class="d-none d-xl-none d-block d-lg-block"><a href="register.html">Register</a></li>
@@ -172,6 +172,44 @@
             });
         </script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'script.js') }}"></script>
+
+        <script>
+            $(function(){    // toggle sidebar collapse    
+                $('.hamburger-toggle-sidebar').on('click', function(){        
+                    $('.wrapper').toggleClass('sidebar-collapse');
+                        
+                    var divWidth = $('.user-profile-box').width();
+                    if(divWidth == 295){
+                        $('.user-profile-box').css('width','60px');    
+                        $('.user-dash').css('flex','0 0 7%');    
+                        $('.user-dash2').css('flex','0 0 100%');    
+                        $('.user-dash2').css('max-width','95%');    
+                        $('.user-dash2').css('margin-left','-40px');    
+                        $('.hamburger-toggle-sidebar').css({'left':'-20px','top':'10px'});    
+                        $('.collapse_hide_item').hide();
+                    }
+                    
+                    if(divWidth == 60){
+                        $('.user-profile-box').css('width','295px');  
+                        $('.user-dash').css('flex','0 0 25%'); 
+                        $('.user-dash2').css('flex','0 0 75%');    
+                        $('.user-dash2').css('max-width','75%');   
+                        $('.user-dash2').css('margin-left','0px');    
+                        $('.collapse_hide_item').show();
+                    }
+                });    
+                // mark sidebar item as active when clicked    
+                $('.sb-item').on('click', function(){        
+                    if ($(this).hasClass('hamburger-toggle-sidebar')) {          
+                        return; 
+                        // already actived        
+                    }        
+                    $(this).siblings().removeClass('active');        
+                    $(this).siblings().find('.sb-item').removeClass('active');        
+                    $(this).addClass('active');    
+                })
+            });
+        </script>
 </body>
 </html>
 

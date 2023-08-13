@@ -1,24 +1,24 @@
 @extends('layouts.app')
 @section('content')
 
-<!-- STAR HEADER SEARCH -->
-<section id="hero-area" class="parallax-searchs home15 overlay" data-stellar-background-ratio="0.5">
+        <!-- STAR HEADER SEARCH -->
+        <section id="hero-area" class="parallax-searchs home15 overlay" data-stellar-background-ratio="0.5">
             <div class="hero-main">
-                <div class="container" data-aos="zoom-in">
-                    <div class="row">
-                        <div class="col-12">
+                <div class="container-fluid" data-aos="zoom-in">
+                    {{-- <div class="row"> --}}
+                        {{-- <div class="col-12"> --}}
                             <div class="hero-inner">
                                 <!-- Welcome Text -->
-                                <div class="welcome-text">
+                                {{-- <div class="welcome-text">
                                     <h1 class="h1">Find Your Dream
                                     <br class="d-md-none">
                                     <span class="typed border-bottom"></span>
                                 </h1>
                                     <p class="mt-4">Our experience ensures that your projects will be done right and with the upmost professionalism.</p>
-                                </div>
+                                </div> --}}
                                 <!--/ End Welcome Text -->
                                 <!-- Search Form -->
-                                <div class="trip-search">
+                                <div class="trip-search text-center">
                                     <form class="form">
                                         <!-- Form Location -->
                                         <div class="form-group location">
@@ -101,15 +101,15 @@
                                 </div>
                                 <!--/ End Search Form -->
                             </div>
-                        </div>
-                    </div>
+                        {{-- </div> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
         </section>
         <!-- END HEADER SEARCH -->
 
         <!-- START SECTION INFO -->
-        <section _ngcontent-bgi-c3="" class="featured-boxes-area bg-white-1">
+        {{-- <section _ngcontent-bgi-c3="" class="featured-boxes-area bg-white-1">
             <div _ngcontent-bgi-c3="" class="container">
                 <div _ngcontent-bgi-c3="" class="featured-boxes-inner">
                     <div _ngcontent-bgi-c3="" class="row m-0">
@@ -140,11 +140,11 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- END SECTION INFO -->
 
         <!-- START SECTION PROPERTIES FOR SALE -->
-        <section class="featured portfolio bg-white-1 rec-pro">
+        <section class="featured portfolio bg-white-3 rec-pro">
             <div class="container-fluid">
                 <div class="sec-title">
                     <h2><span>Properties for </span>Sale</h2>
@@ -645,9 +645,13 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="cml-md-4 col-xl-4"></div> --}}
             </div>
         </section>
         <!-- END SECTION PROPERTIES FOR SALE -->
+
+
+
 
         <!-- START SECTION INFO-HELP -->
         <section class="info-help">
@@ -799,7 +803,7 @@
         <section class="blog-section bg-white rec-pro">
             <div class="container-fluid">
                 <div class="sec-title">
-                    <h2><span>Latest </span>News</h2>
+                    <h2><span>Plot </span>Pedia</h2>
                     <p>The latest news form real estate.</p>
                 </div>
                 <div class="news-wrap">
@@ -903,6 +907,7 @@
         <!-- END SECTION BLOG -->
 
         <!-- START SECTION AGENTS -->
+        <?php /* ?>
         <section class="team bg-white-1 rec-pro">
             <div class="container-fluid">
                 <div class="sec-title">
@@ -1031,6 +1036,7 @@
                 </div>
             </div>
         </section>
+        
         <!-- END SECTION AGENTS -->
 
         <!-- STAR SECTION PARTNERS -->
@@ -1055,7 +1061,7 @@
             </div>
         </div>
         <!-- END SECTION PARTNERS -->
-
+        <?php */ ?>
         <!-- START SECTION TOP LOCATION -->
         <section class="top-location py-0">
             <h4>POPULAR PLACES</h4>

@@ -90,7 +90,7 @@ html {
 }
 
 .col-lg-9.col-md-12.col-xs-12.pl-0.user-dash2{
-  margin-left: -40px;
+  /* margin-left: -40px; */
 }
 
 body {
@@ -2560,7 +2560,7 @@ section.services-home {
 /*-- 6. SECTION FEATURED PROPERTIES --*/
 /*------------------------------------*/
 section.portfolio {
-  padding: 4.6rem 0;
+  padding: 1.6rem 0;
   background: #f7f7f7;
 }
 
@@ -10498,12 +10498,12 @@ a.button {
 /*--- 27. TYPED IMAGE HOME 15 ---*/
 /*---------------------------------------*/
 .parallax-searchs.home15 {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../images/bg/bg-15.jpg") no-repeat center top;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg/bg-15.jpg") no-repeat center top;
+  /* background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../images/bg/bg-15.jpg") no-repeat center top; */
+  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg/bg-15.jpg") no-repeat center top; */
   background-size: cover;
   background-attachment: fixed !important;
   width: 100%;
-  height: 90vh;
+  height: auto;
 }
 
 .parallax-searchs.home15.thome-6 {
@@ -10857,7 +10857,7 @@ a.button {
 
 .parallax-searchs.home15 .hero-inner {
   text-align: center;
-  padding: 320px 0;
+  padding: 0px 0px 0px 0px;
 }
 
 .parallax-searchs .welcome-text p {
@@ -10875,12 +10875,14 @@ a.button {
 
 /* Search Form */
 .parallax-searchs .trip-search {
-  background: #fff;
+  background: #0000000f;
   padding: 10px;
   border: 1px solid #fff;
-  border-radius: 50px;
+  border-radius: 8px;
   text-align: left;
-  margin-top: 30px;
+  margin-top: 12px;
+  /* border: 1px solid #cccccc69; */
+  /* box-shadow: 4px 4px 4px 2px #ccc6; */
 }
 
 .parallax-searchs .trip-search .form {
@@ -18606,7 +18608,7 @@ a.button {
 
 .dashboard-bd .sidebar-header {
   background-color: #24324a;
-  padding: 28px 0 28px 0;
+  padding: 22px 0 8px 0;
 }
 
 .dashboard-bd .left-side {
@@ -18683,8 +18685,17 @@ body.dashboard-bd {
 }
 
 .dashboard-bd .sidebar-header img {
-  width: 340px;
-  height: 47px;
+  width: 100px;
+  height: 100px;
+}
+
+.hamburger-toggle-sidebar {
+  float: right;
+  color: white;
+  font-size: 30px;
+  position: relative;
+  left: -10px;
+  top: 25px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -18776,9 +18787,9 @@ body.dashboard-bd {
   .dashborad-box .col-lg-3.dar.com,
   .dashborad-box .col-lg-3.dar.booked {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 50%;
-            flex: 0 0 50%;
-    max-width: 48.9% !important;
+        -ms-flex: 0 0 23%;
+            flex: 0 0 23%;
+    max-width: 23% !important;
   }
 
   .dashborad-box .col-lg-3.dar.pro,
@@ -21399,6 +21410,10 @@ a.btn_1 {
 .inner-pages .form-control {
   padding: .7rem;
   border: 1px solid #FF385C;
+}
+
+.form-control{
+  border-radius: 8px !important;
 }
 
 @media screen and (max-width: 767px) {

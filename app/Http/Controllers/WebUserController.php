@@ -47,7 +47,8 @@ class WebUserController extends Controller
     public function adminDashboard()
     {
         if(Auth::user()->acount_type == 1):
-            return view('pages.admin.dashboard');
+            $userList = DB::table("users")->where("acount_type",3)->get();
+            return view('pages.admin.dashboard')->with('userList', $userList);
         else:
             return redirect()->route('admin_login');
         endif;
