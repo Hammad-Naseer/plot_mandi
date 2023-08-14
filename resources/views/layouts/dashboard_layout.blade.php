@@ -81,6 +81,14 @@
                         </div>
                         <!-- Left Side Content / End -->
                         <!-- Right Side Content / --> 
+                        {{-- <div class="header-user-menu user-menu">
+                            <div class="header-user-name">
+                                <span>
+                                    <img src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" alt="">
+                                </span>                                
+                            </div>
+                        </div> --}}
+                        
                         <div class="header-user-menu user-menu">
                             <div class="header-user-name">
                                 <span>
@@ -109,6 +117,17 @@
                                     @endif
                                 </li>
                             </ul>
+                        </div>
+                        <div class="header-user-menu user-menu">
+                            <div class="">
+                                <span>
+                                    <i class="fa fa-bell" style="    font-size: 28px;
+                                    position: relative;
+                                    top: 7px;
+                                    left: -20px;
+                                    color: #f5a40f;"></i>   
+                                </span>                                
+                            </div>
                         </div>
                         <!-- Right Side Content / End -->
                     </div>

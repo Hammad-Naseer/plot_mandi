@@ -177,9 +177,9 @@
     background-image: -webkit-gradient(linear,
 									   40% 0%,
 									   75% 84%,
-									   from(#4D9C41),
-									   to(#19911D),
-									   color-stop(.6,#54DE5D));
+									   from(#ecf1ec),
+									   to(#fbfffb),
+									   color-stop(.6,#a5ada6));
 	/* border: 2px solid #555555; */
 }
 
