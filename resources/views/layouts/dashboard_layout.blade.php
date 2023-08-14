@@ -228,7 +228,7 @@
             $(function(){    // toggle sidebar collapse    
                 $('.hamburger-toggle-sidebar').on('click', function(){        
                     $('.wrapper').toggleClass('sidebar-collapse');
-                    if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+                    // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
                         var divWidth = $('.user-profile-box').width();
                         if(divWidth == 295){
                             localStorage.setItem("dash-menu-hamburger","inactive");
@@ -240,7 +240,7 @@
                             $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
                             $('.collapse_hide_item').hide();
                         }
-                    }
+                    // }
                     
                     if(divWidth == 60){
                         localStorage.setItem("dash-menu-hamburger","active");

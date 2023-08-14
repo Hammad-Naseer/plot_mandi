@@ -191,8 +191,8 @@
         {{-- <div class="wrapper"> --}}
         <div class="sidebar" id="style-4">
             <i class="fa fa-bars hamburger-toggle-sidebar text-dark"></i>
-            <div class="sidebar-header text-center collapse_hide_item">
-                <h2>Plot Mandi</h2>
+            <div class="sidebar-header text-center ">
+                <h2 class="collapse_hide_item">Plot Mandi</h2>
                 {{-- <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="header-logo2.png">  --}}
             </div>
             <div class="header clearfix collapse_hide_item">
