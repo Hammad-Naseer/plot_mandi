@@ -85,14 +85,14 @@
                         <!-- Right Side Content / End -->
                         @auth
                         @else
-                        <div class="right-side d-none d-none d-lg-none d-xl-flex" style="width: 250px;">
+                        <div class="right-side d-none d-none d-lg-none d-xl-flex" style="width: 150px;">
                             <!-- Header Widget -->
                             <div class="header-widget">
                                 {{-- <a href="add-property.html" class="button border">Add Listing<i class="fas fa-laptop-house ml-2"></i></a> --}}
-                                <a href="{{ url('register') }}" class="button border" style="width:110px;padding:8px 0px !important;text-align:center;">
+                                {{-- <a href="{{ url('register') }}" class="button border" style="width:110px;padding:8px 0px !important;text-align:center;">
                                     <i class="fas fa-user-plus ml-2"></i>
                                     Sign Up
-                                </a>
+                                </a> --}}
 
                                 <a href="{{ url('login') }}" class="button border" style="width:110px;padding:8px 0px !important;text-align:center;">
                                     <i class="fas fa-sign-in-alt ml-2"></i>

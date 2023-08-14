@@ -1,6 +1,16 @@
 @extends('layouts.dashboard_layout')
 @section('content')
 <!-- START SECTION DASHBOARD -->
+<style>
+    .multipleFiles{
+        width: 100% !important;
+        padding: 9px !important;
+        border: 1px solid #18ba60 !important;
+        height: 45px;
+        border-radius: 8px !important;
+        margin-bottom: 10px;
+    }
+</style>
 <section class="user-page section-padding">
     <div class="container-fluid">
         <div class="row">
@@ -140,7 +150,7 @@
                             <div class="col-lg-6 col-md-12">
                                 <p class="no-mb">
                                     <label for="price">Price</label>
-                                    <input type="text" name="property_price" placeholder="USD" id="price">
+                                    <input type="text" name="property_price" placeholder="PKR" id="price">
                                 </p>
                             </div>
                             <div class="col-lg-6 col-md-12">
@@ -156,19 +166,31 @@
                     <h3>property Media</h3>
                     <div class="property-form-group">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 input-multiple-container">
                                 <h4>Property Images</h4>
-                                <input type="file" class="form-control" style="padding: 3px;" multiple accept="jpg,png,gif" name="property_images[]">   
-                                <br>
-                                <small>You Can Upload Multiple Images</small>
+                                <button type="button" class="btn btn-info btn-sm" id="addMultipleFileImageProperty">
+                                    <i class="fa fa-plus"></i> Add Image
+                                </button>
+                                <br><br>
+                                <div id="fileImageInputsProperty">
+                                    <input type="file" class="form-control multipleFiles" style="padding: 3px;" accept="jpg,png,gif" name="property_images[]">   
+                                </div>
+                                {{-- <br> --}}
+                                {{-- <small>You Can Upload Multiple Images</small> --}}
                                 {{-- <form action="https://code-theme.com/file-upload" class="dropzone"></form> --}}
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 input-multiple-container">
                                 <h4>Property Videos</h4>
-                                <input type="file" accept=".mp4" class="form-control" multiple style="padding: 3px;" name="property_videos[]">
-                                <br>
-                                <small>You Can Upload Multiple Videos</small>   
+                                <button type="button" class="btn btn-info btn-sm" id="addMultipleFileVideoProperty">
+                                    <i class="fa fa-plus"></i> Add Image
+                                </button>
+                                <br><br>
+                                <div id="fileVideoInputsProperty">
+                                    <input type="file" accept=".mp4" class="form-control multipleFiles" multiple style="padding: 3px;" name="property_videos[]">
+                                </div>
+                                {{-- <br> --}}
+                                {{-- <small>You Can Upload Multiple Videos</small>    --}}
                                 {{-- <form action="https://code-theme.com/file-upload" class="dropzone"></form> --}}
                             </div>
                         </div>

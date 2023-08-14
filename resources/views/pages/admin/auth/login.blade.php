@@ -10,9 +10,9 @@
     <style>
         .left_side{
           display: flex !important;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
         }
     </style>
 </head>
@@ -33,12 +33,12 @@
               <form style="width: 23rem;" action="{{ route('login_form_admin') }}" method="post">
                 <br><br>
                 @csrf
-                <div class="text-left">
-                  <h1>Welcome to Plot Mandi Admin Panel</h1>
+                <div class="text-center">
+                  <h2 class="font-wieght-bold">Welcome to Plot Mandi <br> Admin Panel</h2>
                     {{-- <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="Logo" width="170px"> --}}
                 </div>
                 
-              <h3 class="fw-normal mb-3 pb-3 mt-4" style="letter-spacing: 1px;">Log in</h3>
+              {{-- <h3 class="fw-normal mb-3 pb-3 mt-4" style="letter-spacing: 1px;">Log in</h3> --}}
                 @if(Session::has('error'))
                     <div class="alert alert-danger">{{ Session::get('error') }}</div>
                 @endif
@@ -53,9 +53,9 @@
                     </div>
                 @endif
           
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-2">
+                  <label class="form-label" for="form2Example18">Email address</label>
                     <input type="email" name="email" required id="form2Example18" class="form-control form-control-lg" />
-                    <label class="form-label" for="form2Example18">Email address</label>
                 </div>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -63,10 +63,11 @@
                     </span>
                 @enderror
   
-                <div class="form-outline mb-4">
+                <div class="form-outline mb-2">
+                  <label class="form-label" for="form2Example28">Password</label>
                     <input type="password" name="password" required id="form2Example28" class="form-control form-control-lg" />
-                    <label class="form-label" for="form2Example28">Password</label>
-                </div>
+                  </div>
+                  <p class="small mb-3 pb-lg-2 float-right"><a class="text-muted" href="#!">Forgot password?</a></p>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -77,7 +78,6 @@
                 <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
               </div>
   
-              <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
               {{-- <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p> --}}
   
             </form>
@@ -85,14 +85,14 @@
           </div>
   
         </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block" style="    display: flex !important;
+        <div class="col-sm-6 px-0 d-none d-sm-block" style="display: flex !important;
         justify-content: center;
         align-items: center;
         height: 100vh;">
           {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
             alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;"> --}}
             {{-- <img src="{{ asset(MyApp::ASSET_IMG.'admin_login_bg.png') }}" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;"> --}}
-            <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="Logo" class="w-90 vh-90" style="object-fit: cover; object-position: left;">  
+            <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="Logo" class="w-50 vh-50" style="object-fit: cover; object-position: left;">  
         </div>
       </div>
     </div>

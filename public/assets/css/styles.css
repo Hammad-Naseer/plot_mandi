@@ -10875,7 +10875,7 @@ a.button {
 
 /* Search Form */
 .parallax-searchs .trip-search {
-  background: #0000000f;
+  background: #fff;
   padding: 10px;
   border: 1px solid #fff;
   border-radius: 8px;
@@ -10883,6 +10883,10 @@ a.button {
   margin-top: 12px;
   /* border: 1px solid #cccccc69; */
   /* box-shadow: 4px 4px 4px 2px #ccc6; */
+}
+
+.parallax-searchs .form-group .btn{
+  border-radius: 8px !important;
 }
 
 .parallax-searchs .trip-search .form {
@@ -18457,7 +18461,7 @@ a.button {
 }
 
 .user-profile-box {
-  background: #1d293e;
+  background: #fff;
   -webkit-box-shadow: 0 0 20px rgba(38, 38, 38, 0.2);
           box-shadow: 0 0 20px rgba(38, 38, 38, 0.2);
   margin: 0 auto 50px;
@@ -18470,15 +18474,18 @@ a.button {
 }
 
 .user-profile-box .header {
-  padding: 20px 20px 120px;
+  padding: 25px 0px 25px 0px;
   text-align: center;
+  background: #cccccc4a;
+  border-radius: 8px;
+  margin: 12px;
   position: relative;
-  background-repeat: no-repeat;
-  border: none;
-  margin: 0;
-  background: #1d293e;
-  background-size: cover;
-  color: #ffffff;
+  /* background-repeat: no-repeat; */
+  /* border: none; */
+  /* margin: 0; */
+  /* background: #fff; */
+  /* background-size: cover; */
+  /* color: #ffffff; */
   z-index: 1;
 }
 
@@ -18500,12 +18507,12 @@ a.button {
 .user-profile-box .profile-img {
   border-radius: 50%;
   background-clip: padding-box;
-  border: 5px solid #18ba60;
-  bottom: 5px;
-  float: left;
-  height: 100px;
-  width: 100px;
-  left: 59.5%;
+  /* border: 5px solid #18ba60; */
+  bottom: 12px;
+  /* float: left; */
+  height: 50px;
+  width: 50px;
+  left: 45%;
   margin-left: -75px;
   position: absolute;
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.1);
@@ -18561,7 +18568,7 @@ a.button {
 
 .dashborad-box {
   background: #fff;
-  padding: 30px;
+  padding-left: 25px;
   margin-bottom: 2.5rem;
   -webkit-box-shadow: 0 0 20px rgba(38, 38, 38, 0.2);
           box-shadow: 0 0 20px rgba(38, 38, 38, 0.2);
@@ -18607,7 +18614,7 @@ a.button {
 }
 
 .dashboard-bd .sidebar-header {
-  background-color: #24324a;
+  background-color: #fff;
   padding: 22px 0 8px 0;
 }
 
@@ -18787,9 +18794,9 @@ body.dashboard-bd {
   .dashborad-box .col-lg-3.dar.com,
   .dashborad-box .col-lg-3.dar.booked {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 23%;
-            flex: 0 0 23%;
-    max-width: 23% !important;
+        -ms-flex: 0 0 24%;
+            flex: 0 0 24%;
+    max-width: 24% !important;
   }
 
   .dashborad-box .col-lg-3.dar.pro,
@@ -18843,7 +18850,7 @@ body.dashboard-bd {
 }
 
 .header-user-name:before {
-  font-family: "FontAwesome";
+  /* font-family: "FontAwesome";
   content: "\f0d7";
   position: absolute;
   color: #666;
@@ -18851,7 +18858,7 @@ body.dashboard-bd {
   font-size: 13px;
   right: -16px;
   -webkit-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out; */
 }
 
 .header-user-name span {
@@ -20511,6 +20518,7 @@ section.pricing-table {
   padding: 45px 60px 60px;
   overflow-y: auto;
   background-color: #fff;
+  border-radius: 8px !important;
 }
 
 #login {
@@ -20653,7 +20661,7 @@ a#forgot {
 
 #login .btn_1.rounded,
 a.btn_1.rounded {
-  border-radius: 25px !important;
+  border-radius: 8px !important;
 }
 
 #login .btn_1.full-width,
@@ -24859,4 +24867,24 @@ section.ui-element {
   }
 }
 
+button.btn.btn-danger.btn-sm.remove-btn {
+  position: relative;
+  top: -60px;
+  left: -11px;
+  padding: 1px 5px 1px 5px;
+  border-radius: 50%;
+}
 /*# sourceMappingURL=styles.css.map */
+
+.table td, .table th{
+  vertical-align: middle;
+  padding: 3px 10px 2px 0px;
+  
+}
+
+.first-col-align{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

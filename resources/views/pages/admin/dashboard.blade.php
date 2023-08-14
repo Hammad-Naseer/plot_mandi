@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="dashborad-box stat bg-white">
-                    <h4 class="title">Manage Dashboard</h4>
+                    {{-- <h4 class="title">Manage Dashboard</h4> --}}
                     <div class="section-body">
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-xs-12 dar pro mr-1">
@@ -111,49 +111,56 @@
                         </div>
                     </div>
                 </div>
-                <div class="dashborad-box">
+                <div class="dashborad-box p-4">
                     <h4 class="title">Users Listing</h4>
                     <div class="section-body listing-table">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Listing Name</th>
-                                        <th>Date</th>
-                                        <th>Rating</th>
-                                        <th>Status</th>
-                                        <th>Edit</th>
+                                        <th class="text-center" width="30%">User</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Reg Date</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-right">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($userList as $list)
                                     <tr>
-                                        <td>Luxury Restaurant</td>
-                                        <td>23 Jan 2020</td>
-                                        <td class="rating"><span>5.0</span></td>
-                                        <td class="status"><span class=" active">Active</span></td>
-                                        <td class="edit"><a href="#"><i class="fa fa-pencil"></i></a></td>
+                                        <td>
+                                            <div class="first-col-align">
+                                            @if($list->profile_picture == "")
+                                            <a href="#"><img alt="my-properties-3" width="50" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid"></a>
+                                            @else:
+                                            <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                            @endif
+                                            <div class="inner ml-2">
+                                                {{ $list->first_name .' '. $list->last_name }}
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $list->email }}
+                                        </td>
+                                        <td class="text-center">{{ PlotDateFormater($list->created_at) }}</td>
+                                        <td class="text-center">
+                                            @if($list->is_active == 1)
+                                            <button class="btn btn-success btn-sm">
+                                                {{ getAccountStatus($list->is_active) }}
+                                            </button> 
+                                            @else
+                                            <button class="btn btn-danger btn-sm">
+                                                {{ getAccountStatus($list->is_active) }}
+                                            </button>
+                                            @endif
+                                        </td>
+                                        <td class="actions text-right">
+                                            <a href="#" class="btn btn-success text-white"><i class="far fa-edit"></i></a>
+                                            <a href="#" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>Gym in Town</td>
-                                        <td>11 Feb 2020</td>
-                                        <td class="rating"><span>4.5</span></td>
-                                        <td class="status"><span class="active">Active</span></td>
-                                        <td class="edit"><a href="#"><i class="fa fa-pencil"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cafe in Boston</td>
-                                        <td>09 Jan 2020</td>
-                                        <td class="rating"><span>5.0</span></td>
-                                        <td class="status"><span class="non-active">Non-Active</span></td>
-                                        <td class="edit"><a href="#"><i class="fa fa-pencil"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pb-0">Car Dealer in New York</td>
-                                        <td class="pb-0">24 Feb 2018</td>
-                                        <td class="rating pb-0"><span>4.5</span></td>
-                                        <td class="status pb-0"><span class="active">Active</span></td>
-                                        <td class="edit pb-0"><a href="#"><i class="fa fa-pencil"></i></a></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

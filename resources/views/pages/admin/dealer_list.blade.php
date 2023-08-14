@@ -106,9 +106,9 @@
                                         {{ getAccountStatus($list->is_active) }}
                                     </button> 
                                 </td>
-                                <td class="actions">
-                                    <a href="#" class="edit"><i class="far fa-edit"> Edit</i></a>
-                                    <a href="#"><i class="far fa-trash-alt"> Delete</i></a>
+                                <td>
+                                    <a href="#" class="btn btn-success text-white"><i class="far fa-edit"> Edit</i></a>
+                                    <a href="#" class="btn btn-danger text-white"><i class="far fa-trash-alt"> Delete</i></a>
                                 </td>
                             </tr>
                             @endforeach

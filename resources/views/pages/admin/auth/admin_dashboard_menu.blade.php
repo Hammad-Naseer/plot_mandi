@@ -32,7 +32,7 @@
         width: 100%;
         line-height: 50px;
         color: #ccc;
-        background: #1d293e;
+        background: #fff;
         cursor: pointer;
         padding-left: 7px;
     }
@@ -41,7 +41,15 @@
         border-left: solid 3px green;
         box-sizing: border-box;
         background: #0d8f63;
+        text-align: center;
+        padding-left: 14px;
+
     }
+    .wrapper .sidebar .sb-item.active > a {
+        position: relative;
+        left: -20%;
+    }
+
 
     .wrapper .sidebar .sb-item.active>.sb-icon {
         margin-left: -3px;
@@ -135,62 +143,95 @@
     .wrapper.sidebar-collapse .btn-toggle-sidebar .sb-icon.fa-angle-double-right {
         display: inline-block;
     }
+    
+.sidebar
+{
+	background: #F5F5F5;
+	overflow-y: scroll;
+}
+
+.force-overflow
+{
+	min-height: 450px;
+}
+/*
+ *  STYLE 4
+ */
+
+#style-4::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+#style-4::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #F5F5F5;
+}
+
+#style-4::-webkit-scrollbar-thumb
+{
+	background-color: #FFF;
+    background-image: -webkit-gradient(linear,
+									   40% 0%,
+									   75% 84%,
+									   from(#4D9C41),
+									   to(#19911D),
+									   color-stop(.6,#54DE5D));
+	/* border: 2px solid #555555; */
+}
+
+
 </style>
 <div class="col-lg-3 col-md-12 col-xs-12 pl-0 pr-0 user-dash wrapper">
+    <div class="force-overflow"></div>
     <div class="user-profile-box mb-0 ">
         {{-- <div class="wrapper"> --}}
-        <div class="sidebar" style="overflow: scroll;">
-            <i class="fa fa-bars hamburger-toggle-sidebar"></i>
+        <div class="sidebar" id="style-4">
+            <i class="fa fa-bars hamburger-toggle-sidebar text-dark"></i>
             <div class="sidebar-header text-center collapse_hide_item">
-                <h2 class="text-white">Plot Mandi</h2>
+                <h2>Plot Mandi</h2>
                 {{-- <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="header-logo2.png">  --}}
             </div>
             <div class="header clearfix collapse_hide_item">
                 {{-- <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="avatar" class="img-fluid profile-img"> --}}
                 @if (auth()->user()->profile_picture == '')
                     <img alt="{{ auth()->user()->first_name }}" src="{{ asset(MyApp::ASSET_IMG . 'profile.png') }}"
-                        class="img-fluid profile-img">
+                        class="img-fluid profile-img" width="30">
+                        <span class="collapse_hide_item text-dark">{{ auth()->user()->first_name }}</span>
                 @else:
                     <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg"
                             class="img-fluid"></a>
                 @endif
             </div>
-            <div class="active-user">
-                <h2>
-                    <span class="collapse_hide_item text-white">{{ auth()->user()->first_name }}</span>
-                    {{-- <br> --}}
-                    @if (auth()->user()->acount_type == 2)
-                        {{-- Dealer --}}
-                    @elseif(auth()->user()->acount_type == 3)
-                        {{-- User --}}
-                    @endif
-                </h2>
-            </div>
+            
             <div class="sb-item-list">
                 {{-- <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span class="sb-text">Sidebar
                             Item1</span></div> --}}
                 <div class="sb-item @if (Route::current()->uri == 'dashboard/admin') active @endif">
-                    <a title="Dashboard" class="text-white"
+                    <a title="Dashboard" class="text-dark"
                         href="{{ route('admin_dashboard') }}">
                         <i class="sb-icon fa fa-dashboard"></i> <span class="sb-text">Dashboard </span>
                     </a>
                 </div>
                 <div class="sb-item @if (Route::current()->uri == 'dashboard/admin/dealer_list') active @endif">
-                    <a title="Add Property" class="text-white"
+                    <a title="Dealer Registration" class="text-dark"
                         href="{{ route('dealer_list') }}">
                         <i class="sb-icon fa fa-building"></i> <span class="sb-text">Dealer Registration </span>
                     </a>
                 </div>
 
                 <div class="sb-item @if (Route::current()->uri == 'dashboard/admin/users_list') active @endif">
-                    <a title="Add Property" class="text-white"
+                    <a title="Users Listing" class="text-dark"
                         href="{{ route('users_list') }}">
                         <i class="sb-icon fa fa-building"></i> <span class="sb-text">Users Listing </span>
                     </a>
                 </div>
 
                 <div class="sb-item @if (Route::current()->uri == '') active @endif">
-                    <a title="Property Listing" class="text-white"
+                    <a title="Property Listing" class="text-dark"
                         href="{{ route('dealer_list') }}">
                         <i class="sb-icon fa fa-th-list"></i> <span class="sb-text">All Properties </span>
                     </a>
@@ -225,7 +266,7 @@
                             Item3</span>
                     </div> --}}
                 <div class="btn-toggle-sidebar sb-item">
-                    <a title="Logout" class="text-white" href="{{ route('admin_logout') }}"
+                    <a title="Logout" class="text-dark" href="{{ route('admin_logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="sb-icon fa fa-sign-out"></i>
                         <span class="sb-text"><b>Logout</b></span>

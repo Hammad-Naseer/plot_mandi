@@ -89,13 +89,12 @@
                                     @else:
                                         <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="">
                                     @endif
-                                </span>Hi, {{ auth()->user()->first_name }}
+                                </span>
+                                
+                                {{-- Hi, {{ auth()->user()->first_name }} --}}
                             </div>
                             <ul>
                                 <li><a href="user-profile.html"> Edit profile</a></li>
-                                <!-- <li><a href="add-property.html"> Add Property</a></li> -->
-                                {{-- <li><a href="payment-method.html">  Payments</a></li> --}}
-                                <!-- <li><a href="change-password.html"> Change Password</a></li> -->
                                 <li>
                                     @if(auth()->user()->acount_type == 1)
                                     <a href="{{ route('admin_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
@@ -174,22 +173,58 @@
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'script.js') }}"></script>
 
         <script>
+
+            $("#addMultipleFileImage").click(function() {
+                $("#fileImageInputs").append('<div class="input-row"><input type="file" name="office_picture[]" class="multipleFiles" accept=".jpg,.png,.gif" /> <button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            });
+
+            $("#addMultipleFileVideo").click(function() {
+                $("#fileVideoInputs").append('<div class="input-row"><input type="file" name="office_video[]" class="multipleFiles" accept=".mp4" /><button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            });
+
+            $(".input-multiple-container").on("click", ".remove-btn", function() {
+                $(this).parent(".input-row").remove();
+            });
+
+            // For Property 
+            $("#addMultipleFileImageProperty").click(function() {
+                $("#fileImageInputsProperty").append('<div class="input-row"><input type="file" name="property_images[]" class="multipleFiles" accept=".jpg,.png,.gif" /></div>');
+            });
+
+            $("#addMultipleFileVideoProperty").click(function() {
+                $("#fileVideoInputsProperty").append('<div class="input-row"><input type="file" name="property_videos[]" class="multipleFiles" accept=".mp4" /></div>');
+            });
+
+            if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+                $('.wrapper').toggleClass('sidebar-collapse');
+                $('.user-profile-box').css('width','60px');    
+                $('.user-dash').css('flex','0 0 7%');    
+                $('.user-dash2').css('flex','0 0 100%');    
+                $('.user-dash2').css('max-width','95%');    
+                $('.user-dash2').css('margin-left','-40px');    
+                $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});                            
+                $('.collapse_hide_item').hide();
+            }
+
             $(function(){    // toggle sidebar collapse    
                 $('.hamburger-toggle-sidebar').on('click', function(){        
                     $('.wrapper').toggleClass('sidebar-collapse');
-                        
-                    var divWidth = $('.user-profile-box').width();
-                    if(divWidth == 295){
-                        $('.user-profile-box').css('width','60px');    
-                        $('.user-dash').css('flex','0 0 7%');    
-                        $('.user-dash2').css('flex','0 0 100%');    
-                        $('.user-dash2').css('max-width','95%');    
-                        $('.user-dash2').css('margin-left','-40px');    
-                        $('.hamburger-toggle-sidebar').css({'left':'-20px','top':'10px'});    
-                        $('.collapse_hide_item').hide();
+                    if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+                        var divWidth = $('.user-profile-box').width();
+                        if(divWidth == 295){
+                            localStorage.setItem("dash-menu-hamburger","inactive");
+                            $('.user-profile-box').css('width','60px');    
+                            $('.user-dash').css('flex','0 0 7%');    
+                            $('.user-dash2').css('flex','0 0 100%');    
+                            $('.user-dash2').css('max-width','95%');    
+                            $('.user-dash2').css('margin-left','-40px');    
+                            $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
+                            $('.collapse_hide_item').hide();
+                        }
                     }
                     
                     if(divWidth == 60){
+                        localStorage.setItem("dash-menu-hamburger","active");
                         $('.user-profile-box').css('width','295px');  
                         $('.user-dash').css('flex','0 0 25%'); 
                         $('.user-dash2').css('flex','0 0 75%');    
@@ -197,7 +232,38 @@
                         $('.user-dash2').css('margin-left','0px');    
                         $('.collapse_hide_item').show();
                     }
-                });    
+                });
+                
+                // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+                //     $('.sidebar').on('mouseleave', function(){        
+                //         $('.wrapper').toggleClass('sidebar-collapse');
+                            
+                //         var divWidth = $('.user-profile-box').width();
+                //         if(divWidth == 295){
+                //             // localStorage.setItem("dash-menu-hamburger","active");
+                //             $('.user-profile-box').css('width','60px');    
+                //             $('.user-dash').css('flex','0 0 7%');    
+                //             $('.user-dash2').css('flex','0 0 100%');    
+                //             $('.user-dash2').css('max-width','95%');    
+                //             $('.user-dash2').css('margin-left','-40px');    
+                //             $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
+                //             $('.collapse_hide_item').hide();
+                //         }
+                //     });
+                //     $('.sidebar').on('mouseenter', function(){   
+                //         $('.wrapper').toggleClass('sidebar-collapse');
+                //         var divWidth = $('.user-profile-box').width();
+                //         if(divWidth == 60){
+                //             localStorage.setItem("dash-menu-hamburger","inactive");
+                //             $('.user-profile-box').css('width','295px');  
+                //             $('.user-dash').css('flex','0 0 25%'); 
+                //             $('.user-dash2').css('flex','0 0 75%');    
+                //             $('.user-dash2').css('max-width','75%');   
+                //             $('.user-dash2').css('margin-left','0px');    
+                //             $('.collapse_hide_item').show();
+                //         }
+                //     });
+                // }
                 // mark sidebar item as active when clicked    
                 $('.sb-item').on('click', function(){        
                     if ($(this).hasClass('hamburger-toggle-sidebar')) {          
@@ -213,3 +279,21 @@
 </body>
 </html>
 
+
+
+<script>
+    {
+  let sideBar = document.querySelector('.side-bar');
+  let arrowCollapse = document.querySelector('#logo-name__icon');
+  sideBar.onclick = () => {
+    sideBar.classList.toggle('collapse');
+    arrowCollapse.classList.toggle('collapse');
+    if (arrowCollapse.classList.contains('collapse')) {
+      arrowCollapse.classList =
+        'bx bx-arrow-from-left logo-name__icon collapse';
+    } else {
+      arrowCollapse.classList = 'bx bx-arrow-from-right logo-name__icon';
+    }
+  };
+}
+</script>

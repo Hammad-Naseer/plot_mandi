@@ -1,6 +1,16 @@
 @extends('layouts.dashboard_layout')
 @section('content')
 <!-- START SECTION DASHBOARD -->
+<style>
+    .multipleFiles{
+        width: 100% !important;
+        padding: 9px !important;
+        border: 1px solid #18ba60 !important;
+        height: 45px;
+        border-radius: 8px !important;
+        margin-bottom: 10px;
+    }
+</style>
 <section class="user-page section-padding">
     <div class="container-fluid">
         <div class="row">
@@ -65,7 +75,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
                 <h2>Add New Dealer</h2>
                 @if(Session::has('error'))
                     <div class="alert alert-danger">{{ Session::get('error') }}</div>
@@ -85,70 +94,91 @@
                     </div>
                 @endif
                 <br>
-                <div class="my-properties">
-                    <form action="{{ route('submit_dealer_form') }}" class="row" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group col-md-6">
-                            <label for="fn">First Name</label>
-                            <input type="text" class="form-control" id="fn" name="first_name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="ln">Last Name</label>
-                            <input type="text" class="form-control" id="ln" name="last_name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="em">Email</label>
-                            <input type="email" class="form-control" id="em" name="email" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="pass">Password</label>
-                            <input type="password" class="form-control" id="pass" name="password" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="cp">Confirm Password</label>
-                            <input type="password" class="form-control" id="cp" name="password_confirmation" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="ph">Phone</label>
-                            <input type="number" class="form-control" id="ph" name="phone" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="gen">Gender</label>
-                            <select name="gender" class="form-control" id="gen" required>
-                                <option value="">Select Gender</option>
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <select name="city" class="form-control" id="city" required>
-                                <option value="">Select City</option>
-                                @foreach(citiesByCountryID() as $city)
-                                    <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>  
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="nic">CNIC</label>
-                            <input type="number" name="cnic" id="nic" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="off_pic">Office Picture</label><br>
-                            <input type="file" name="office_picture" id="off_pic" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="off_vid">Office Video</label><br>
-                            <input type="file" name="office_video" id="off_vid" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <label for="address">Office Address</label>
-                            <textarea name="office_address" id="address" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <button class="btn btn-primary" type="submit">Add Dealer</button>
-                        </div>
-                    </form>
+                <div class="my-properties row mb-4">
+                <form action="{{ route('submit_dealer_form') }}" class="row" method="post" enctype="multipart/form-data">
+                    @csrf
+                            <div class="form-group col-md-4">
+                                <label for="fn">First Name</label>
+                                <input type="text" class="form-control" id="fn" name="first_name" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="ln">Last Name</label>
+                                <input type="text" class="form-control" id="ln" name="last_name" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="em">Email</label>
+                                <input type="email" class="form-control" id="em" name="email" required>
+                            </div>
+                        {{-- </div> --}}
+                        {{-- <div class="my-properties row mb-4"> --}}
+                            <div class="form-group col-md-6">
+                                <label for="pass">Password</label>
+                                <input type="password" class="form-control" id="pass" name="password" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cp">Confirm Password</label>
+                                <input type="password" class="form-control" id="cp" name="password_confirmation" required>
+                            </div>
+                        {{-- </div> --}}
+                        {{-- <div class="my-properties row mb-4"> --}}
+                            <div class="form-group col-md-4">
+                                <label for="ph">Phone</label>
+                                <input type="number" class="form-control" id="ph" name="phone" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="gen">Gender</label>
+                                <select name="gender" class="form-control" id="gen" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="city">City</label>
+                                <select name="city" class="form-control" id="city" required>
+                                    <option value="">Select City</option>
+                                    @foreach(citiesByCountryID() as $city)
+                                        <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>  
+                                    @endforeach
+                                </select>
+                            </div>
+                        {{-- </div> --}}
+                        {{-- <div class="my-properties row mb-4"> --}}
+                            <div class="form-group col-md-6">
+                                <label for="nic">CNIC</label>
+                                <input type="number" name="cnic" id="nic" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="address">Office Address</label>
+                                <input name="office_address" id="address" class="form-control"/>
+                            </div>
+                        {{-- </div> --}}
+                        {{-- <div class="my-properties row mb-4"> --}}
+                            <div class="form-group col-md-6 input-multiple-container">
+                                <label for="off_pic">Office Picture</label><br>
+                                <button type="button" class="btn btn-info btn-sm" id="addMultipleFileImage">
+                                <i class="fa fa-plus"></i> Add Image
+                                </button>
+                                <br><br>
+                                <div id="fileImageInputs">
+                                    <input type="file" name="office_picture[]" accept=".jpg,.png,.gif" id="off_pic" class="form-control multipleFiles" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 input-multiple-container">
+                                <label for="off_vid">Office Video</label><br>
+                                <button type="button" class="btn btn-info btn-sm" id="addMultipleFileVideo">
+                                    <i class="fa fa-plus"></i> Add Video
+                                </button>
+                                <br><br>
+                                <div id="fileVideoInputs">
+                                    <input type="file" name="office_video[]" id="off_vid" accept=".mp4" class="form-control multipleFiles" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-success float-right btn-lg" type="submit"><b>Add Dealer</b></button>
+                            </div>
+                        {{-- </div> --}}
+                </form>
                 </div>
 
                 <!-- START FOOTER -->

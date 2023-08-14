@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+        <style>
+            .parallax-searchs .form-group .nice-select{
+                background-color: #cccccc63;
+            }
+        </style>
         <!-- STAR HEADER SEARCH -->
         <section id="hero-area" class="parallax-searchs home15 overlay" data-stellar-background-ratio="0.5">
             <div class="hero-main">

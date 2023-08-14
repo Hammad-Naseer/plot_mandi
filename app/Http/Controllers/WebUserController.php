@@ -26,6 +26,7 @@ use App\Http\Requests\PropertyRequest;
 use App\Models\User;
 use App\Models\Property;
 use App\Models\PropertyMedia;
+use App\Models\DealarMedia;
 
 // Jobs
 use App\Jobs\SendUserVerificationEmailJob;
@@ -346,24 +347,40 @@ class WebUserController extends Controller
         if ($user->save()) :
             $insertedId = $user->user_id;
             // Dealer Details 
-            if ($request->hasFile('office_picture') && $request->file('office_picture')->isValid()) {
-                $fileNamePicture = uploadFile($request->file('office_picture'), 'uploads/dealer/'.$insertedId.'/office', array('jpg','png','gif'));
-                // $file = $request->file('office_picture');
-                // $fileNamePicture = time() . '_' . $file->getClientOriginalName();
-                // $file->storeAs('uploads/dealer/'.$insertedId, $fileNamePicture);
+            if ($request->hasFile('office_picture')) {
+                foreach ($request->file('office_picture') as $officeImage) :
+                    $fileNamePicture = uploadFile($officeImage, 'uploads/dealer/'.$insertedId.'/office', array('jpg','png','gif'));
+                    DealarMedia::create([
+                        'dealer_id' => $insertedId,
+                        'dealer_office_picture' => $fileNamePicture,
+                    ]);
+                endforeach;
             }
 
-            if ($request->hasFile('office_video') && $request->file('office_video')->isValid()) {
-                $fileNameVideo = uploadFile($request->file('office_video'), 'uploads/dealer/'.$insertedId.'/office', array('mp4'));                
-                // $file = $request->file('office_video');
-                // $fileNameVideo = time() . '_' . $file->getClientOriginalName();
-                // $file->storeAs('uploads/dealer/'.$insertedId, $fileNameVideo);
+            if ($request->hasFile('office_video')) {
+                foreach ($request->file('office_video') as $officeVideo) :
+                    $fileNameVideo = uploadFile($officeVideo, 'uploads/dealer/'.$insertedId.'/office', array('mp4'));   
+                    DealarMedia::create([
+                        'dealer_id' => $insertedId,
+                        'dealer_office_video' => $fileNameVideo,
+                    ]);             
+                endforeach;
             }
+
+            // if ($request->hasFile('office_document')) {
+            //     foreach ($request->file('office_document') as $officeDocument) :
+            //         $fileNameDocument = uploadFile($officeDocument, 'uploads/dealer/'.$insertedId.'/office', array('mp4'));   
+            //         DealerMedia::create([
+            //             'dealer_id' => $insertedId,
+            //             'dealer_office_document' => $fileNameDocument,
+            //         ]);             
+            //     endforeach;
+            // }
 
             $dealerDetailsArr = array(
                 'user_id'   =>  $insertedId,
-                'office_picture'   =>  $fileNamePicture,
-                'office_video'   =>  $fileNameVideo,
+                'office_picture'   =>  "",
+                'office_video'   =>  "",
                 'cnic'   =>  $request->cnic,
                 'created_at'   =>  date("Y-m-d"),
             );

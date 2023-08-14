@@ -127,7 +127,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Luxury Restaurant</td>
+                                        <td>
+                                            Luxury Restaurant
+                                        </td>
                                         <td>23 Jan 2020</td>
                                         <td class="rating"><span>5.0</span></td>
                                         <td class="status"><span class=" active">Active</span></td>

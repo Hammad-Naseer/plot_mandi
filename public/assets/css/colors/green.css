@@ -96,6 +96,7 @@ a.button,
 a.button.border, a.button {
     background: #18ba60;
 	color: white !important;
+	border-radius: 8px;
 
 }
 .slick-prev:hover,
