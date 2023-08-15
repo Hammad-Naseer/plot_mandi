@@ -135,7 +135,7 @@
                                                 <a href="#" class="text-dark">
                                                     <img alt="my-properties-3" width="50" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid">
                                                     &nbsp;&nbsp;
-                                                    {{ $list->first_name .' '. $list->last_name }}
+                                                    {{ $list->first_name }}
                                                 </a>
                                                 @else:
                                                 <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>

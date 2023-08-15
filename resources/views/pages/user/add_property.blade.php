@@ -418,7 +418,7 @@
                     <div class="add-property-button pt-5">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="prperty-submit-button">
+                                <div class="prperty-submit-button float-right">
                                     <button type="submit">Submit Property</button>
                                 </div>
                             </div>

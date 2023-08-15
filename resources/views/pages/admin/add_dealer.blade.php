@@ -94,7 +94,7 @@
                     </div>
                 @endif
                 <br>
-                <div class="my-properties row mb-4">
+                <div class="my-properties mb-4">
                 <form action="{{ route('submit_dealer_form') }}" class="row" method="post" enctype="multipart/form-data">
                     @csrf
                             <div class="form-group col-md-4">

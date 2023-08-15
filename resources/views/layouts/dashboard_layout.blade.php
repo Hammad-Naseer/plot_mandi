@@ -330,6 +330,8 @@ const toggleLock = () => {
 const hideSidebar = () => {
   if (sidebar.classList.contains("hoverable")) {
     sidebar.classList.add("close");
+    $(".user-dash2").removeClass("col-lg-9").addClass("col-lg-11");
+    $(".user-dash-sidebar").removeClass("col-lg-3").addClass("col-lg-1");
   }
 };
 
@@ -337,6 +339,8 @@ const hideSidebar = () => {
 const showSidebar = () => {
   if (sidebar.classList.contains("hoverable")) {
     sidebar.classList.remove("close");
+    $(".user-dash2").removeClass("col-lg-11").addClass("col-lg-9");
+    $(".user-dash-sidebar").removeClass("col-lg-1").addClass("col-lg-3");
   }
 };
 
@@ -358,4 +362,15 @@ sidebar.addEventListener("mouseleave", hideSidebar);
 sidebar.addEventListener("mouseenter", showSidebar);
 sidebarOpenBtn.addEventListener("click", toggleSidebar);
 sidebarCloseBtn.addEventListener("click", toggleSidebar);
+
+
+
+$(document).ready(function() {
+    $("form").submit(function(e) {
+        e.preventDefault();
+        var form = this;
+        form.submit();
+        $("button[type=submit]",this).prop("disabled", true); 
+    });
+});
 </script>

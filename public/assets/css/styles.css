@@ -90,7 +90,7 @@ html {
 }
 
 .col-lg-9.col-md-12.col-xs-12.pl-0.user-dash2{
-  /* margin-left: -40px; */
+  margin-left: -40px;
 }
 
 body {
@@ -7359,7 +7359,8 @@ a.button,
 
 button[disabled],
 html input[disabled] {
-  cursor: default;
+  cursor: no-drop !important;
+  filter: opacity(0.5);
 }
 
 .slider_amount {
@@ -18454,7 +18455,7 @@ a.button {
 /*------ 54. INNER PAGE DASHBOARD ----*/
 /*------------------------------------*/
 .user-page.section-padding {
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   margin-top: 90px;
   background: #f5f7fb;
 }
@@ -18588,9 +18589,9 @@ a.button {
   z-index: 99;
   top: 0;
   width: 100%;
-  background: #fff;
-  -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
+  /* background: #fff; */
+  /* -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3); */
+          /* box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3); */
 }
 
 .db-top-header #header.cloned.sticky {
@@ -24900,10 +24901,14 @@ button.btn.btn-danger.btn-sm.remove-btn {
 }
 
 .homePage-filter-right .form-group{
-  margin-right:10px;
+  margin-right:0px;
 }
 
 
 table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting_asc_disabled, table.dataTable thead>tr>th.sorting_desc_disabled, table.dataTable thead>tr>td.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting_asc_disabled, table.dataTable thead>tr>td.sorting_desc_disabled {
   padding-bottom: 15px;
+}
+
+select.custom-select.custom-select-sm.form-control.form-control-sm {
+  background: #e2e5ebad;
 }

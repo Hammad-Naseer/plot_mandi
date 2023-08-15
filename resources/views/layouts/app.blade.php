@@ -419,6 +419,16 @@
 
             });
 
+
+            $(document).ready(function() {
+                $("form").submit(function(e) {
+                    e.preventDefault();
+                    var form = this;
+                    form.submit();
+                    $("button[type=submit]",this).prop("disabled", true); 
+                });
+            });
+
         </script>
 
         <!-- MAIN JS -->

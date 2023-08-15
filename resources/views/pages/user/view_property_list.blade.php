@@ -64,45 +64,47 @@
                 <h2>My Property Listing</h2>
                 <br>
                 <div class="my-properties">
-                    <table class="table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="pl-2">Properties Details</th>
-                                <th class="p-0"></th>
-                                <th>Reg Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($propertyList as $list)
-                            <tr>
-                                <td class="image myelist">
-                                    @if($list->file_name == "" && $list->file_type == "image")
-                                        <a href="#"><img alt="my-properties-3" src="{{ storage() }}" class="img-fluid"></a>
-                                    @else:
-                                        <a href="#"><img alt="my-properties-3" src="{{ Storage::url($list->file_name) }}" class="img-fluid"></a>
-                                    @endif
-                                </td>
-                                <td>
-                                <div class="inner">
-                                        <a href="single-property-1.html"><h2>{{ $list->property_title }}</h2></a>
-                                        <figure><i class="lni-map-marker"></i><b>City :</b> {{ $list->property_city }}</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->property_contact_phone }}</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Status : </b> {{ $list->property_status }}</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Price : </b> {{ $list->property_price }}</figure>
-                                    </div>
-                                </td>
-                                <td>{{ PlotDateFormater($list->created_at,"Y-m-d") }}</td>
-                                <td><button class="btn btn-success btn-sm">{{ getAccountStatus($list->is_active) }}</button> </td>
-                                <td class="actions">
-                                    <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
-                                    <a href="#"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pl-2">Properties Details</th>
+                                    <th class="p-0"></th>
+                                    <th>Reg Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($propertyList as $list)
+                                <tr>
+                                    <td class="image myelist">
+                                        @if($list->file_name == "" && $list->file_type == "image")
+                                            <a href="#"><img alt="my-properties-3" src="{{ storage() }}" class="img-fluid"></a>
+                                        @else:
+                                            <a href="#"><img alt="my-properties-3" src="{{ Storage::url($list->file_name) }}" class="img-fluid"></a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                    <div class="inner">
+                                            <a href="single-property-1.html"><h2>{{ $list->property_title }}</h2></a>
+                                            <figure><i class="lni-map-marker"></i><b>City :</b> {{ $list->property_city }}</figure>
+                                            <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->property_contact_phone }}</figure>
+                                            <figure><i class="lni-map-marker"></i> <b>Status : </b> {{ $list->property_status }}</figure>
+                                            <figure><i class="lni-map-marker"></i> <b>Price : </b> {{ $list->property_price }}</figure>
+                                        </div>
+                                    </td>
+                                    <td>{{ PlotDateFormater($list->created_at,"Y-m-d") }}</td>
+                                    <td><button class="btn btn-success btn-sm">{{ getAccountStatus($list->is_active) }}</button> </td>
+                                    <td class="actions">
+                                        <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
+                                        <a href="#"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>    
                     <div class="pagination-container">
                         {{-- <nav>
                             <ul class="pagination">
