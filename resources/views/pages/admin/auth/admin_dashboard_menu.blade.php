@@ -1,289 +1,330 @@
 <style>
-    .wrapper {
-        width: 100%;
-        padding-left: 200px;
-        transition-duration: 0.5s;
+    /* Import Google font - Poppins */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    }
+    body {
+    min-height: 100vh;
+    background: #eef5fe;
     }
 
-    .wrapper .sidebar {
-        width: 100%;
+    li.item.active {
+        background: #7cbf00;
+        color: white !important;
+        border-radius: 8px;
+    }
+    li.item.active > a {
+        color: white !important;
+    }
+    /* Pre css */
+    .flex {
+    display: flex;
+    align-items: center;
+    }
+    .nav_image {
+    display: flex;
+    min-width: 55px;
+    justify-content: center;
+    }
+    .nav_image img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        z-index: 9999;
+        position: fixed;
+        top: 0;
+        left: 0;
         height: 100%;
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        background: inherit;
-        white-space: nowrap;
-        transition-duration: 0.5s;
+        width: 270px;
+        background: #fff;
+        padding: 15px 10px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+    }
+    .sidebar.close {
+    width: calc(55px + 20px);
+    }
+    .logo_items {
+    gap: 8px;
+    }
+    .logo_name {
+    font-size: 22px;
+    color: #333;
+    font-weight: 500px;
+    transition: all 0.3s ease;
+    }
+    .sidebar.close .logo_name,
+    .sidebar.close #lock-icon,
+    .sidebar.close #sidebar-close {
+    opacity: 0;
+    pointer-events: none;
+    }
+    #lock-icon,
+    #sidebar-close {
+    padding: 10px;
+    color: #4070f4;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: -4px;
+    transition: all 0.3s ease;
+    }
+    #sidebar-close {
+    display: none;
+    color: #333;
+    }
+    .menu_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 40px;
+    overflow-y: auto;
+    height: calc(100% - 82px);
+    }
+    .menu_container::-webkit-scrollbar {
+    display: none;
+    }
+    .menu_title {
+    position: relative;
+    height: 50px;
+    width: 55px;
+    }
+    .menu_title .title {
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    }
+    .sidebar.close .title {
+    opacity: 0;
+    }
+    .menu_title .line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 20px;
+    border-radius: 25px;
+    background: #aaa;
+    transition: all 0.3s ease;
+    }
+    .menu_title .line {
+    opacity: 0;
+    }
+    .sidebar.close .line {
+    opacity: 1;
+    }
+    .item {
+    list-style: none;
+    }
+    .link {
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #707070;
+    }
+    .link:hover {
+    color: #fff;
+    background-color: #7cbf00;
+    }
+    .link span {
+    white-space: nowrap;
+    }
+    .link i {
+    height: 50px;
+    min-width: 55px;
+    display: flex;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    }
+
+    .sidebar_profile {
+    padding-top: 15px;
+    margin-top: 15px;
+    gap: 15px;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    }
+    .sidebar_profile .name {
+    font-size: 18px;
+    color: #333;
+    }
+    .sidebar_profile .email {
+    font-size: 15px;
+    color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+    max-width: 500px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 60%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 0 0 8px 8px;
+    justify-content: space-between;
+    }
+    #sidebar-open {
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 20px;
+    display: none;
+    }
+    .search_box {
+    height: 46px;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #aaa;
+    outline: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    font-size: 18px;
+    color: #333;
+    }
+    .navbar img {
+    height: 40px;
+    width: 40px;
+    margin-left: 20px;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 1100px) {
+    .navbar {
+        left: 65%;
+    }
+    }
+    @media screen and (max-width: 800px) {
+    .sidebar {
+        left: 0;
         z-index: 1000;
     }
-
-    .wrapper .sidebar .sb-item-list {
-        width: 100%;
-        height: calc(100% - 50px);
+    .sidebar.close {
+        left: -100%;
     }
-
-    .wrapper .sidebar .sb-item-list>.sb-item>a>.sb-text {
-        position: absolute;
-        transition-duration: 0.5s;
+    nav.sidebar.hoverable.close {
+        opacity: 1 !important;
     }
-
-    .wrapper .sidebar .sb-item {
+    #sidebar-close {
         display: block;
-        width: 100%;
-        line-height: 50px;
-        color: #ccc;
-        background: #fff;
-        cursor: pointer;
-        padding-left: 7px;
     }
-
-    .wrapper .sidebar .sb-item.active {
-        border-left: solid 3px green;
-        box-sizing: border-box;
-        background: #0d8f63;
-        text-align: center;
-        padding-left: 14px;
-
-    }
-    .wrapper .sidebar .sb-item.active > a {
-        position: relative;
-        left: -20%;
-    }
-
-
-    .wrapper .sidebar .sb-item.active>.sb-icon {
-        margin-left: -3px;
-    }
-
-    .wrapper .sidebar .sb-icon {
-        padding-left: 10px;
-        padding-right: 20px;
-    }
-
-    .wrapper .sidebar .sb-item:hover,
-    .wrapper .sidebar .sb-item.active {
-        filter: brightness(130%);
-    }
-
-    .wrapper .sb-menu {
-        position: relative;
-    }
-
-    .wrapper .sb-menu:after {
-        content: " ";
-        width: 0;
-        height: 0;
-        display: block;
-        float: right;
-        margin-top: 19px;
-        margin-left: -12px;
-        margin-right: 5px;
-        border: solid 5px transparent;
-        border-left-color: #eee;
-    }
-
-    .wrapper .sb-menu>.sb-submenu {
+    #lock-icon {
         display: none;
     }
-
-    .wrapper .sb-menu:hover>.sb-submenu {
-        position: absolute;
-        display: block;
-        width: 200px;
-        top: 0;
-        left: calc(100% + 1px);
-    }
-
-    .wrapper .sb-submenu>.sb-item:first-child {
-        border-radius: 8px 8px 0px 0px;
-    }
-
-    .wrapper .sb-submenu>.sb-item:last-child {
-        border-radius: 0px 0px 8px 8px;
-    }
-
-    .wrapper .btn-toggle-sidebar {
-        position: absolute;
+    .navbar {
         left: 0;
-        bottom: 0;
-        border-top: 1px solid #aaa;
-        user-select: none;
+        max-width: 100%;
+        transform: translateX(0%);
     }
-
-    .wrapper .btn-toggle-sidebar .sb-icon {
-        padding-left: 15px;
+    #sidebar-open {
+        display: block;
     }
-
-    .wrapper .btn-toggle-sidebar .sb-icon.fa-angle-double-left {
-        display: inline-block;
     }
-
-    .wrapper .btn-toggle-sidebar .sb-icon.fa-angle-double-right {
-        display: none;
-    }
-
-    .wrapper.sidebar-collapse {
-        padding-left: 60px;
-    }
-
-    .wrapper.sidebar-collapse .sidebar {
-        width: 60px;
-    }
-
-    .wrapper.sidebar-collapse .sb-item-list>.sb-item>a>.sb-text {
-        position: absolute;
-        transform: translateX(-200%);
-        opacity: 0;
-    }
-
-    .wrapper.sidebar-collapse .btn-toggle-sidebar .sb-icon.fa-angle-double-left {
-        display: none;
-    }
-
-    .wrapper.sidebar-collapse .btn-toggle-sidebar .sb-icon.fa-angle-double-right {
-        display: inline-block;
-    }
-    
-.sidebar
-{
-	background: #F5F5F5;
-	overflow-y: scroll;
-}
-
-.force-overflow
-{
-	min-height: 450px;
-}
-/*
- *  STYLE 4
- */
-
-#style-4::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-	background-color: #F5F5F5;
-	border-radius: 10px;
-}
-
-#style-4::-webkit-scrollbar
-{
-	width: 4px;
-	background-color: #F5F5F5;
-}
-
-#style-4::-webkit-scrollbar-thumb
-{
-	background-color: #FFF;
-    background-image: -webkit-gradient(linear,
-									   40% 0%,
-									   75% 84%,
-									   from(#ecf1ec),
-									   to(#fbfffb),
-									   color-stop(.6,#a5ada6));
-	/* border: 2px solid #555555; */
-}
-
-
 </style>
-<div class="col-lg-3 col-md-12 col-xs-12 pl-0 pr-0 user-dash wrapper">
-    <div class="force-overflow"></div>
-    <div class="user-profile-box mb-0 ">
-        {{-- <div class="wrapper"> --}}
-        <div class="sidebar" id="style-4">
-            <i class="fa fa-bars hamburger-toggle-sidebar text-dark"></i>
-            <div class="sidebar-header text-center ">
-                <h2 class="collapse_hide_item">Plot Mandi</h2>
-                {{-- <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="header-logo2.png">  --}}
-            </div>
-            <div class="header clearfix collapse_hide_item">
-                {{-- <img src="{{ asset(MyApp::ASSET_IMG.'testimonials/ts-1.jpg') }}" alt="avatar" class="img-fluid profile-img"> --}}
-                @if (auth()->user()->profile_picture == '')
-                    <img alt="{{ auth()->user()->first_name }}" src="{{ asset(MyApp::ASSET_IMG . 'profile.png') }}"
-                        class="img-fluid profile-img" width="30">
-                        <span class="collapse_hide_item text-dark">{{ auth()->user()->first_name }}</span>
-                @else:
-                    <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg"
-                            class="img-fluid"></a>
-                @endif
-            </div>
-            
-            <div class="sb-item-list">
-                {{-- <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span class="sb-text">Sidebar
-                            Item1</span></div> --}}
-                <div class="sb-item @if (Route::current()->uri == 'dashboard/admin') active @endif">
-                    <a title="Dashboard" class="text-dark"
-                        href="{{ route('admin_dashboard') }}">
-                        <i class="sb-icon fa fa-dashboard"></i> <span class="sb-text">Dashboard </span>
-                    </a>
-                </div>
-                <div class="sb-item @if (Route::current()->uri == 'dashboard/admin/dealer_list') active @endif">
-                    <a title="Dealer Registration" class="text-dark"
-                        href="{{ route('dealer_list') }}">
-                        <i class="sb-icon fa fa-building"></i> <span class="sb-text">Dealer Registration </span>
-                    </a>
-                </div>
-
-                <div class="sb-item @if (Route::current()->uri == 'dashboard/admin/users_list') active @endif">
-                    <a title="Users Listing" class="text-dark"
-                        href="{{ route('users_list') }}">
-                        <i class="sb-icon fa fa-building"></i> <span class="sb-text">Users Listing </span>
-                    </a>
-                </div>
-
-                <div class="sb-item @if (Route::current()->uri == '') active @endif">
-                    <a title="Property Listing" class="text-dark"
-                        href="{{ route('dealer_list') }}">
-                        <i class="sb-icon fa fa-th-list"></i> <span class="sb-text">All Properties </span>
-                    </a>
-                </div>
-
-                {{-- <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span class="sb-text">Sidebar
-                            Item2</span></div>
-                    <div class="sb-item sb-menu"><i class="sb-icon fa fa-address-card"></i><span class="sb-text">Sidebar
-                            Menu</span>
-                        <div class="sb-submenu">
-                            <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span class="sb-text">Level
-                                    2</span>
-                            </div>
-                            <div class="sb-item sb-menu"><i class="sb-icon fa fa-address-card"></i><span
-                                    class="sb-text">Level
-                                    2</span>
-                                <div class="sb-submenu">
-                                    <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span
-                                            class="sb-text">Level
-                                            3</span></div>
-                                    <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span
-                                            class="sb-text">Level
-                                            3</span></div>
-                                    <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span
-                                            class="sb-text">Level
-                                            3</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sb-item"><i class="sb-icon fa fa-address-card"></i><span class="sb-text">Sidebar
-                            Item3</span>
-                    </div> --}}
-                <div class="btn-toggle-sidebar sb-item">
-                    <a title="Logout" class="text-dark" href="{{ route('admin_logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="sb-icon fa fa-sign-out"></i>
-                        <span class="sb-text"><b>Logout</b></span>
-
-                        <form id="logout-form" action="{{ route('admin_logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </a>
-                </div>
-                {{-- <div class="btn-toggle-sidebar sb-item">
-                            <i class="sb-icon fa fa-angle-double-left"></i>
-                            <span class="sb-text">Collapse Sidebar</span>
-                            <i class="sb-icon fa fa-angle-double-right"></i>
-                    </div> --}}
-            </div>
-        </div>
-        <div class="main"></div>
-        {{-- </div> --}}
+<link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+<div class="col-md-3 col-lg-3">
+    <nav class="sidebar locked">
+    <div class="logo_items flex">
+        <span class="nav_image">
+        <img src="{{ asset(MyApp::SITE_LOGO) }}" alt="logo_img" />
+        </span>
+        <span class="logo_name">Plot Mandi</span>
+        <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+        <i class="bx bx-x" id="sidebar-close"></i>
     </div>
+
+    <div class="menu_container">
+        <div class="menu_items">
+        <ul class="menu_item">
+            <div class="menu_title flex">
+            <!-- <span class="title">Dashboard</span> -->
+            <span class="line"></span>
+            </div>
+            <li class="item @if (Route::current()->uri == 'dashboard/admin') active @endif">
+            <a href="{{ route('admin_dashboard') }}" class="link flex">
+                <i class="bx bx-home-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            </li>
+            <!-- <li class="item">
+            <a href="#" class="link flex">
+                <i class="bx bx-grid-alt"></i>
+                <span>All Projects</span>
+            </a>
+            </li> -->
+        </ul>
+
+        <ul class="menu_item">
+            <div class="menu_title flex">
+            <span class="title">Dealers</span>
+            <span class="line"></span>
+            </div>
+            <li class="item @if (Route::current()->uri == 'dashboard/admin/dealer_list') active @endif">
+            <a href="{{ route('dealer_list') }}" class="link flex">
+                <i class="bx bxs-magic-wand"></i>
+                <span>Dealer Registration</span>
+            </a>
+            </li>
+        </ul>
+
+        <ul class="menu_item">
+            <div class="menu_title flex">
+            <span class="title">Users</span>
+            <span class="line"></span>
+            </div>
+            <li class="item @if (Route::current()->uri == 'dashboard/admin/users_list') active @endif">
+            <a href="{{ route('users_list') }}" class="link flex">
+                <i class="bx bx-folder"></i>
+                <span>Users Listing</span>
+            </a>
+            </li>
+        </ul>
+
+        <!-- <ul class="menu_item">
+            <div class="menu_title flex">
+            <span class="title">Setting</span>
+            <span class="line"></span>
+            </div>
+            <li class="item">
+            <a href="#" class="link flex">
+                <i class="bx bx-flag"></i>
+                <span>Notice Board</span>
+            </a>
+            </li>
+            <li class="item">
+            <a href="#" class="link flex">
+                <i class="bx bx-award"></i>
+                <span>Award</span>
+            </a>
+            </li>
+            <li class="item">
+            <a href="#" class="link flex">
+                <i class="bx bx-cog"></i>
+                <span>Setting</span>
+            </a>
+            </li>
+        </ul> -->
+        </div>
+
+        <div class="sidebar_profile flex">
+        <span class="nav_image">
+            <img src="images/profile.jpg" alt="logo_img" />
+        </span>
+        <div class="data_text">
+            <span class="name">Zeeshan</span>
+            <!-- <span class="email">david@gmail.com</span> -->
+        </div>
+        </div>
+    </div>
+    </nav>
 </div>

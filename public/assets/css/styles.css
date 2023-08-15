@@ -7433,6 +7433,7 @@ html input[disabled] {
   border-radius: 50px;
   text-align: left;
   margin-top: 30px;
+
 }
 
 .parallax-search .trip-search .form {
@@ -10876,13 +10877,15 @@ a.button {
 /* Search Form */
 .parallax-searchs .trip-search {
   background: #fff;
-  padding: 10px;
+  /* padding: 25px; */
+  padding: 5px 0px 0px 0px;
   border: 1px solid #fff;
   border-radius: 8px;
   text-align: left;
   margin-top: 12px;
   /* border: 1px solid #cccccc69; */
   /* box-shadow: 4px 4px 4px 2px #ccc6; */
+  height: 80px;
 }
 
 .parallax-searchs .form-group .btn{
@@ -24887,4 +24890,20 @@ button.btn.btn-danger.btn-sm.remove-btn {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.search-home-page{
+  position: relative;
+  top: -20px;
+  height: 48px;
+  background: #ebebeb;
+}
+
+.homePage-filter-right .form-group{
+  margin-right:10px;
+}
+
+
+table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc, table.dataTable thead>tr>th.sorting_desc, table.dataTable thead>tr>th.sorting_asc_disabled, table.dataTable thead>tr>th.sorting_desc_disabled, table.dataTable thead>tr>td.sorting, table.dataTable thead>tr>td.sorting_asc, table.dataTable thead>tr>td.sorting_desc, table.dataTable thead>tr>td.sorting_asc_disabled, table.dataTable thead>tr>td.sorting_desc_disabled {
+  padding-bottom: 15px;
 }

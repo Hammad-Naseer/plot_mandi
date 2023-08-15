@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="dashborad-box stat bg-white">
+                <div class="dashborad-box stat">
                     {{-- <h4 class="title">Manage Dashboard</h4> --}}
                     <div class="section-body">
                         <div class="row">
@@ -118,7 +118,7 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" width="30%">User</th>
+                                        <th class="text-left" width="20%">User</th>
                                         <th class="text-center">Email</th>
                                         <th class="text-center">Reg Date</th>
                                         <th class="text-center">Status</th>
@@ -129,16 +129,19 @@
                                     @foreach($userList as $list)
                                     <tr>
                                         <td>
-                                            <div class="first-col-align">
-                                            @if($list->profile_picture == "")
-                                            <a href="#"><img alt="my-properties-3" width="50" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid"></a>
-                                            @else:
-                                            <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
-                                            @endif
-                                            <div class="inner ml-2">
-                                                {{ $list->first_name .' '. $list->last_name }}
+                                        <!-- class="first-col-align" -->
+                                            <div class="pl-3">
+                                                @if($list->profile_picture == "")
+                                                <a href="#" class="text-dark">
+                                                    <img alt="my-properties-3" width="50" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid">
+                                                    &nbsp;&nbsp;
+                                                    {{ $list->first_name .' '. $list->last_name }}
+                                                </a>
+                                                @else:
+                                                <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                                @endif
+                                               
                                             </div>
-                                        </div>
                                         </td>
                                         <td class="text-center">
                                             {{ $list->email }}

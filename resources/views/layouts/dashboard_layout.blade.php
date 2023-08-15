@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'styles.css') }}">
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'default.css') }}">
     <link rel="stylesheet" id="color" href="{{ asset(MyApp::ASSET_STYLE.'colors/green.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">    
 </head>
 <body class="inner-pages maxw1600 m0a dashboard-bd">
     <!-- Wrapper -->
@@ -52,7 +54,7 @@
                         <div class="left-side">
                             <!-- Logo -->
                             <div id="logo">
-                                <a href="index-2.html"><img src="{{ asset(MyApp::SITE_LOGO) }}" alt=""></a>
+                                <!-- <a href="index-2.html"><img src="{{ asset(MyApp::SITE_LOGO) }}" alt=""></a> -->
                             </div>
                             <!-- Mobile Navigation -->
                             <div class="mmenu-trigger">
@@ -183,117 +185,121 @@
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'forms-2.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'color-switcher.js') }}"></script>
 
+        <!-- datatable  -->
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
         <script>
+            new DataTable('.table');
             $(".header-user-name").on("click", function() {
                 $(".header-user-menu ul").toggleClass("hu-menu-vis");
                 $(this).toggleClass("hu-menu-visdec");
             });
         </script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'script.js') }}"></script>
-
+        
         <script>
+            // $("#addMultipleFileImage").click(function() {
+            //     $("#fileImageInputs").append('<div class="input-row"><input type="file" name="office_picture[]" class="multipleFiles" accept=".jpg,.png,.gif" /> <button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            // });
 
-            $("#addMultipleFileImage").click(function() {
-                $("#fileImageInputs").append('<div class="input-row"><input type="file" name="office_picture[]" class="multipleFiles" accept=".jpg,.png,.gif" /> <button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
-            });
+            // $("#addMultipleFileVideo").click(function() {
+            //     $("#fileVideoInputs").append('<div class="input-row"><input type="file" name="office_video[]" class="multipleFiles" accept=".mp4" /><button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            // });
 
-            $("#addMultipleFileVideo").click(function() {
-                $("#fileVideoInputs").append('<div class="input-row"><input type="file" name="office_video[]" class="multipleFiles" accept=".mp4" /><button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
-            });
+            // $(".input-multiple-container").on("click", ".remove-btn", function() {
+            //     $(this).parent(".input-row").remove();
+            // });
 
-            $(".input-multiple-container").on("click", ".remove-btn", function() {
-                $(this).parent(".input-row").remove();
-            });
+            // // For Property 
+            // $("#addMultipleFileImageProperty").click(function() {
+            //     $("#fileImageInputsProperty").append('<div class="input-row"><input type="file" name="property_images[]" class="multipleFiles" accept=".jpg,.png,.gif" /></div>');
+            // });
 
-            // For Property 
-            $("#addMultipleFileImageProperty").click(function() {
-                $("#fileImageInputsProperty").append('<div class="input-row"><input type="file" name="property_images[]" class="multipleFiles" accept=".jpg,.png,.gif" /></div>');
-            });
+            // $("#addMultipleFileVideoProperty").click(function() {
+            //     $("#fileVideoInputsProperty").append('<div class="input-row"><input type="file" name="property_videos[]" class="multipleFiles" accept=".mp4" /></div>');
+            // });
 
-            $("#addMultipleFileVideoProperty").click(function() {
-                $("#fileVideoInputsProperty").append('<div class="input-row"><input type="file" name="property_videos[]" class="multipleFiles" accept=".mp4" /></div>');
-            });
+            // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+            //     $('.wrapper').toggleClass('sidebar-collapse');
+            //     $('.user-profile-box').css('width','60px');    
+            //     $('.user-dash').css('flex','0 0 7%');    
+            //     $('.user-dash2').css('flex','0 0 100%');    
+            //     $('.user-dash2').css('max-width','95%');    
+            //     $('.user-dash2').css('margin-left','-40px');    
+            //     $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});                            
+            //     $('.collapse_hide_item').hide();
+            // }
 
-            if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
-                $('.wrapper').toggleClass('sidebar-collapse');
-                $('.user-profile-box').css('width','60px');    
-                $('.user-dash').css('flex','0 0 7%');    
-                $('.user-dash2').css('flex','0 0 100%');    
-                $('.user-dash2').css('max-width','95%');    
-                $('.user-dash2').css('margin-left','-40px');    
-                $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});                            
-                $('.collapse_hide_item').hide();
-            }
-
-            $(function(){    // toggle sidebar collapse    
-                $('.hamburger-toggle-sidebar').on('click', function(){        
-                    $('.wrapper').toggleClass('sidebar-collapse');
-                    // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
-                        var divWidth = $('.user-profile-box').width();
-                        if(divWidth == 295){
-                            localStorage.setItem("dash-menu-hamburger","inactive");
-                            $('.user-profile-box').css('width','60px');    
-                            $('.user-dash').css('flex','0 0 7%');    
-                            $('.user-dash2').css('flex','0 0 100%');    
-                            $('.user-dash2').css('max-width','95%');    
-                            $('.user-dash2').css('margin-left','-40px');    
-                            $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
-                            $('.collapse_hide_item').hide();
-                        }
-                    // }
+            // $(function(){    // toggle sidebar collapse    
+            //     $('.hamburger-toggle-sidebar').on('click', function(){        
+            //         $('.wrapper').toggleClass('sidebar-collapse');
+            //         // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+            //             var divWidth = $('.user-profile-box').width();
+            //             if(divWidth == 295){
+            //                 localStorage.setItem("dash-menu-hamburger","inactive");
+            //                 $('.user-profile-box').css('width','60px');    
+            //                 $('.user-dash').css('flex','0 0 7%');    
+            //                 $('.user-dash2').css('flex','0 0 100%');    
+            //                 $('.user-dash2').css('max-width','95%');    
+            //                 $('.user-dash2').css('margin-left','-40px');    
+            //                 $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
+            //                 $('.collapse_hide_item').hide();
+            //             }
+            //         // }
                     
-                    if(divWidth == 60){
-                        localStorage.setItem("dash-menu-hamburger","active");
-                        $('.user-profile-box').css('width','295px');  
-                        $('.user-dash').css('flex','0 0 25%'); 
-                        $('.user-dash2').css('flex','0 0 75%');    
-                        $('.user-dash2').css('max-width','75%');   
-                        $('.user-dash2').css('margin-left','0px');    
-                        $('.collapse_hide_item').show();
-                    }
-                });
+            //         if(divWidth == 60){
+            //             localStorage.setItem("dash-menu-hamburger","active");
+            //             $('.user-profile-box').css('width','295px');  
+            //             $('.user-dash').css('flex','0 0 25%'); 
+            //             $('.user-dash2').css('flex','0 0 75%');    
+            //             $('.user-dash2').css('max-width','75%');   
+            //             $('.user-dash2').css('margin-left','0px');    
+            //             $('.collapse_hide_item').show();
+            //         }
+            //     });
                 
-                // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
-                //     $('.sidebar').on('mouseleave', function(){        
-                //         $('.wrapper').toggleClass('sidebar-collapse');
+            //     // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
+            //     //     $('.sidebar').on('mouseleave', function(){        
+            //     //         $('.wrapper').toggleClass('sidebar-collapse');
                             
-                //         var divWidth = $('.user-profile-box').width();
-                //         if(divWidth == 295){
-                //             // localStorage.setItem("dash-menu-hamburger","active");
-                //             $('.user-profile-box').css('width','60px');    
-                //             $('.user-dash').css('flex','0 0 7%');    
-                //             $('.user-dash2').css('flex','0 0 100%');    
-                //             $('.user-dash2').css('max-width','95%');    
-                //             $('.user-dash2').css('margin-left','-40px');    
-                //             $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
-                //             $('.collapse_hide_item').hide();
-                //         }
-                //     });
-                //     $('.sidebar').on('mouseenter', function(){   
-                //         $('.wrapper').toggleClass('sidebar-collapse');
-                //         var divWidth = $('.user-profile-box').width();
-                //         if(divWidth == 60){
-                //             localStorage.setItem("dash-menu-hamburger","inactive");
-                //             $('.user-profile-box').css('width','295px');  
-                //             $('.user-dash').css('flex','0 0 25%'); 
-                //             $('.user-dash2').css('flex','0 0 75%');    
-                //             $('.user-dash2').css('max-width','75%');   
-                //             $('.user-dash2').css('margin-left','0px');    
-                //             $('.collapse_hide_item').show();
-                //         }
-                //     });
-                // }
-                // mark sidebar item as active when clicked    
-                $('.sb-item').on('click', function(){        
-                    if ($(this).hasClass('hamburger-toggle-sidebar')) {          
-                        return; 
-                        // already actived        
-                    }        
-                    $(this).siblings().removeClass('active');        
-                    $(this).siblings().find('.sb-item').removeClass('active');        
-                    $(this).addClass('active');    
-                })
-            });
+            //     //         var divWidth = $('.user-profile-box').width();
+            //     //         if(divWidth == 295){
+            //     //             // localStorage.setItem("dash-menu-hamburger","active");
+            //     //             $('.user-profile-box').css('width','60px');    
+            //     //             $('.user-dash').css('flex','0 0 7%');    
+            //     //             $('.user-dash2').css('flex','0 0 100%');    
+            //     //             $('.user-dash2').css('max-width','95%');    
+            //     //             $('.user-dash2').css('margin-left','-40px');    
+            //     //             $('.hamburger-toggle-sidebar').css({'left':'-15px','top':'10px'});    
+            //     //             $('.collapse_hide_item').hide();
+            //     //         }
+            //     //     });
+            //     //     $('.sidebar').on('mouseenter', function(){   
+            //     //         $('.wrapper').toggleClass('sidebar-collapse');
+            //     //         var divWidth = $('.user-profile-box').width();
+            //     //         if(divWidth == 60){
+            //     //             localStorage.setItem("dash-menu-hamburger","inactive");
+            //     //             $('.user-profile-box').css('width','295px');  
+            //     //             $('.user-dash').css('flex','0 0 25%'); 
+            //     //             $('.user-dash2').css('flex','0 0 75%');    
+            //     //             $('.user-dash2').css('max-width','75%');   
+            //     //             $('.user-dash2').css('margin-left','0px');    
+            //     //             $('.collapse_hide_item').show();
+            //     //         }
+            //     //     });
+            //     // }
+            //     // mark sidebar item as active when clicked    
+            //     $('.sb-item').on('click', function(){        
+            //         if ($(this).hasClass('hamburger-toggle-sidebar')) {          
+            //             return; 
+            //             // already actived        
+            //         }        
+            //         $(this).siblings().removeClass('active');        
+            //         $(this).siblings().find('.sb-item').removeClass('active');        
+            //         $(this).addClass('active');    
+            //     })
+            // });
         </script>
 </body>
 </html>
@@ -301,18 +307,55 @@
 
 
 <script>
-    {
-  let sideBar = document.querySelector('.side-bar');
-  let arrowCollapse = document.querySelector('#logo-name__icon');
-  sideBar.onclick = () => {
-    sideBar.classList.toggle('collapse');
-    arrowCollapse.classList.toggle('collapse');
-    if (arrowCollapse.classList.contains('collapse')) {
-      arrowCollapse.classList =
-        'bx bx-arrow-from-left logo-name__icon collapse';
-    } else {
-      arrowCollapse.classList = 'bx bx-arrow-from-right logo-name__icon';
-    }
-  };
+// Selecting the sidebar and buttons
+const sidebar = document.querySelector(".sidebar");
+const sidebarOpenBtn = document.querySelector("#sidebar-open");
+const sidebarCloseBtn = document.querySelector("#sidebar-close");
+const sidebarLockBtn = document.querySelector("#lock-icon");
+
+// Function to toggle the lock state of the sidebar
+const toggleLock = () => {
+  sidebar.classList.toggle("locked");
+  // If the sidebar is not locked
+  if (!sidebar.classList.contains("locked")) {
+    sidebar.classList.add("hoverable");
+    sidebarLockBtn.classList.replace("bx-lock-alt", "bx-lock-open-alt");
+  } else {
+    sidebar.classList.remove("hoverable");
+    sidebarLockBtn.classList.replace("bx-lock-open-alt", "bx-lock-alt");
+  }
+};
+
+// Function to hide the sidebar when the mouse leaves
+const hideSidebar = () => {
+  if (sidebar.classList.contains("hoverable")) {
+    sidebar.classList.add("close");
+  }
+};
+
+// Function to show the sidebar when the mouse enter
+const showSidebar = () => {
+  if (sidebar.classList.contains("hoverable")) {
+    sidebar.classList.remove("close");
+  }
+};
+
+// Function to show and hide the sidebar
+const toggleSidebar = () => {
+  sidebar.classList.toggle("close");
+};
+
+// If the window width is less than 800px, close the sidebar and remove hoverability and lock
+if (window.innerWidth < 800) {
+  sidebar.classList.add("close");
+  sidebar.classList.remove("locked");
+  sidebar.classList.remove("hoverable");
 }
+
+// Adding event listeners to buttons and sidebar for the corresponding actions
+sidebarLockBtn.addEventListener("click", toggleLock);
+sidebar.addEventListener("mouseleave", hideSidebar);
+sidebar.addEventListener("mouseenter", showSidebar);
+sidebarOpenBtn.addEventListener("click", toggleSidebar);
+sidebarCloseBtn.addEventListener("click", toggleSidebar);
 </script>

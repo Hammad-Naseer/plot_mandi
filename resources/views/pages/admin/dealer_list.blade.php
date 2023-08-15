@@ -71,49 +71,51 @@
                 <br>
                 
                 <div class="my-properties">
-                    <table class="table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="pl-2">Dealer Details</th>
-                                <th class="p-0"></th>
-                                <th>Reg Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($userList as $list)
-                            <tr>
-                                <td class="image myelist">
-                                    @if($list->profile_picture == "")
-                                    <a href="#"><img alt="my-properties-3" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid"></a>
-                                    @else:
-                                    <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="inner">
-                                        <a href="single-property-1.html"><h2>{{ $list->first_name . $list->last_name }}</h2></a>
-                                        <figure><i class="lni-map-marker"></i><b>City :</b> Islamabad</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->phone }}</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Gender : </b> {{ $list->gender }}</figure>
-                                        <figure><i class="lni-map-marker"></i> <b>Address : </b> {{ $list->address }}</figure>
-                                    </div>
-                                </td>
-                                <td>{{ PlotDateFormater($list->created_at) }}</td>
-                                <td>
-                                    <button class="btn btn-success btn-sm">
-                                        {{ getAccountStatus($list->is_active) }}
-                                    </button> 
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-success text-white"><i class="far fa-edit"> Edit</i></a>
-                                    <a href="#" class="btn btn-danger text-white"><i class="far fa-trash-alt"> Delete</i></a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="pl-2">Dealer Details</th>
+                                    <th class="p-0"></th>
+                                    <th>Reg Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($userList as $list)
+                                <tr>
+                                    <td class="image myelist">
+                                        @if($list->profile_picture == "")
+                                        <a href="#"><img alt="my-properties-3" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid"></a>
+                                        @else:
+                                        <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="inner">
+                                            <a href="single-property-1.html"><h2>{{ $list->first_name . $list->last_name }}</h2></a>
+                                            <figure><i class="lni-map-marker"></i><b>City :</b> Islamabad</figure>
+                                            <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->phone }}</figure>
+                                            <figure><i class="lni-map-marker"></i> <b>Gender : </b> {{ $list->gender }}</figure>
+                                            <figure><i class="lni-map-marker"></i> <b>Address : </b> {{ $list->address }}</figure>
+                                        </div>
+                                    </td>
+                                    <td>{{ PlotDateFormater($list->created_at) }}</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm">
+                                            {{ getAccountStatus($list->is_active) }}
+                                        </button> 
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-success text-white"><i class="far fa-edit"> Edit</i></a>
+                                        <a href="#" class="btn btn-danger text-white"><i class="far fa-trash-alt"> Delete</i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="pagination-container">
                         {{-- <nav>
                             <ul class="pagination">

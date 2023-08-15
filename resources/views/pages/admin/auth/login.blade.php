@@ -77,13 +77,9 @@
               <div class="pt-1 mb-4">
                 <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
               </div>
-  
               {{-- <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p> --}}
-  
             </form>
-  
           </div>
-  
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block" style="display: flex !important;
         justify-content: center;

@@ -85,7 +85,7 @@
                         <!-- Right Side Content / End -->
                         @auth
                         @else
-                        <div class="right-side d-none d-none d-lg-none d-xl-flex" style="width: 150px;">
+                        <div class="right-side d-none d-none d-lg-none d-xl-flex" style="width: 112px;">
                             <!-- Header Widget -->
                             <div class="header-widget">
                                 {{-- <a href="add-property.html" class="button border">Add Listing<i class="fas fa-laptop-house ml-2"></i></a> --}}

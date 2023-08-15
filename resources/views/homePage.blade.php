@@ -24,82 +24,86 @@
                                 <!-- Search Form -->
                                 <div class="trip-search text-center">
                                     <form class="form">
-                                        <!-- Form Location -->
-                                        <div class="form-group location">
-                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-map-marker"></i>Location</span>
-                                                <ul class="list">
-                                                    <li data-value="1" class="option selected ">New York</li>
-                                                    <li data-value="2" class="option">Los Angeles</li>
-                                                    <li data-value="3" class="option">Chicago</li>
-                                                    <li data-value="3" class="option">Philadelphia</li>
-                                                    <li data-value="3" class="option">San Francisco</li>
-                                                    <li data-value="3" class="option">Miami</li>
-                                                    <li data-value="3" class="option">Houston</li>
-                                                </ul>
-                                            </div>
+                                        <!-- Form Search -->
+                                        <div class="form-group float-left" style="width: 310px !important;margin-top: 25px;">
+                                            <input type="search" class="form-control search-home-page" placeholder="Serach Here Property Information">
                                         </div>
-                                        <!--/ End Form Location -->
-                                        <!-- Form Property Type -->
-                                        <div class="form-group">
-                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Type</span>
-                                                <ul class="list">
-                                                    <li data-value="1" class="option selected ">Family House</li>
-                                                    <li data-value="2" class="option">Apartment</li>
-                                                    <li data-value="3" class="option">Condo</li>
-                                                </ul>
+                                        <div class="float-right homePage-filter-right">
+                                            <!-- Form Location -->
+                                            <div class="form-group location">
+                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-map-marker"></i>Location</span>
+                                                    <ul class="list">
+                                                        <li data-value="1" class="option selected ">New York</li>
+                                                        <li data-value="2" class="option">Los Angeles</li>
+                                                        <li data-value="3" class="option">Chicago</li>
+                                                        <li data-value="3" class="option">Philadelphia</li>
+                                                        <li data-value="3" class="option">San Francisco</li>
+                                                        <li data-value="3" class="option">Miami</li>
+                                                        <li data-value="3" class="option">Houston</li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!--/ End Form Property Type -->
-                                        <!-- Form Property Status -->
-                                        <div class="form-group duration">
-                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Status</span>
-                                                <ul class="list">
-                                                    <li data-value="1" class="option selected ">For Sale</li>
-                                                    <li data-value="2" class="option">For Rent</li>
-                                                </ul>
+                                            <!--/ End Form Location -->
+                                            <!-- Form Property Type -->
+                                            <div class="form-group">
+                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Type</span>
+                                                    <ul class="list">
+                                                        <li data-value="1" class="option selected ">Family House</li>
+                                                        <li data-value="2" class="option">Apartment</li>
+                                                        <li data-value="3" class="option">Condo</li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!--/ End Form Property Status -->
-                                        <!-- Form Bedrooms -->
-                                        <div class="form-group">
-                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bed" aria-hidden="true"></i>Any Bedrooms</span>
-                                                <ul class="list">
-                                                    <li data-value="1" class="option selected">1</li>
-                                                    <li data-value="2" class="option">2</li>
-                                                    <li data-value="3" class="option">3</li>
-                                                    <li data-value="3" class="option">4</li>
-                                                    <li data-value="3" class="option">5</li>
-                                                    <li data-value="3" class="option">6</li>
-                                                    <li data-value="3" class="option">7</li>
-                                                    <li data-value="3" class="option">8</li>
-                                                    <li data-value="3" class="option">9</li>
-                                                    <li data-value="3" class="option">10</li>
-                                                </ul>
+                                            <!--/ End Form Property Type -->
+                                            <!-- Form Property Status -->
+                                            <div class="form-group duration">
+                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-home"></i>Property Status</span>
+                                                    <ul class="list">
+                                                        <li data-value="1" class="option selected ">For Sale</li>
+                                                        <li data-value="2" class="option">For Rent</li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!--/ End Form Bedrooms -->
-                                        <!-- Form Bathrooms -->
-                                        <div class="form-group">
-                                            <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bath" aria-hidden="true"></i>Any Bathrooms</span>
-                                                <ul class="list">
-                                                    <li data-value="1" class="option selected">1</li>
-                                                    <li data-value="2" class="option">2</li>
-                                                    <li data-value="3" class="option">3</li>
-                                                    <li data-value="3" class="option">4</li>
-                                                    <li data-value="3" class="option">5</li>
-                                                    <li data-value="3" class="option">6</li>
-                                                    <li data-value="3" class="option">7</li>
-                                                    <li data-value="3" class="option">8</li>
-                                                    <li data-value="3" class="option">9</li>
-                                                    <li data-value="3" class="option">10</li>
-                                                </ul>
+                                            <!--/ End Form Property Status -->
+                                            <!-- Form Bedrooms -->
+                                            <div class="form-group">
+                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bed" aria-hidden="true"></i>Any Bedrooms</span>
+                                                    <ul class="list">
+                                                        <li data-value="1" class="option selected">1</li>
+                                                        <li data-value="2" class="option">2</li>
+                                                        <li data-value="3" class="option">3</li>
+                                                        <li data-value="3" class="option">4</li>
+                                                        <li data-value="3" class="option">5</li>
+                                                        <li data-value="3" class="option">6</li>
+                                                        <li data-value="3" class="option">7</li>
+                                                        <li data-value="3" class="option">8</li>
+                                                        <li data-value="3" class="option">9</li>
+                                                        <li data-value="3" class="option">10</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!--/ End Form Bedrooms -->
+                                            <!-- Form Bathrooms -->
+                                            <div class="form-group">
+                                                <div class="nice-select form-control wide" tabindex="0"><span class="current"><i class="fa fa-bath" aria-hidden="true"></i>Any Bathrooms</span>
+                                                    <ul class="list">
+                                                        <li data-value="1" class="option selected">1</li>
+                                                        <li data-value="2" class="option">2</li>
+                                                        <li data-value="3" class="option">3</li>
+                                                        <li data-value="3" class="option">4</li>
+                                                        <li data-value="3" class="option">5</li>
+                                                        <li data-value="3" class="option">6</li>
+                                                        <li data-value="3" class="option">7</li>
+                                                        <li data-value="3" class="option">8</li>
+                                                        <li data-value="3" class="option">9</li>
+                                                        <li data-value="3" class="option">10</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                         <!--/ End Form Bathrooms -->
                                         <!-- Form Button -->
-                                        <div class="form-group button">
-                                            <button type="submit" class="btn">Search</button>
-                                        </div>
+                                        
                                         <!--/ End Form Button -->
                                     </form>
                                 </div>
@@ -149,12 +153,12 @@
 
         <!-- START SECTION PROPERTIES FOR SALE -->
         <section class="featured portfolio bg-white-3 rec-pro">
-            <div class="container-fluid">
+            <div class="">
                 <div class="sec-title">
                     <h2><span>Properties for </span>Sale</h2>
                     <p>We provide full service at every step.</p>
                 </div>
-                <div class="portfolio col-xl-12">
+                <div class="portfolio">
                     <div class="slick-lancers">
                         <div class="agents-grid" data-aos="fade-up" data-aos-delay="150">
                             <div class="landscapes">
