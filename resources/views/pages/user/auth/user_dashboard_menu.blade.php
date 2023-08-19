@@ -340,6 +340,25 @@
                 @if (auth()->user()->acount_type == 3)
                 <ul class="menu_item">
                     <div class="menu_title flex">
+                        <span class="title">Posts</span>
+                        <span class="line"></span>
+                    </div>
+                    <li class="item @if (Route::current()->uri == 'dashboard/user/add_post') active @endif">
+                        <a href="{{ route('add_post') }}" class="link flex">
+                            <i class="bx bx-folder"></i>
+                            <span>Add Post</span>
+                        </a>
+                    </li>
+                    <li class="item @if (Route::current()->uri == 'dashboard/user/posts_list') active @endif">
+                        <a href="{{ route('posts_list') }}" class="link flex">
+                            <i class="bx bx-folder"></i>
+                            <span>Post Listing</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="menu_item">
+                    <div class="menu_title flex">
                         <span class="title">Users</span>
                         <span class="line"></span>
                     </div>

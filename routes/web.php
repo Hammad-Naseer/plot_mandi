@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\WebUserController;
+use App\Http\Controllers\PlotPediaController;
+use App\Http\Controllers\PostsController;
 
 Route::get('/', function () {
     return view('homePage');
@@ -55,16 +57,42 @@ Route::group(['middleware' => 'auth'], function () {
     // Admin dashboard Routes 
     Route::get('/dashboard/admin', [WebUserController::class,'adminDashboard'])->name('admin_dashboard');
     Route::get('/dashboard/admin/users_list', [WebUserController::class,'adminUserList'])->name('users_list');
+    Route::get('/dashboard/admin/delete_user/{string?}', [WebUserController::class,'deleteUserRecord'])->name('delete_user');
+    Route::get('/dashboard/admin/edit_user/{string?}', [WebUserController::class,'editUser'])->name('edit_user');
+    Route::post('/dashboard/admin/update_user_form', [WebUserController::class,'updateUserForm'])->name('update_user_form');
+
     // Dealer 
     Route::get('/dashboard/admin/dealer_list', [WebUserController::class,'adminDealerList'])->name('dealer_list');
     Route::get('/dashboard/admin/add_dealer', [WebUserController::class,'adminAddDealer'])->name('add_dealer');
     Route::post('/dashboard/admin/submit_dealer_form', [WebUserController::class,'adminDealerSubmit'])->name('submit_dealer_form');
-    Route::post('/dashboard/dealer/submit_property_form', [WebUserController::class,'submitPropertyForm'])->name('submit_property_form');
-    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');
+    Route::get('/dashboard/admin/delete_dealer/{string?}', [WebUserController::class,'deleteDealerRecord'])->name('delete_dealer');
+    Route::get('/dashboard/admin/edit_dealer/{string?}', [WebUserController::class,'editDealer'])->name('edit_dealer');
+    Route::post('/dashboard/admin/update_dealer_form', [WebUserController::class,'updateDealerForm'])->name('update_dealer_form');
+    Route::get('/dashboard/admin/delete_dealer_file/{string?}/{string2?}', [WebUserController::class,'deleteDealerFile'])->name('delete_dealer_file');
+    
+    // Plot Pedia
+    Route::get('/dashboard/admin/add_pedia', [PlotPediaController::class,'addPedia'])->name('add_plot_pedia');
+    Route::post('/dashboard/admin/submit_plot_pedia', [PlotPediaController::class,'submitPlotPedia'])->name('submit_plot_pedia');
+    Route::get('/dashboard/admin/pedia_list', [PlotPediaController::class,'pediaList'])->name('plot_pedia_list');
+    Route::get('/dashboard/admin/delete_pedia/{string?}', [PlotPediaController::class,'deletePediaRecord'])->name('delete_plot_pedia');
+    Route::get('/dashboard/admin/edit_plot_pedia/{string?}', [PlotPediaController::class,'editPediaRecord'])->name('edit_plot_pedia');
+    Route::post('/dashboard/admin/update_plot_pedia', [PlotPediaController::class,'updatePlotPedia'])->name('update_plot_pedia');
+
+    // Posts
+    Route::get('/dashboard/user/add_post', [PostsController::class,'addPost'])->name('add_post');
+    Route::post('/dashboard/user/submit_post', [PostsController::class,'submitPost'])->name('submit_post');
+    Route::get('/dashboard/user/posts_list', [PostsController::class,'postList'])->name('posts_list');
+    Route::get('/dashboard/user/delete_post/{string?}', [PostsController::class,'deletePostRecord'])->name('delete_post');
+    Route::get('/dashboard/user/edit_post/{string?}', [PostsController::class,'editPostRecord'])->name('edit_post');
+    Route::post('/dashboard/user/update_post', [PostsController::class,'updatePost'])->name('update_post');
+    Route::get('/dashboard/user/delete_post_file/{string?}/{string2?}', [PostsController::class,'deletePostFile'])->name('delete_post_file');
     
     // User Dashboard Routes 
     Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');
+    // Property 
     Route::get('/dashboard/user/add_property', [WebUserController::class,'userDealerAddProperty'])->name('add_property');
+    Route::post('/dashboard/dealer/submit_property_form', [WebUserController::class,'submitPropertyForm'])->name('submit_property_form');
+    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');
     
     
 });

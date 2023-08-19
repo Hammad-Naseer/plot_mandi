@@ -9,7 +9,7 @@ class DealarMedia extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'dealer_media_id ';
+    protected $primaryKey = 'dealer_media_id';
     protected $fillable = [
         'dealer_id',
         'dealer_office_picture',

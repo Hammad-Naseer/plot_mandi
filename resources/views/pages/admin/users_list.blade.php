@@ -68,6 +68,13 @@
                 <br>
                 <h2>Users Listing</h2>
                 <br>
+                @if(Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
+
+                @if(Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
                 <div class="my-properties">
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -103,19 +110,13 @@
                                     </td>
                                     <td class="text-center">{{ PlotDateFormater($list->created_at) }}</td>
                                     <td class="text-center">
-                                        @if($list->is_active == 1)
-                                        <button class="btn btn-success btn-sm">
+                                        <button class="btn btn-{{$list->is_active == 1 ? 'success' : 'danger'}} btn-sm">
                                             {{ getAccountStatus($list->is_active) }}
                                         </button> 
-                                        @else
-                                        <button class="btn btn-danger btn-sm">
-                                            {{ getAccountStatus($list->is_active) }}
-                                        </button>
-                                        @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="#" class="btn btn-success text-white"><i class="far fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
+                                        <a href="{{ route('edit_user', base64_encode($list->user_id)) }}" class="btn btn-success text-white"><i class="far fa-edit"></i></a>
+                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('delete_user', base64_encode($list->user_id)) }}" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

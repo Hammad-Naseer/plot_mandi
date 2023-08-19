@@ -114,7 +114,7 @@
     .menu_title {
         position: relative;
         height: 50px;
-        width: 55px;
+        /* width: 55px; */
     }
 
     .menu_title .title {
@@ -306,7 +306,7 @@
                         <!-- <span class="title">Dashboard</span> -->
                         <span class="line"></span>
                     </div>
-                    <li class="item @if (Route::current()->uri == 'dashboard/admin') active @endif">
+                    <li class="item @if (Route::current()->uri == 'dashboard/admin') active @endif mt-4">
                         <a href="{{ route('admin_dashboard') }}" class="link flex">
                             <i class="bx bx-home-alt"></i>
                             <span>Dashboard</span>
@@ -342,6 +342,26 @@
                         <a href="{{ route('users_list') }}" class="link flex">
                             <i class="bx bx-folder"></i>
                             <span>Users Listing</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="menu_item">
+                    <div class="menu_title flex">
+                        <span class="title">Plot Pedia</span>
+                        <span class="line"></span>
+                    </div>
+                    <li class="item @if (Route::current()->uri == 'dashboard/admin/add_pedia') active @endif">
+                        <a href="{{ route('add_plot_pedia') }}" class="link flex">
+                            <i class="bx bx-folder"></i>
+                            <span>Add Pedia</span>
+                        </a>
+                    </li>
+
+                    <li class="item @if (Route::current()->uri == 'dashboard/admin/pedia_list') active @endif">
+                        <a href="{{ route('plot_pedia_list') }}" class="link flex">
+                            <i class="bx bx-folder"></i>
+                            <span>Pedia Listing</span>
                         </a>
                     </li>
                 </ul>

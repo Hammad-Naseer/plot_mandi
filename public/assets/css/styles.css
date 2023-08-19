@@ -24912,3 +24912,7 @@ table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc, ta
 select.custom-select.custom-select-sm.form-control.form-control-sm {
   background: #e2e5ebad;
 }
+
+select#type {
+  border: 1px solid #18ba60;
+}

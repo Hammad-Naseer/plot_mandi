@@ -36,7 +36,8 @@
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'styles.css') }}">
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'default.css') }}">
     <link rel="stylesheet" id="color" href="{{ asset(MyApp::ASSET_STYLE.'colors/green.css') }}">
-
+    {{-- jQuery  --}}
+    <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery-3.5.1.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">    
 </head>
 <body class="inner-pages maxw1600 m0a dashboard-bd">
@@ -155,7 +156,7 @@
 
         <!-- @include('pages.ajax.commonAjax') -->
         <!-- ARCHIVES JS -->
-        <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery-3.5.1.min.js') }}"></script>
+        
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery-ui.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'tether.min.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'moment.js') }}"></script>
@@ -181,7 +182,7 @@
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery.form.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery.validate.min.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'dashbord-mobile-menu.js') }}"></script>
-        <script src="{{ asset(MyApp::ASSET_SCRIPT.'searched.js') }}"></script>
+        {{-- <script src="{{ asset(MyApp::ASSET_SCRIPT.'searched.js') }}"></script> --}}
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'forms-2.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'color-switcher.js') }}"></script>
 
@@ -199,26 +200,30 @@
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'script.js') }}"></script>
         
         <script>
-            // $("#addMultipleFileImage").click(function() {
-            //     $("#fileImageInputs").append('<div class="input-row"><input type="file" name="office_picture[]" class="multipleFiles" accept=".jpg,.png,.gif" /> <button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
-            // });
+            $("#addMultipleFileImage").click(function() {
+                $("#fileImageInputs").append('<div class="input-row"><input type="file" name="office_picture[]" class="multipleFiles" accept=".jpg,.png,.gif" /> <button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            });
 
-            // $("#addMultipleFileVideo").click(function() {
-            //     $("#fileVideoInputs").append('<div class="input-row"><input type="file" name="office_video[]" class="multipleFiles" accept=".mp4" /><button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
-            // });
+            $("#addMultipleFileDocument").click(function() {
+                $("#fileDocumentInputs").append('<div class="input-row"><input type="file" name="office_document[]" class="multipleFiles" accept=".jpg,.png,.doc,.xlsx,.pdf" /> <button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            });
 
-            // $(".input-multiple-container").on("click", ".remove-btn", function() {
-            //     $(this).parent(".input-row").remove();
-            // });
+            $("#addMultipleFileVideo").click(function() {
+                $("#fileVideoInputs").append('<div class="input-row"><input type="file" name="office_video[]" class="multipleFiles" accept=".mp4" /><button type="button" class="btn btn-danger btn-sm remove-btn">X</button></div>');
+            });
 
-            // // For Property 
-            // $("#addMultipleFileImageProperty").click(function() {
-            //     $("#fileImageInputsProperty").append('<div class="input-row"><input type="file" name="property_images[]" class="multipleFiles" accept=".jpg,.png,.gif" /></div>');
-            // });
+            $(".input-multiple-container").on("click", ".remove-btn", function() {
+                $(this).parent(".input-row").remove();
+            });
 
-            // $("#addMultipleFileVideoProperty").click(function() {
-            //     $("#fileVideoInputsProperty").append('<div class="input-row"><input type="file" name="property_videos[]" class="multipleFiles" accept=".mp4" /></div>');
-            // });
+            // For Property 
+            $("#addMultipleFileImageProperty").click(function() {
+                $("#fileImageInputsProperty").append('<div class="input-row"><input type="file" name="property_images[]" class="multipleFiles" accept=".jpg,.png,.gif" /></div>');
+            });
+
+            $("#addMultipleFileVideoProperty").click(function() {
+                $("#fileVideoInputsProperty").append('<div class="input-row"><input type="file" name="property_videos[]" class="multipleFiles" accept=".mp4" /></div>');
+            });
 
             // if(localStorage.getItem("dash-menu-hamburger") == "inactive"){
             //     $('.wrapper').toggleClass('sidebar-collapse');

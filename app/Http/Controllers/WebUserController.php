@@ -516,10 +516,212 @@ class WebUserController extends Controller
             if (strpos($this->completeRoutePath, '/api/') !== false) {
                 return successResponse(array("message" => "Property Not Added, errro"),404,"error");
             } else {
-                Session::flash('error', 'Property Not Addess, error'); 
+                Session::flash('error', 'Property Not Addedd, error'); 
                 return redirect()->route('add_property');
             }
         endif;
 
+    }
+
+
+    public function deleteUserRecord($user_id)
+    {
+        if(Auth::user()->acount_type == 1):
+            if(base64_decode($user_id) > 0):
+                $user = User::find(base64_decode($user_id));
+                if ($user) {
+                    $user->delete();
+                    Session::flash('success', 'User Deleted Successfully'); 
+                }else{
+                    Session::flash('error', 'User Not Delete, error'); 
+                }
+            endif;
+            return redirect()->route('users_list');
+        else:
+            return redirect()->route('admin_login');
+        endif;
+    }
+
+    public function editUser($user_id)
+    {
+        if(Auth::user()->acount_type == 1):
+            if($user_id > 0):
+                $user = User::find(base64_decode($user_id));
+                if ($user) {
+                    $user->get();
+                    return view('pages.admin.edit_user')->with('editUser',$user);
+                }else{
+                    Session::flash('error', 'User Edit Id Not Found, error'); 
+                    return redirect()->route('users_list');
+                }
+            endif;
+            
+        else:
+            return redirect()->route('admin_login');
+        endif;
+    }
+
+    
+    public function deleteDealerRecord($user_id)
+    {
+        if(Auth::user()->acount_type == 1):
+            if(base64_decode($user_id) > 0):
+                $user = User::find(base64_decode($user_id));
+                if ($user) {
+                    $user->delete();
+                    Session::flash('success', 'Dealer Deleted Successfully'); 
+                }else{
+                    Session::flash('error', 'Dealer Not Delete, error'); 
+                }
+            endif;
+            return redirect()->route('dealer_list');
+        else:
+            return redirect()->route('admin_login');
+        endif;
+    }
+   
+    public function editDealer($user_id)
+    {
+        if(Auth::user()->acount_type == 1):
+            if($user_id > 0):
+                $user = DB::table('users')
+                ->join('dealer_details', 'users.user_id', '=', 'dealer_details.user_id')
+                ->select('users.*', 'dealer_details.*')
+                ->where('users.user_id', base64_decode($user_id));
+                if ($user) {
+                    $userGetData = $user->first();
+                    // Get Dealer Media 
+                    $delaerMedia = DB::table('dealar_media')->where("dealer_id",base64_decode($user_id))->get();
+                    return view('pages.admin.edit_dealer')->with('editUser',$userGetData)->with('delaerMedia',$delaerMedia);
+                }else{
+                    Session::flash('error', 'Dealer Edit Id Not Found, error'); 
+                    return redirect()->route('dealer_list');
+                }
+            endif;
+            
+        else:
+            return redirect()->route('admin_login');
+        endif;
+    }
+    
+    public function updateDealerForm(Request $request)
+    {
+        if(Auth::user()->acount_type == 1):
+            
+            $this->validate($request, [
+                'first_name' => 'required|string||max:255',
+                'last_name' => 'required|string||max:255',
+                'email' => 'required|email',
+                'gender' => 'required|in:M,F,O',
+                'phone' => 'required|string|max:20',
+                'city' => 'required|string|max:255',
+                'office_address' => 'required',
+            ]);
+            $id = $request->id;
+            $data = [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'gender' => $request->input('gender'),
+                'phone' => $request->input('phone'),
+                'city' => $request->input('city'),
+                'address' => $request->input('office_address'),
+            ];
+
+            if (User::where('user_id', $id)->update($data)) :
+
+                $insertedId = $id;
+                if ($request->hasFile('office_picture')) {
+                    foreach ($request->file('office_picture') as $officeImage) :
+                        $fileNamePicture = uploadFile($officeImage, 'uploads/dealer/'.$insertedId.'/office', array('jpg','png','gif'));
+                        DealarMedia::create([
+                            'dealer_id' => $insertedId,
+                            'dealer_office_picture' => $fileNamePicture,
+                        ]);
+                    endforeach;
+                }
+    
+                if ($request->hasFile('office_video')) {
+                    foreach ($request->file('office_video') as $officeVideo) :
+                        $fileNameVideo = uploadFile($officeVideo, 'uploads/dealer/'.$insertedId.'/office', array('mp4'));   
+                        DealarMedia::create([
+                            'dealer_id' => $insertedId,
+                            'dealer_office_video' => $fileNameVideo,
+                        ]);             
+                    endforeach;
+                }
+
+                Session::flash('success', 'Dealer Updated Successfully'); 
+            else:
+                Session::flash('error', 'Dealer Not Updated, error'); 
+            endif;
+
+            return redirect()->route('edit_dealer',base64_encode($id));
+        else:
+            return redirect()->route('admin_login');
+        endif;
+    }
+
+    public function updateUserForm(Request $request)
+    {
+        if(Auth::user()->acount_type == 1):
+            
+            $this->validate($request, [
+                'first_name' => 'required|string||max:255',
+                'last_name' => 'required|string||max:255',
+                'email' => 'required|email',
+                'gender' => 'required|in:M,F,O',
+                'phone' => 'required|string|max:20',
+                'city' => 'required|string|max:255',
+                'office_address' => 'required',
+            ]);
+            $id = $request->id;
+            $data = [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'gender' => $request->input('gender'),
+                'phone' => $request->input('phone'),
+                'city' => $request->input('city'),
+                'address' => $request->input('office_address'),
+            ];
+            if (User::where('user_id', $id)->update($data)) :
+                Session::flash('success', 'User Updated Successfully'); 
+            else:
+                Session::flash('error', 'User Not Updated, error'); 
+            endif;
+
+            return redirect()->route('edit_user',base64_encode($id));
+        else:
+            return redirect()->route('admin_login');
+        endif;
+    }
+
+    public function deleteDealerFile($id, $dealer_id)
+    {
+        if(Auth::user()->acount_type == 1):
+            if(base64_decode($id) > 0):
+                $user = DealarMedia::find(base64_decode($id));
+                if ($user) {
+
+                    // Unlink 
+                    $imagePath = "";
+                    if($user->dealer_office_picture !== ""):
+                        $imagePath = $user->dealer_office_picture;
+                    elseif($user->dealer_office_video !== ""):
+                        $imagePath = $user->dealer_office_video;
+                    endif;
+                    unLinkFile($imagePath);
+                    // Delete Record From DB 
+                    $user->delete();
+                    Session::flash('success', 'Dealer File Deleted Successfully'); 
+                }else{
+                    Session::flash('error', 'Dealer File Not Delete, error'); 
+                }
+            endif;
+            return redirect()->route('edit_dealer', $dealer_id);
+        else:
+            return redirect()->route('admin_login');
+        endif;
     }
 }

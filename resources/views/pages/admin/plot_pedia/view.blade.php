@@ -68,10 +68,10 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-xs-6">
-                        <h2>Dealer Listing</h2>
+                        <h2>Pedia Listing</h2>
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-6">
-                        <a href="{{ route('add_dealer') }}" class="btn btn-primary float-right"> <i class="fa fa-plus"></i> Add Dealer</a>
+                        {{-- <a href="{{ route('add_dealer') }}" class="btn btn-primary float-right"> <i class="fa fa-plus"></i> Add Dealer</a> --}}
                     </div>
                 </div>
                 <br>
@@ -87,50 +87,41 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Dealer Details</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Reg Date</th>
+                                    <th>Image</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">Description</th>
+                                    <th class="text-center">Created Date</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($userList as $list)
+                                @foreach($pediaList as $list)
                                 <tr>
                                     <td>
                                         <!-- class="first-col-align" -->
                                         <div class="pl-3">
-                                            @if($list->profile_picture == "")
+                                            @if($list->image == "")
                                             <a href="#" class="text-dark">
                                                 <img alt="my-properties-3" width="50" src="{{ asset(MyApp::ASSET_IMG.'profile.png') }}" class="img-fluid">
-                                                &nbsp;&nbsp;
-                                                {{ $list->first_name }}
                                             </a>
                                             @else:
-                                            <a href="#"><img alt="my-properties-3" src="images/feature-properties/fp-1.jpg" class="img-fluid"></a>
+                                            <a href="#"><img alt="my-properties-3" width="100" src="{{ Storage::url($list->image) }}" class="img-fluid"></a>
                                             @endif
                                             
                                         </div>
                                     </td>
-                                    {{-- <td>
-                                        <div class="inner">
-                                            <a href="single-property-1.html"><h2>{{ $list->first_name . $list->last_name }}</h2></a>
-                                            <figure><i class="lni-map-marker"></i><b>City :</b> Islamabad</figure>
-                                            <figure><i class="lni-map-marker"></i> <b>Phone : </b> {{ $list->phone }}</figure>
-                                            <figure><i class="lni-map-marker"></i> <b>Gender : </b> {{ $list->gender }}</figure>
-                                            <figure><i class="lni-map-marker"></i> <b>Address : </b> {{ $list->address }}</figure>
-                                        </div>
-                                    </td> --}}
-                                    <td class="text-center">{{ $list->email }}</td>
+                                    <td class="text-center">{{ $list->title }}</td>
+                                    <td class="text-center">{{ $list->description }}</td>
                                     <td class="text-center">{{ PlotDateFormater($list->created_at) }}</td>
                                     <td class="text-center">
-                                        <button class="btn btn-{{$list->is_active == 1 ? 'success' : 'danger'}} btn-sm">
-                                            {{ getAccountStatus($list->is_active) }}
+                                        <button class="btn btn-{{$list->status == 1 ? 'success' : 'danger'}} btn-sm">
+                                            {{ getAccountStatus($list->status) }}
                                         </button> 
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('edit_dealer', base64_encode($list->user_id)) }}" class="btn btn-success text-white"><i class="far fa-edit"></i></a>
-                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('delete_dealer', base64_encode($list->user_id)) }}" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
+                                        <a href="{{ route('edit_plot_pedia', base64_encode($list->plot_pedias_id)) }}" class="btn btn-success text-white"><i class="far fa-edit"></i></a>
+                                        <a onclick="return confirm('Are you sure you want to delete this record?')" href="{{ route('delete_plot_pedia', base64_encode($list->plot_pedias_id)) }}" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

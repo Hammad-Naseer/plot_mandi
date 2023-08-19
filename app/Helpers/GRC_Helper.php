@@ -377,4 +377,32 @@ if (!function_exists('callCurl')) {
         }
     }
     
+
+    if (!function_exists('unLinkFile')) {
+        function unLinkFile(string $path = "")
+        {
+            if($path != ""):
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                    return true;
+                }else{
+                    return false;
+                }
+            endif;
+        }
+    }
+
+    if (!function_exists('getPostType')) {
+        function getPostType(int $type_id)
+        {
+            $typeArr = array(
+                '1' => "Rent",
+                '2' => "Sale",
+            );
+        
+            return $typeArr[$type_id] ?? null;
+        }
+    }
+    
+
 }
