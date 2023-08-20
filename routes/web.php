@@ -29,11 +29,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebUserController;
 use App\Http\Controllers\PlotPediaController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\Home;
 
-Route::get('/', function () {
-    return view('homePage');
-});
-
+Route::get('/', [Home::class,'homePage'])->name('homepage');
 // Admin Login 
 Route::get('/login/admin', [WebUserController::class,'adminLogin'])->name('admin_login');
 Route::post('/login_request/admin', [WebUserController::class,'adminLoginForm'])->name('login_form_admin');
@@ -92,10 +90,11 @@ Route::group(['middleware' => 'auth'], function () {
     // Property 
     Route::get('/dashboard/user/add_property', [WebUserController::class,'userDealerAddProperty'])->name('add_property');
     Route::post('/dashboard/dealer/submit_property_form', [WebUserController::class,'submitPropertyForm'])->name('submit_property_form');
-    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');
-    
-    
+    Route::get('/dashboard/user/view_property_list', [WebUserController::class,'userDealerViewProperty'])->name('view_property_list');    
 });
+
+// Homepage Routes 
+Route::get('/plot_pedia_detail/{string?}', [Home::class,'plotPediaDetail'])->name('plot_pedia_detail');
 
 Route::fallback(function () {
     return redirect()->route('login');

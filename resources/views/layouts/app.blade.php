@@ -37,11 +37,9 @@
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'maps.css') }}">
     <link rel="stylesheet" id="color" href="{{ asset(MyApp::ASSET_STYLE.'colors/green.css') }}">
 </head>
-
-<body class="@if (Route::current()->uri == 'login' || Route::current()->uri == 'register' || Route::current()->uri == 'user/forgot_password' || Route::current()->uri == 'user/reset_password' || Route::current()->uri == 'user/account_verification') inner-pages hd-white @else homepage-5 @endif">
+<body class="@if (Route::current()->uri == 'plot_pedia_detail/{string?}' || Route::current()->uri == 'login' || Route::current()->uri == 'register' || Route::current()->uri == 'user/forgot_password' || Route::current()->uri == 'user/reset_password' || Route::current()->uri == 'user/account_verification') inner-pages hd-white @else homepage-5 @endif">
     <!-- Wrapper -->
     <div id="wrapper">
-        <!-- START SECTION HEADINGS -->
         <!-- Header Container
         ================================================== -->
         <header id="header-container">

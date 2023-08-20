@@ -27,12 +27,14 @@ use App\Models\User;
 use App\Models\Property;
 use App\Models\PropertyMedia;
 use App\Models\DealarMedia;
+use App\Models\Plot_Pedia;
 
 // Jobs
 use App\Jobs\SendUserVerificationEmailJob;
 
 // Resource 
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\GetPlotPedia;
 
 
 class WebUserController extends Controller
@@ -43,6 +45,20 @@ class WebUserController extends Controller
     public function __construct(Request $request)
     {
         $this->completeRoutePath = $request->url();
+    }
+
+    public function homePage(Request $request)
+    {
+        $userAgent = $request->header('User-Agent');
+        $viewAPI = Plot_Pedia::where('status',1)
+        ->orderBy('plot_pedias_id', 'desc')
+        ->limit(4)
+        ->get();
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
+            return successResponse(new GetPlotPedia($viewAPI),200,"success");
+        }else{
+            return view('homePage')->with('pediaList', $viewAPI);
+        }
     }
 
     public function adminDashboard()
@@ -427,7 +443,7 @@ class WebUserController extends Controller
         $userAgent = $request->header('User-Agent');
         $propertyList = DB::table("property")
                         ->join("property_media", "property.property_id", "=", "property_media.property_id")
-                        ->where("property.is_active", 1)
+                        // ->where("property.is_active", 1)
                         ->where("property.created_by", auth()->user()->user_id)
                         ->select("property.*", "property_media.*")
                         ->get();
