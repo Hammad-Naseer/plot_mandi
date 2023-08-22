@@ -481,6 +481,9 @@
                                     </div>
                                 </div>
                             </div> --}}
+                            
+                            <h3>Total Proposal:<?php echo $property_count ?></h3>
+                            
                             <a href="javascript:void(0)" onclick="loadModal('propertyBiding','Submit Proposal', { id: {{ $peoperty_detail->property_id }} })" class="btn reservation btn-radius theme-btn full-width mrg-top-10">Submit Request</a>
                         </div>
                     </div>

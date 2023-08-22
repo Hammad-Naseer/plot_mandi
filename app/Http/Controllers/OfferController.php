@@ -53,7 +53,7 @@ class OfferController extends Controller
             $offer->title = $request->input('title');
             $offer->description = $request->input('description');
             if ($request->hasFile('offer_image')) {
-                $filePath = uploadFile($request->file('offer_image'), 'uploads/offers/', array('jpg','png','gif'));                    
+                $filePath = uploadFile($request->file('offer_image'), 'uploads/offers', array('jpg','png','gif'));                    
                 $offer->image = $filePath;
             }
             $offer->status = $request->input('status');

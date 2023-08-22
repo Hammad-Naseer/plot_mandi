@@ -5,6 +5,7 @@
                 background-color: #cccccc63;
             }
         </style>
+
         <!-- STAR HEADER SEARCH -->
         <section id="hero-area" class="parallax-searchs home15 overlay" data-stellar-background-ratio="0.5">
             <div class="hero-main">
@@ -664,20 +665,34 @@
 
 
 
-
+<?php  //print_r($offerList); ?>
         <!-- START SECTION INFO-HELP -->
-        <section class="info-help">
+        <section class="info-help"style="
+            background: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(rgba(255, 255, 255, 0.3)),
+            to(rgba(255, 255, 255, 0.3))
+            ),
+            linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+            url('{{Storage::url($offerList->image)}}') no-repeat scroll center center;
+            " >
+            
             <div class="container">
                 <div class="row info-head">
+                @if($offerList)                
                     <div class="col-lg-6 col-md-8 col-xs-8" data-aos="fade-right">
                         <div class="info-text mt-5">
-                            <h3>Special Offers Every Day.</h3>
-                            <p>We Help you find the best places and offer near you. Bring to the table win-win survival strategies to ensure proactive domination going forward.</p>
+                            <h3><?php echo $offerList->title; ?> </h3>
+                            <p> <?php echo $offerList->description; ?> </p>
                             <div class="inf-btn pro">
-                                <a href="contact-us.html" class="btn btn-pro btn-secondary btn-lg">Get Started</a>
+                                <!-- <a  href="contact-us.html" class="btn btn-pro btn-secondary btn-lg">Get Started</a> -->
                             </div>
                         </div>
                     </div>
+                @endif
+
                     <div class="col-md-6 col-sm-3"></div>
                 </div>
             </div>

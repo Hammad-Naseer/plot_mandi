@@ -26,6 +26,7 @@ use App\Models\Property;
 use App\Models\PropertyMedia;
 use App\Models\DealarMedia;
 use App\Models\Plot_Pedia;
+use App\Models\Offer;
 use App\Models\PropertyBid;
 
 // Jobs
@@ -33,6 +34,7 @@ use App\Models\PropertyBid;
 
 // Resource 
 use App\Http\Resources\GetPlotPedia;
+use App\Http\Resources\GetOffer;
 
 class Home extends Controller
 {
@@ -47,9 +49,11 @@ class Home extends Controller
     {
         $getPlotPediaAPI = $this->getPlotPedia();
         $getPropertyAPI = $this->getProperty();
+        $getOfferAPI = $this->getOffer();
         return view('homePage')
                 ->with('pediaList', $getPlotPediaAPI)
-                ->with('propertyList', $getPropertyAPI);
+                ->with('propertyList', $getPropertyAPI)
+                ->with('offerList', $getOfferAPI);
     }
 
     public function getPlotPedia(int $id = 0)
@@ -69,6 +73,25 @@ class Home extends Controller
         
         if (strpos($this->completeRoutePath, '/api/') !== false) {
             return successResponse(new GetPlotPedia($viewAPI),200,"success");
+        }else{
+            return $viewAPI;
+        }
+    }
+
+    public function getOffer(int $id = 0)
+    {
+        if($id > 0):
+            $viewAPI = Offer::where('status',1)
+            ->orderBy('offer_id', 'desc')
+            ->where("offer_id",$id)
+            ->first();
+        else:
+            $viewAPI = Offer::where('status',1)
+            ->orderBy('offer_id', 'desc')
+            ->first();
+        endif;
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
+            return successResponse(new GetOffer($viewAPI),200,"success");
         }else{
             return $viewAPI;
         }
@@ -146,11 +169,17 @@ class Home extends Controller
 
     public function singleProperty($property_id)
     {
+        
         $singleProperty = $this->getProperty(base64_decode($property_id));
         if (strpos($this->completeRoutePath, '/api/') !== false) {
             return successResponse(new GetPlotPedia($viewAPI),200,"success");
         }else{
-            return view('pages.web.single_property')->with("peoperty_detail",$singleProperty);
+            $decodedId_property = base64_decode($property_id);
+            $property_count = DB::table('property_bid')->where("property_id", "=", $decodedId_property)->count();
+            // print_r($data);exit;
+            return view('pages.web.single_property')
+            ->with("peoperty_detail",$singleProperty)
+            ->with("property_count",$property_count);
         }
     }
 

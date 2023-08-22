@@ -11875,8 +11875,8 @@ section.featured.home15 {
 /*----------------------------------------------*/
 .info-help {
   padding: 6rem 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3))), url(../images/bg/bg-info3.jpg) no-repeat scroll center center;
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/bg/bg-info3.jpg) no-repeat scroll center center;
+  /* background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3))), url(../images/bg/bg-info3.jpg) no-repeat scroll center center; */
+  /* background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../images/bg/bg-info3.jpg) no-repeat scroll center center; */
   background-size: cover;
   position: relative;
   z-index: 3;
