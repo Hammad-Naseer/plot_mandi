@@ -36,8 +36,17 @@
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'styles.css') }}">
     <link rel="stylesheet" href="{{ asset(MyApp::ASSET_STYLE.'maps.css') }}">
     <link rel="stylesheet" id="color" href="{{ asset(MyApp::ASSET_STYLE.'colors/green.css') }}">
+
+    {{-- Fancy Box  --}}
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+
+    
 </head>
-<body class="@if (Route::current()->uri == 'plot_pedia_detail/{string?}' || Route::current()->uri == 'login' || Route::current()->uri == 'register' || Route::current()->uri == 'user/forgot_password' || Route::current()->uri == 'user/reset_password' || Route::current()->uri == 'user/account_verification') inner-pages hd-white @else homepage-5 @endif">
+<body class="@if (Route::current()->uri == 'plot_pedia' || Route::current()->uri == 'plot_pedia_detail/{string?}' || Route::current()->uri == 'login' || Route::current()->uri == 'register' || Route::current()->uri == 'user/forgot_password' || Route::current()->uri == 'user/reset_password' || Route::current()->uri == 'user/account_verification') inner-pages hd-white @else homepage-5 @endif">
     <!-- Wrapper -->
     <div id="wrapper">
         <!-- Header Container
@@ -69,7 +78,7 @@
                                     <li><a href="#">Listing</a></li>
                                     <li><a href="#">Property</a></li>
                                     <li><a href="#">Pages</a></li>
-                                    <li><a href="#">Plot Pedia</a></li>
+                                    <li><a href="{{ route('plot_pedia') }}">Plot Pedia</a></li>
                                     <li><a href="contact-us.html">Contact</a></li>
                                     <li class="d-none d-xl-none d-block d-lg-block"><a href="{{ url('login') }}">Login</a></li>
                                     <li class="d-none d-xl-none d-block d-lg-block"><a href="{{ url('register') }}">Register</a></li>
@@ -335,6 +344,7 @@
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'search.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'owl.carousel.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset(MyApp::ASSET_SCRIPT.'popup.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'ajaxchimp.min.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'newsletter.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery.form.js') }}"></script>
@@ -348,7 +358,23 @@
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'leaflet.markercluster.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'map-style2.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'range.js') }}"></script>
+        <script src="{{ asset(MyApp::ASSET_SCRIPT.'map-single.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'color-switcher.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+                    disableOn: 700,
+                    type: 'iframe',
+                    mainClass: 'mfp-fade',
+                    removalDelay: 160,
+                    preloader: false,
+                    fixedContentPos: false
+                });
+            });
+
+        </script>
+        
         <script>
             $(window).on('scroll load', function() {
                 $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
@@ -432,6 +458,42 @@
         <!-- MAIN JS -->
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'script.js') }}"></script>
 
+
+        {{-- Modals  --}}
+
+        {{-- View Property Images  --}}
+        <div class="modal fade" id="showPropertyImages" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title loadModalTitle" id="showPropertyImages">Property Images</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="loadModalBody">
+                    <div class="row">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <script>
+            function loadModal(modal, modalTitle,arguments ) {
+                $.get('/'+modal,arguments, function(response) {
+                    $('.loadModalTitle').text(modalTitle);
+                    $('#loadModalBody').html(response);
+                    $('#showPropertyImages').modal('show');
+                });
+            };
+        </script>
+        
     </div>
     <!-- Wrapper / End -->
 </body>

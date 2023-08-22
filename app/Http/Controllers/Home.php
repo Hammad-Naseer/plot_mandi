@@ -62,8 +62,8 @@ class Home extends Controller
         else:
             $viewAPI = Plot_Pedia::where('status',1)
             ->orderBy('plot_pedias_id', 'desc')
-            ->limit(4)
             ->get();
+            // ->limit(4)
         endif;
         
         if (strpos($this->completeRoutePath, '/api/') !== false) {
@@ -128,4 +128,37 @@ class Home extends Controller
             return $viewAPI;
         }
     }
+
+    public function showPropertyImages()
+    {
+        $arg = array();
+        $arg["id"] = request()->input('id');
+        return view('pages.modals.show_property_images')->with("arguments",$arg);
+    }
+
+    public function showPropertyVideos()
+    {
+        $arg = array();
+        $arg["id"] = request()->input('id');
+        return view('pages.modals.show_property_videos')->with("arguments",$arg);
+    }
+
+    public function singleProperty($property_id)
+    {
+        $singleProperty = $this->getProperty(base64_decode($property_id));
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
+            return successResponse(new GetPlotPedia($viewAPI),200,"success");
+        }else{
+            return view('pages.web.single_property')->with("peoperty_detail",$singleProperty);
+        }
+    }
+
+    public function plotPediaPage()
+    {
+        $getPlotPediaAPI = $this->getPlotPedia();
+        return view('pages.web.plot_pedia')
+                ->with('pediaList', $getPlotPediaAPI);
+    }
+
+    
 }

@@ -403,6 +403,59 @@ if (!function_exists('callCurl')) {
             return $typeArr[$type_id] ?? null;
         }
     }
-    
+
+    if (!function_exists('getPropertyType')) {
+        function getPropertyType(int $type_id)
+        {
+            $typeArr = array(
+                '1' => "House",
+                '2' => "Commercial",
+                '3' => "Apartment",
+                '4' => "Lot",
+                '5' => "Garage",
+            );
+        
+            return $typeArr[$type_id] ?? null;
+        }
+    }
+
+    if (!function_exists('getPropertyFeatures')) {
+        function getPropertyFeatures(int $type_id)
+        {
+            $typeArr = array(
+                '1' => "Air Conditioning",
+                '2' => "Swimming Pool",
+                '3' => "Central Heating",
+                '4' => "Laundry Room",
+                '5' => "Gym",
+                '6' => "Alarm",
+                '7' => "Window Covering",
+                '8' => "Refrigerator",
+                '9' => "TV Cable & WIFI",
+                '10' => "Microwave",
+            );
+        
+            return $typeArr[$type_id] ?? null;
+        }
+    }
+
+    if (!function_exists('getPropertyMedia')) {
+        function getPropertyMedia(int $property_id,$type = "image")
+        {
+            $viewAPI = DB::table("property_media")
+            ->where("property_id",$property_id)
+            ->get();
+
+            $response = array();
+
+            foreach($viewAPI as $media):
+                if($media->file_type == $type):
+                    $response[] = $media->file_name;
+                endif;
+            endforeach;
+
+            return $response;
+        }
+    }
 
 }

@@ -366,6 +366,26 @@
                     </li>
                 </ul>
 
+                <ul class="menu_item">
+                    <div class="menu_title flex">
+                        <span class="title">Offer</span>
+                        <span class="line"></span>
+                    </div>
+                    <li class="item @if (Route::current()->uri == 'dashboard/admin/add_offer') active @endif">
+                        <a href="{{ route('add_offer') }}" class="link flex">
+                            <i class="bx bx-folder"></i>
+                            <span>Add Offer</span>
+                        </a>
+                    </li>
+
+                    <li class="item @if (Route::current()->uri == 'dashboard/admin/offer_list') active @endif">
+                        <a href="{{ route('offer_list') }}" class="link flex">
+                            <i class="bx bx-folder"></i>
+                            <span>Offer Listing</span>
+                        </a>
+                    </li>
+                </ul>
+
                 <!-- <ul class="menu_item">
             <div class="menu_title flex">
             <span class="title">Setting</span>

@@ -17038,7 +17038,7 @@ div.datedropper.my-style.picker-lkd .pick-submit {
   height: 70px;
   left: 50%;
   line-height: 70px;
-  position: absolute;
+  /* position: absolute; */
   text-align: center;
   top: 57%;
   -webkit-transform: translate(-50%, -50%);

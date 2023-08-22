@@ -30,6 +30,8 @@ use App\Http\Controllers\WebUserController;
 use App\Http\Controllers\PlotPediaController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\OfferController;
+
 
 Route::get('/', [Home::class,'homePage'])->name('homepage');
 // Admin Login 
@@ -84,6 +86,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard/user/edit_post/{string?}', [PostsController::class,'editPostRecord'])->name('edit_post');
     Route::post('/dashboard/user/update_post', [PostsController::class,'updatePost'])->name('update_post');
     Route::get('/dashboard/user/delete_post_file/{string?}/{string2?}', [PostsController::class,'deletePostFile'])->name('delete_post_file');
+
+    // Offer
+    Route::get('/dashboard/admin/add_offer', [OfferController::class,'addOffer'])->name('add_offer');
+    Route::post('/dashboard/admin/submit_offer', [OfferController::class,'submitOffer'])->name('submit_offer');
+    Route::get('/dashboard/admin/offer_list', [OfferController::class,'offerList'])->name('offer_list');
+    Route::get('/dashboard/admin/delete_offer/{string?}', [OfferController::class,'deleteOfferRecord'])->name('delete_offer');
+    Route::get('/dashboard/admin/edit_offer/{string?}', [OfferController::class,'editOfferRecord'])->name('edit_offer');
+    Route::post('/dashboard/admin/update_offer', [OfferController::class,'updateOffer'])->name('update_offer');
+    Route::get('/dashboard/admin/delete_offer_file/{string?}/{string2?}', [OfferController::class,'deleteOfferFile'])->name('delete_offer_file');
     
     // User Dashboard Routes 
     Route::get('/dashboard/user', [WebUserController::class,'userDashboard'])->name('user_dashboard');
@@ -94,7 +105,13 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // Homepage Routes 
+Route::get('/plot_pedia', [Home::class,'plotPediaPage'])->name('plot_pedia');
 Route::get('/plot_pedia_detail/{string?}', [Home::class,'plotPediaDetail'])->name('plot_pedia_detail');
+Route::get('/single-property/{string?}', [Home::class,'singleProperty'])->name('single_property');
+
+// Modal Routes 
+Route::get('/showPropertyImages', [Home::class,'showPropertyImages'])->name('showPropertyImages');
+Route::get('/showPropertyVideos', [Home::class,'showPropertyVideos'])->name('showPropertyVideos');
 
 Route::fallback(function () {
     return redirect()->route('login');

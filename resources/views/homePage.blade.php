@@ -171,13 +171,13 @@
                                                     <a href="single-property-1.html" class="homes-img">
                                                         <div class="homes-tag button alt featured">Featured</div>
                                                         <div class="homes-tag button alt sale">For Sale</div>
-                                                        <img src="{{ asset(MyApp::ASSET_IMG.'blog/b-11.jpg') }}" alt="home-1" class="img-responsive">
+                                                        <img src="{{ Storage::url(getPropertyMedia($list->property_id,"image")[0]) }}" alt="home-1" class="img-responsive">
                                                     </a>
                                                 </div>
                                                 <div class="button-effect">
-                                                    <a href="single-property-1.html" class="btn"><i class="fa fa-link"></i></a>
-                                                    <a href="https://www.youtube.com/watch?v=14semTlwyUY" class="btn popup-video popup-youtube"><i class="fas fa-video"></i></a>
-                                                    <a href="single-property-2.html" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                                                    <a href="{{ route('single_property', base64_encode($list->property_id)) }}" class="btn"><i class="fa fa-link"></i></a>
+                                                    <a href="javascript:void(0)" onclick="loadModal('showPropertyVideos','Property Videos', { id: {{ $list->property_id }} })" class="btn popup-video"><i class="fas fa-video"></i></a>
+                                                    <a href="javascript:void(0)" onclick="loadModal('showPropertyImages','Property Images', { id: {{ $list->property_id }} })" class="img-poppu btn"><i class="fa fa-photo"></i></a>
                                                 </div>
                                             </div>
                                             <!-- homes content -->
@@ -186,7 +186,7 @@
                                                 <h3><a href="single-property-1.html">{{ $list->property_title }}</a></h3>
                                                 <p class="homes-address mb-3">
                                                     <a href="single-property-1.html">
-                                                        <i class="fa fa-map-marker"></i><span>Est St, 77 - Central Park South, NYC</span>
+                                                        <i class="fa fa-map-marker"></i><span>{{ $list->property_address }}</span>
                                                     </a>
                                                 </p>
                                                 <!-- homes List -->
@@ -822,6 +822,9 @@
                     <div class="row">
                         @if($pediaList)
                             @foreach($pediaList as $key => $list)
+                            @if ($key >= 4)
+                                @break
+                            @endif
                             @if($key % 2 == 0)
                                 <div class="col-xl-6 col-md-12 col-xs-12" data-aos="fade-left">
                                     <div class="news-item news-item-sm">
