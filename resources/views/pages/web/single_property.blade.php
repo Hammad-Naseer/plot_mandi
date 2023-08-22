@@ -481,7 +481,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            <a href="payment-method.html" class="btn reservation btn-radius theme-btn full-width mrg-top-10">Submit Request</a>
+                            <a href="javascript:void(0)" onclick="loadModal('propertyBiding','Submit Proposal', { id: {{ $peoperty_detail->property_id }} })" class="btn reservation btn-radius theme-btn full-width mrg-top-10">Submit Request</a>
                         </div>
                     </div>
                     <!-- End: Schedule a Tour -->

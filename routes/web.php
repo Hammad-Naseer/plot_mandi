@@ -108,10 +108,12 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/plot_pedia', [Home::class,'plotPediaPage'])->name('plot_pedia');
 Route::get('/plot_pedia_detail/{string?}', [Home::class,'plotPediaDetail'])->name('plot_pedia_detail');
 Route::get('/single-property/{string?}', [Home::class,'singleProperty'])->name('single_property');
+Route::post('/bid_submit', [Home::class,'submitBid'])->name('proposal_submit');
 
 // Modal Routes 
 Route::get('/showPropertyImages', [Home::class,'showPropertyImages'])->name('showPropertyImages');
 Route::get('/showPropertyVideos', [Home::class,'showPropertyVideos'])->name('showPropertyVideos');
+Route::get('/propertyBiding', [Home::class,'propertyBiding'])->name('propertyBiding');
 
 Route::fallback(function () {
     return redirect()->route('login');

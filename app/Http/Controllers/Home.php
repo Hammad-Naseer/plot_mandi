@@ -17,7 +17,7 @@ use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Str;
 
 // Requests 
-// use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\PropertyBidingRequest;
 
 
 // Models 
@@ -26,6 +26,7 @@ use App\Models\Property;
 use App\Models\PropertyMedia;
 use App\Models\DealarMedia;
 use App\Models\Plot_Pedia;
+use App\Models\PropertyBid;
 
 // Jobs
 // use App\Jobs\SendUserVerificationEmailJob;
@@ -160,5 +161,40 @@ class Home extends Controller
                 ->with('pediaList', $getPlotPediaAPI);
     }
 
+    public function propertyBiding()
+    {
+        $arg = array();
+        $arg["id"] = request()->input('id');
+        return view('pages.modals.property_bid_form')->with("arguments",$arg);
+    }
+
+    public function submitBid(PropertyBidingRequest $request)
+    {
+        $biding = new PropertyBid();
+        $biding->property_id = $request->input('property_id');
+        $biding->proposal_description = $request->input('proposal_description');
+        if (strpos($this->completeRoutePath, '/api/') !== false) {
+            $biding->submitted_by = $request->input('user_id');
+        }else{
+            $biding->submitted_by = auth()->user()->user_id;
+        }
+        if ($biding->save()) :
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array("message" => "Proposal Submit Successfully"),200,"success");
+            } else {
+                // Session::flash('success', 'Proposal Submit Successfully'); 
+                // return redirect()->route('add_post');
+                return successResponse(array("message" => "Proposal Submit Successfully"),200,"success");
+            }
+        else:
+            if (strpos($this->completeRoutePath, '/api/') !== false) {
+                return successResponse(array("message" => "Proposal Not Submitted, error"),404,"error");
+            } else {
+                return successResponse(array("message" => "Proposal Not Submitted, error"),404,"error");
+                // Session::flash('error', 'Proposal Not Submitted, error'); 
+                // return redirect()->route('single_property',base64_encode($biding->property_id));
+            }
+        endif;
+    }
     
 }

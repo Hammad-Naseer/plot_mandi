@@ -324,6 +324,7 @@
         <!-- END PRELOADER -->
         @include('pages.ajax.commonAjax')
         <!-- ARCHIVES JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'jquery-3.5.1.min.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'rangeSlider.js') }}"></script>
         <script src="{{ asset(MyApp::ASSET_SCRIPT.'tether.min.js') }}"></script>
