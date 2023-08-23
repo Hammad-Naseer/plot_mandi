@@ -109,6 +109,7 @@ class Home extends Controller
                 $recentPlotPedia = Plot_Pedia::whereNot('plot_pedias_id ',base64_decode($pediaId))->orderBy('plot_pedias_id', 'desc')->limit(10)->get();
                 return view('pages.web.plot_pedia_detail')->with('plotPediaDetail',$pediaDetail)->with('recentPlotPedia',$recentPlotPedia);
             }
+            
         }else{
             if (strpos($this->completeRoutePath, '/api/') !== false) {
                 return successResponse(array("message" => "Plot Pedia Id Not Found"),404,"error");
