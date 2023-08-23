@@ -110,6 +110,7 @@ class Home extends Controller
                 return view('pages.web.plot_pedia_detail')->with('plotPediaDetail',$pediaDetail)->with('recentPlotPedia',$recentPlotPedia);
             }
             
+
         }else{
             if (strpos($this->completeRoutePath, '/api/') !== false) {
                 return successResponse(array("message" => "Plot Pedia Id Not Found"),404,"error");
