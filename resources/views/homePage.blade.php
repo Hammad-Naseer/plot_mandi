@@ -667,6 +667,7 @@
 
 <?php  //print_r($offerList); ?>
         <!-- START SECTION INFO-HELP -->
+          @if($offerList)  
         <section class="info-help"style="
             background: -webkit-gradient(
             linear,
@@ -681,7 +682,7 @@
             
             <div class="container">
                 <div class="row info-head">
-                @if($offerList)                
+                            
                     <div class="col-lg-6 col-md-8 col-xs-8" data-aos="fade-right">
                         <div class="info-text mt-5">
                             <h3><?php echo $offerList->title; ?> </h3>
